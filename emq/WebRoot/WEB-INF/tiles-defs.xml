@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+
+<tiles-definitions>
+  <!-- *********************************************************************
+-->
+  <!-- 基础tiles定义部分 -->
+  <!-- *********************************************************************
+-->
+
+  <!-- 主框架(frame)基础控制，用于继承 -->
+  <definition name="index-base-define" page="/frame/frame.jsp">
+    <!-- 控制是否有上框架，1为有，2为没 -->
+    <put name="topControl" value="1"></put>
+    <!-- 控制是否有左框架，1为有，2为没 -->
+    <put name="leftControl" value="2"></put>
+    <!-- 控制是否有右框架，1为有，2为没 -->
+    <put name="rightControl" value="1"></put>
+    <!-- 控制是否有多行查询条件，1为有，2为没 -->
+    <put name="conditionControl" value="2"></put>
+  </definition>
+  
+  <!-- 昆明GIS地图原形页面 -->
+  <definition name=".dypp.home.frame" extends="index-base-define">
+    <put name="title" value="昆明GIS" />
+    <put name="conditionControl" value="1"></put>
+    <put name="top_frame" value="/MyJsp.jsp" />
+    <put name="main_frame" value="/map.jsp?mapId=CigStoreMap" />
+    <put name="right" value="/MyJsp2.jsp" />
+  </definition>
+  
+</tiles-definitions>
+

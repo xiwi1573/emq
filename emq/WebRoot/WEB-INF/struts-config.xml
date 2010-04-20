@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+	<data-sources />
+	<form-beans>
+	</form-beans>
+
+	<global-exceptions />
+	<global-forwards />
+	<action-mappings>
+		<!--地图原形-->
+		<action path="/home/main_frame" type="org.apache.struts.actions.ForwardAction"
+			parameter=".dypp.home.frame">
+		</action>
+
+	</action-mappings>
+
+	<!--
+		<message-resources parameter="com.icss.km.ApplicationResources" />
+	-->
+	<!-- Tiles插件定义部分 -->
+	<plug-in className="org.apache.struts.tiles.TilesPlugin">
+		<!-- 设置配置文件名称，多个文件用逗号隔开 -->
+		<set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" />
+		<!-- 设置调试级别，默认为0不输出，1提供部分调试信息，2提供完整的调试信息 -->
+		<set-property property="definitions-debug" value="2" />
+		<!-- 定义文件被解析时所需要的调试级别 -->
+		<set-property property="definitions-parser-details"
+			value="2" />
+		<!-- 设置是否要验证Tiles配置文件格式，默认为true -->
+		<set-property property="definitions-parser-validate"
+			value="true" />
+		<!-- 默认为true -->
+		<set-property property="moduleAware" value="true" />
+	</plug-in>
+</struts-config>
+

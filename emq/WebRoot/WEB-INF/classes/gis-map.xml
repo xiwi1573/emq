@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+		<map-defines xmlns="http://www.icss.com.cn/km/gismap"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.icss.com.cn/km/gismap gis-map.xsd ">
+	-->
+
+	<!--
+		map-def:地图定义 map-def.id: 地图定义id,需唯一 
+		map-def.abstract: boolean		true,抽象定义不可被直接引用，默认值false 
+		map-def.type: searchable可查询, normal不可查询，不能被直接引用. 
+		map-def.class: 查询实现类,必须是com.icss.km.gis.model.AbstractGISMap
+		map-def/describe 地图描述 
+		map-def/main-map-img-width：
+		主地图默认图片输出宽度,建议设置与页面的图片框一致,否则session过期后将不一致，导致定位不准。
+		map-def/main-map-img-hight:
+		主地图默认图片输出高度,建议设置与页面的图片框一致,否则session过期后将不一致，导致定位不准。
+		map-def/main-map-zoom：主地图默认缩放级别 （公里） 
+		map-def/preview-map-img-width:
+		缩略图默认图片输出宽度,建议设置与页面的图片框一致,否则session过期后将不一致，导致定位不准.
+		map-def/preview-map-img-hight: 
+		缩略图默认图片输出高度,建议设置与页面的图片框一致,否则session过期后将不一致，导致定位不准. 
+		map-def/preview-map-zoom: 缩略图默认缩放级别(公里)
+		map-def/main-map-def-file:主地图mapinfo配置文件 
+		map-def/preview-map-def-file:缩略图mapinfo配置文件 
+		map-def/spatial-search-layer: 查询图层定义
+		map-def/static-layer: 静态显示的图层定义 
+		map-def/spatial-search-layer.template: 样式模板id
+		map-def/spatial-search-layer.table-name 数据库表名
+		map-def/spatial-search-layer.x： x坐标列名
+		 map-def/spatial-search-layer.y：y坐标列名 
+		map-def/spatial-search-layer.pk: 主键列名，组合键用逗号分隔 
+		map-def/spatial-search-layer.label: 标注列名
+		template: 地图模板样式
+		template.id: 地图模板样式id,需唯一
+	-->
+<map-defines>
+	<!-- 卷烟专卖点模板 -->
+	<layer-template id="POI">
+		D:/ServerHome/KMGISHome/map_kmyc090826/poitemplate.mdf
+	</layer-template>
+	
+	<!-- 无证户模板 -->
+	<layer-template id="POI_1">
+		D:/ServerHome/KMGISHome/map_kmyc090826/poitemplate.mdf
+	</layer-template>
+	
+	<!-- 烟草相关信息点模板 -->
+	<layer-template id="CIG_INFO">
+		D:/ServerHome/KMGISHome/map_kmyc090826/cig_info_template.mdf
+	</layer-template>
+
+	<!-- 基本地图属性 -->
+	<map-def id="base" abstract="true">
+		<main-map-img-width>1210</main-map-img-width>
+		<main-map-img-hight>695</main-map-img-hight>
+		<main-map-zoom>2.5</main-map-zoom>
+		<preview-map-img-width>150</preview-map-img-width>
+		<preview-map-img-hight>150</preview-map-img-hight>
+		<preview-map-zoom>5.0</preview-map-zoom>
+	</map-def>
+
+
+	<map-def id="area.km" abstract="true" extends="base">
+		<describe>昆明地图</describe>
+		<main-map-def-file>D:/ServerHome/KMGISHome/map_kmyc090826/km.mdf
+		</main-map-def-file>
+		<preview-map-def-file>
+			D:/ServerHome/KMGISHome/map_kmyc090826/km_preview.mdf
+		</preview-map-def-file>
+	</map-def>
+	
+	<map-def id="area.km.an" abstract="true" extends="base">
+		<describe>安宁市地图</describe>
+		<main-map-def-file>D:/ServerHome/KMGISHome/map_kmyc090826/km.mdf
+		</main-map-def-file>
+		<preview-map-def-file>
+			D:/ServerHome/KMGISHome/map_kmyc090826/km_preview.mdf
+		</preview-map-def-file>
+	</map-def>
+	
+	<map-def id="area.km.cg" abstract="true" extends="base">
+		<describe>呈贡县地图</describe>
+		<main-map-def-file>D:/ServerHome/KMGISHome/map_kmyc090826/km.mdf
+		</main-map-def-file>
+		<preview-map-def-file>
+			D:/ServerHome/KMGISHome/map_kmyc090826/km_preview.mdf
+		</preview-map-def-file>
+	</map-def>
+	
+	<map-def id="area.km.cq" abstract="true" extends="base">
+		<describe>城区地图</describe>
+		<main-map-def-file>D:/ServerHome/KMGISHome/map_kmyc090826/km.mdf
+		</main-map-def-file>
+		<preview-map-def-file>
+			D:/ServerHome/KMGISHome/map_kmyc090826/km_preview.mdf
+		</preview-map-def-file>
+	</map-def>
+	
+	<map-def id="area.km.dc" abstract="true" extends="base">
+		<describe>东川区</describe>
+		<main-map-def-file>D:/ServerHome/KMGISHome/map_kmyc090826/km.mdf
+		</main-map-def-file>
+		<preview-map-def-file>
+			D:/ServerHome/KMGISHome/map_kmyc090826/km_preview.mdf
+		</preview-map-def-file>
+	</map-def>
+	
+	
+	<map-def id="area.km.fm" abstract="true" extends="base">
+		<describe>富民县</describe>
+		<main-map-def-file>D:/ServerHome/KMGISHome/map_kmyc090826/km.mdf
+		</main-map-def-file>
+		<preview-map-def-file>
+			D:/ServerHome/KMGISHome/map_kmyc090826/km_preview.mdf
+		</preview-map-def-file>
+	</map-def>
+	
+	
+	<map-def id="area.km.gd" abstract="true" extends="base">
+		<describe>官渡区</describe>
+		<main-map-def-file>D:/ServerHome/KMGISHome/map_kmyc090826/km.mdf
+		</main-map-def-file>
+		<preview-map-def-file>
+			D:/ServerHome/KMGISHome/map_kmyc090826/km_preview.mdf
+		</preview-map-def-file>
+	</map-def>
+	
+	<map-def id="area.km.jn" abstract="true" extends="base">
+		<describe>晋宁县</describe>
+		<main-map-def-file>D:/ServerHome/KMGISHome/map_kmyc090826/km.mdf
+		</main-map-def-file>
+		<preview-map-def-file>
+			D:/ServerHome/KMGISHome/map_kmyc090826/km_preview.mdf
+		</preview-map-def-file>
+	</map-def>
+	
+	
+	<map-def id="area.km.lq" abstract="true" extends="base">
+		<describe>禄劝县</describe>
+		<main-map-def-file>D:/ServerHome/KMGISHome/map_kmyc090826/km.mdf
+		</main-map-def-file>
+		<preview-map-def-file>
+			D:/ServerHome/KMGISHome/map_kmyc090826/km_preview.mdf
+		</preview-map-def-file>
+	</map-def>
+	
+	<map-def id="area.km.sl" abstract="true" extends="base">
+		<describe>石林县</describe>
+		<main-map-def-file>D:/ServerHome/KMGISHome/map_kmyc090826/km.mdf
+		</main-map-def-file>
+		<preview-map-def-file>
+			D:/ServerHome/KMGISHome/map_kmyc090826/km_preview.mdf
+		</preview-map-def-file>
+	</map-def>
+	
+	<map-def id="area.km.xd" abstract="true" extends="base">
+		<describe>寻甸县</describe>
+		<main-map-def-file>D:/ServerHome/KMGISHome/map_kmyc090826/km.mdf
+		</main-map-def-file>
+		<preview-map-def-file>
+			D:/ServerHome/KMGISHome/map_kmyc090826/km_preview.mdf
+		</preview-map-def-file>
+	</map-def>
+	
+	<map-def id="area.km.sm" abstract="true" extends="base">
+		<describe>嵩明县</describe>
+		<main-map-def-file>D:/ServerHome/KMGISHome/map_kmyc090826/km.mdf
+		</main-map-def-file>
+		<preview-map-def-file>
+			D:/ServerHome/KMGISHome/map_kmyc090826/km_preview.mdf
+		</preview-map-def-file>
+	</map-def>
+ 	
+	<map-def id="area.km.xs" abstract="true" extends="base">
+		<describe>西山区</describe>
+		<main-map-def-file>D:/ServerHome/KMGISHome/map_kmyc090826/km.mdf
+		</main-map-def-file>
+		<preview-map-def-file>
+			D:/ServerHome/KMGISHome/map_kmyc090826/km_preview.mdf
+		</preview-map-def-file>
+	</map-def>
+	
+	<map-def id="area.km.yl" abstract="true" extends="base">
+		<describe>宜良县</describe>
+		<main-map-def-file>D:/ServerHome/KMGISHome/map_kmyc090826/km.mdf
+		</main-map-def-file>
+		<preview-map-def-file>
+			D:/ServerHome/KMGISHome/map_kmyc090826/km_preview.mdf
+		</preview-map-def-file>
+	</map-def>
+
+	<!-- 正常状态的卷烟专卖点地图 -->
+	<map-def id="CigStoreMap" class="com.icss.km.gis.model.CigStoreGISMap">
+		<static-layer id="CIG_INFO" template="CIG_INFO" table-name="V_GIS_MP_MESSAGE_NORMAL"
+			pk="xxbm,xxbh" label="XXMC" x="x" y="y" />
+		<spatial-search-layer template="POI" table-name="V_GIS_MS_LICENSE_NORMAL"
+			pk="XKZHM" label="KHMC" x="x" y="y" />
+	</map-def>
+	
+	<!-- 注销状态的卷烟专卖点地图 -->
+	<map-def id="ChargedCigStoreMap" class="com.icss.km.gis.model.CigStoreGISMap">
+		<static-layer id="CIG_INFO" template="CIG_INFO" table-name="V_GIS_MP_MESSAGE_NORMAL"
+			pk="xxbm,xxbh" label="XXMC" x="x" y="y" />
+		<spatial-search-layer template="POI" table-name="V_GIS_MS_LICENSE_CHARGED"
+			pk="XKZHM" label="KHMC" x="x" y="y" />
+	</map-def>
+	
+	<!-- 校验用卷烟专卖点地图 -->
+	<map-def id="InvalidCigStoreGISMap" class="com.icss.km.gis.model.InvalidCigStoreGISMap">
+		<static-layer id="CIG_INFO" template="CIG_INFO" table-name="V_GIS_MP_MESSAGE_NORMAL"
+			pk="xxbm,xxbh" label="XXMC" x="x" y="y" />
+		<spatial-search-layer template="POI" table-name="GIS_MS_LICENSE"
+			pk="XKZHM" label="KHMC" x="x" y="y" />
+	</map-def>
+	
+	<!-- 无证有证卷烟专卖点地图 -->
+	<map-def id="NoCigStoreMap" class="com.icss.km.gis.model.CigStoreGISMap">
+		<static-layer id="CIG_INFO" template="CIG_INFO" table-name="V_GIS_MP_MESSAGE_NORMAL"
+			pk="xxbm,xxbh" label="XXMC" x="x" y="y" />
+		<spatial-search-layer template="POI" table-name="V_GIS_MS_LICENSE_NORMAL"
+			pk="XKZHM" label="KHMC" x="x" y="y" />
+		<spatial-search-layer template="POI_1" table-name="V_GIS_MS_NOLICENSE"
+			pk="ID" label="KHMC" x="x" y="y" />
+	</map-def>
+	
+	<!-- 无证卷烟专卖点地图 -->
+	<map-def id="NoCigStoreOnlyMap" class="com.icss.km.gis.model.CigStoreGISMap">
+		<static-layer id="CIG_INFO" template="CIG_INFO" table-name="V_GIS_MP_MESSAGE_NORMAL"
+			pk="xxbm,xxbh" label="XXMC" x="x" y="y" />
+		<spatial-search-layer template="POI_1" table-name="V_GIS_MS_NOLICENSE"
+			pk="ID" label="KHMC" x="x" y="y" />
+	</map-def>
+	
+	<!-- 坐标点校验地图 -->
+	<map-def id="TempCheckMap" class="com.icss.km.gis.model.CigStoreGISMap">
+		<spatial-search-layer template="POI" table-name="V_GIS_MS_LICENSE_CHECK"
+			pk="XKZHM" label="KHMC" x="x" y="y" />
+	</map-def>
+
+	<!-- 地图引用定义，每个页面必须使用不同的地图引用 -->
+	<map-def-ref id="CigStoreMap" ref="CigStoreMap" />
+	<!-- 零售户查询 -->
+	<map-def-ref id="lshcx" ref="CigStoreMap" />
+	<!-- 注销零售户分布查询 -->
+	<map-def-ref id="zxlshfbcx" ref="ChargedCigStoreMap" />
+	<!-- 地址变更情况查询 -->
+	<map-def-ref id="dzbgqkcx" ref="CigStoreMap" />
+	<!-- 分业态查询 -->
+	<map-def-ref id="fytcx" ref="CigStoreMap" />
+	<!-- 分线路查询 -->
+	<map-def-ref id="fxlcx" ref="CigStoreMap" />
+	<!-- 分等级查询 -->
+	<map-def-ref id="fdjcx" ref="CigStoreMap" />
+
+	<!-- 区域零售户查询-地区街道分布查询 2009-10-20 add-->
+	<map-def-ref id="dqjdfbcx" ref="CigStoreMap" />
+	<!-- 区域零售户查询-地区街道分等级查询 2009-10-21 add-->
+	<map-def-ref id="dqjdfdjcx" ref="CigStoreMap" />
+	<!-- 区域零售户查询-地区街道分线路查询 2009-10-21 add-->
+	<map-def-ref id="dqjdfxlcx" ref="CigStoreMap" />
+	<!-- 区域零售户查询-地区街道分业态查询 2009-10-21 add-->
+	<map-def-ref id="dqjdfytcx" ref="CigStoreMap" />
+	<!-- 区域零售户查询-地区街道新增分布查询 2009-10-21 add-->
+	<map-def-ref id="dqjdxzfbcx" ref="CigStoreMap" />
+	<!-- 区域零售户查询-地区街道注销分布查询 2009-10-21 add-->
+	<map-def-ref id="dqjdzxfbcx" ref="ChargedCigStoreMap" />
+
+	<!-- 零售户总销量统计 -->
+	<map-def-ref id="lshxltj" ref="CigStoreMap" />
+	<!-- 零售户分品牌销量统计 -->
+	<map-def-ref id="lshfppxltj" ref="CigStoreMap" />
+	<!-- 零售户分规格销量统计 -->
+	<map-def-ref id="lshfggxltj" ref="CigStoreMap" />
+
+	<!-- 区域总销量排行榜 -->
+	<map-def-ref id="qyzxlphb" ref="CigStoreMap" />
+	<!-- 区域品牌总销量排行榜 -->
+	<map-def-ref id="qyppxlphb" ref="CigStoreMap" />
+	<!-- 区域规格总销量排行榜 -->
+	<map-def-ref id="qyggxlphb" ref="CigStoreMap" />
+
+	<!-- 区域总销量统计 -->
+	<map-def-ref id="qyzxltj" ref="CigStoreMap" />
+	<!-- 区域分品牌销量统计-->
+	<map-def-ref id="qyfppxltj" ref="CigStoreMap" />
+	<!-- 区域分规格销量统计  -->
+	<map-def-ref id="qyfggxltj" ref="CigStoreMap" />
+
+	<!-- 零售户综合查询 -->
+	<map-def-ref id="lshzhcx" ref="CigStoreMap" />
+	
+	<!-- 销量综合统计 -->
+	<map-def-ref id="xlzhtj" ref="CigStoreMap" />	
+	
+	<!-- 触摸屏查询 -->
+	<map-def-ref id="cmpcx" ref="CigStoreMap" />
+	
+	<!-- 不合法坐标查询 -->
+	<map-def-ref id="valid" ref="InvalidCigStoreGISMap" />
+	
+	<!-- 长期不定货零售户查询 -->
+	<map-def-ref id="cqbdhlshcx" ref="CigStoreMap" />
+	
+	<!-- 无证户查询 -->
+	<map-def-ref id="wzhcx" ref="NoCigStoreMap" />
+	
+	<!-- 无证户分布查询 -->
+	<map-def-ref id="wzhfbcx" ref="NoCigStoreOnlyMap" />
+	
+ <!-- 地图校验查询 -->
+	<map-def-ref id="dtjy" ref="TempCheckMap" />
+	
+	<!-- 地图坐标数据修改权限 -->
+	<map-def-ref id="qxxg" ref="TempCheckMap" />
+	
+	<!-- 采点数据设定 -->
+	<map-def-ref id="cdsjsd" ref="CigStoreMap" />
+</map-defines>
