@@ -1,0 +1,83 @@
+div#icsst {
+width: 100%;
+height: 100%;
+overflow: auto;
+position:absolute ;
+border: 1px solid #9FD6FF;
+}
+div#icss2 {
+width: 100%;
+height: 100%;
+overflow: auto;
+position:absolute ;
+border: 0px solid #9FD6FF;
+}
+
+table#icss2 {table-layout: fixed;FONT-SIZE: 9pt; FONT-FAMILY: "宋体";color:#0000CC
+}
+th {
+font-weight: bold;
+text-align: center;
+background-color: #C8E1FB;
+position:relative;
+cursor: default; 
+top: expression(document.getElementById("icsst").scrollTop-1); /* IE5+ only */
+z-index: 20;
+FONT-SIZE: 9pt;
+FONT-FAMILY: "宋体";
+}
+
+td.locked{
+background-color: #C8E1FB;
+position:relative;
+left: expression(document.getElementById("icsst").scrollLeft-1); /* IE5+ only */
+position: relative;
+z-index: 10;
+}
+
+th.locked {
+font-weight: bold;
+background-color: #1891E8;
+color: #FFFFFF;
+position:relative;
+cursor: default; 
+left: expression(document.getElementById("icsst").scrollLeft-1); /* IE5+ only */
+z-index: 30;
+FONT-SIZE: 9pt;
+FONT-FAMILY: "宋体";
+}
+
+
+
+
+table#icss3{ FONT-SIZE: 9pt; FONT-FAMILY: "宋体";color:#0000CC
+}
+
+th#icss3 {
+font-weight: bold;
+text-align: center;
+background-color: #C8E1FB;
+position:relative;
+cursor: default; 
+top: expression(document.getElementById("icsst").scrollTop-1); /* IE5+ only */
+z-index: 20
+}
+
+td.hblocked#icss3{
+background-color: #C8E1FB;
+position:relative;
+left: expression(document.getElementById("icsst").scrollLeft-1); /* IE5+ only */
+position: relative;
+z-index: 10;
+}
+
+th.hblocked#icss3{
+font-weight: bold;
+background-color: #1891E8;
+color: #FFFFFF;
+position:relative;
+cursor: default; 
+left: expression(document.getElementById("icsst").scrollLeft-1); /* IE5+ only */
+z-index: 30;
+FONT-SIZE: 9pt;
+FONT-FAMILY: "宋体";}

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE taglib
+		PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+	"http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+
+<taglib>
+	<tlibversion>1.0</tlibversion>
+	<jspversion>1.1</jspversion>
+	<shortname>mapinfo</shortname>
+	<uri></uri>
+	<info>Custom tags for MapInfo's enterprise products</info>
+
+	<tag>
+		<name>map</name>
+		<tagclass>com.mapinfo.jsptags.wms.WMSMapTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Prints the map.</info>
+		<attribute>
+			<name>backgroundColor</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>numOfColors</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>servercontrol</name>
+		<tagclass>com.mapinfo.jsptags.wms.ServerControlTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Displays server list controls.</info>
+	</tag>
+
+	<tag>
+		<name>layercontrol</name>
+		<tagclass>com.mapinfo.jsptags.wms.LayerControlTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Displays the layer control fo rthe collection of wms Servers.</info>
+	</tag>
+
+	<tag>
+		<name>addserver</name>
+		<tagclass>com.mapinfo.jsptags.wms.AddServerTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Displays dialog content for adding a server.</info>
+	</tag>
+
+	<tag>
+		<name>addlayer</name>
+		<tagclass>com.mapinfo.jsptags.wms.AddLayerTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Displays dialog content for adding a layer.</info>
+	</tag>
+
+	<tag>
+		<name>removelayer</name>
+		<tagclass>com.mapinfo.jsptags.wms.RemoveLayerTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Displays dialog content for removing a layer.</info>
+	</tag>
+
+	<tag>
+		<name>addremovelayerbuttons</name>
+		<tagclass>com.mapinfo.jsptags.wms.AddRemoveLayerButtonTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Displays add/remove buttons for adding a layer.</info>
+	</tag>
+
+	<tag>
+		<name>zoomin</name>
+		<tagclass>com.mapinfo.jsptags.wms.ZoomInTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Displays zoomin button.</info>
+	</tag>
+
+	<tag>
+		<name>zoomout</name>
+		<tagclass>com.mapinfo.jsptags.wms.ZoomOutTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Displays zoomout button.</info>
+	</tag>
+
+	<tag>
+		<name>recenter</name>
+		<tagclass>com.mapinfo.jsptags.wms.RecenterTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Displays recenter button.</info>
+	</tag>
+
+	<tag>
+		<name>zoomall</name>
+		<tagclass>com.mapinfo.jsptags.wms.ZoomAllTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Displays zoomall button.</info>
+	</tag>
+
+	<tag>
+		<name>style</name>
+		<tagclass>com.mapinfo.jsptags.wms.StyleDialogTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Displays style chooser dialog.</info>
+	</tag>
+
+</taglib>

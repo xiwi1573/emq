@@ -1,0 +1,112 @@
+.dama {
+	FONT-SIZE: 18px; FONT-FAMILY: "宋体", "Times New Roman"
+}
+.tab_title   { color: #465b7a; font-size: 12pt; font-weight: bold }
+.txtedit     { border: 1px solid #FFFFFF }
+
+
+.title {
+	FONT-SIZE: 16px; FONT-FAMILY: "黑体"; color:#013CA9
+}
+
+TD {
+	FONT-SIZE: 9pt; FONT-FAMILY: "宋体", "Times New Roman"
+}
+body{
+      SCROLLBAR-FACE-COLOR:#E8F0FB;
+      SCROLLBAR-HIGHLIGHT-COLOR:#FFFFFF;
+      SCROLLBAR-SHADOW-COLOR:#AFD5EA;
+      SCROLLBAR-3DLIGHT-COLOR:#DDE7F0;
+      SCROLLBAR-ARROW-COLOR:#5096D0;
+      SCROLLBAR-TRACK-COLOR:#EEF6F8;
+      SCROLLBAR-DARKSHADOW-COLOR:#7E9BC5;
+      CURSOR:Default;
+    }
+.font_menu5 {
+	FILTER: dropshadow(color=#Ffffff,offx=1,offy=1); FONT-FAMILY: "宋体"
+}
+
+.Amenu_off {FILTER: dropshadow(color=#Ffffff,offx=1,offy=1);CURSOR: hand}
+.Bmenu_on {border-left: 1px solid #7EA9C4; border-right: 1px solid #7EA9C4; border-top: 1px solid #7EA9C4;border-bottom: 1px solid #008000;background-color: #808080;color: #FFffFF;CURSOR: hand}
+.But_an { FILTER: dropshadow(color=#Ffffff,offx=1,offy=1);border-left:1px solid #FFF9E6; border-right:1px solid #000080; border-top:1px solid #FFF9E6; border-bottom:1px solid #000080;
+         color: #3366CC;  letter-spacing:3;  padding-left:3px; padding-right:3px; background-image:url('images/an_bk2.jpg');
+         vertical-align:baseline; padding-top:2px; height:20;font-size=12}
+.But_an2 { FILTER: dropshadow(color=#Ffffff,offx=1,offy=1);border-left:1px solid #FFF9E6; border-right:1px solid #000080; border-top:1px solid #FFF9E6; border-bottom:1px solid #000080;
+         color: #3366CC;  letter-spacing:3;  padding-left:3px; padding-right:3px; background-image:url('images/an_bk2.jpg');
+         vertical-align:baseline; padding-top:2px; height:20;font-size=12}
+.But_an3 { FILTER: dropshadow(color=#Ffffff,offx=1,offy=1);border-left:1px solid #FFF9E6; border-right:1px solid #9C7532; border-top:1px solid #FFF9E6; border-bottom:1px solid #9C7532;
+         color: #765825;  letter-spacing:3;  padding-left:3px; padding-right:3px; background-image:url('images/an_bk3.jpg');
+         vertical-align:baseline; padding-top:2px; height:20;font-size=12}
+
+a:link {
+	font-size: 9pt;
+	color: #0000FF;
+	text-decoration: none
+}
+a:visited {
+	font-size: 9pt;
+	color: #669AFE;
+	text-decoration: none
+}
+a:hover {
+	font-size: 9pt;
+	color: #FF9900;
+	text-decoration: none
+}
+.htfont_title { font-family: 宋体; font-size: 10pt; color: #669AFE; font-weight: bold }
+a:active {
+	font-size: 9pt;
+	color: #000080;
+	text-decoration: none
+}
+.tab_0 { background-color: #C8E1FB; color:#0000CC;font-weight: bold}
+.tab_1 { border:1px solid #9FD6FF; background-color: #C8E1FB; color:#0000CC}
+.tb_2 {border-collapse: collapse; background-color: #F2F9FF; color:#0000CC}
+.tb_3 {border-collapse: collapse; border: 1px solid #9FD6FF; background-color: #F2F9FF; font-family:宋体; color:#0000CC}
+.tb_4 {border-collapse: collapse; border: 1px solid #9FD6FF; background-color: #FFFFFF; color:#0000CC}
+.tb_5        { color: #465b7a }
+.tb_6        { color: #465b7a; font-size: 10pt; font-weight: bold }
+.tb_7        { color: #465b7a; font-size: 18pt; font-weight: bold }
+.dps {FILTER: dropshadow(color=#F3F7FA,offx=1,offy=1);}
+.select_0 {width:96}
+
+:link.bb {
+	font-size: 9pt;
+	color: #FFFFFF;
+	text-decoration: none
+}
+:visited.bb {
+	font-size: 9pt;
+	color: #FFFFFF;
+	text-decoration: none
+}
+:hover.bb {
+	font-size: 9pt;
+	color: #FFCC00;
+	text-decoration: none
+}
+:active.bb {
+	font-size: 9pt;
+	color: #FFFFFF;
+	text-decoration: none}
+
+
+
+div#icss0 {
+width: 100%;
+height: 100%;
+overflow: auto;
+SCROLLBAR-FACE-COLOR:#E8F0FB;
+      SCROLLBAR-HIGHLIGHT-COLOR:#FFFFFF;
+      SCROLLBAR-SHADOW-COLOR:#AFD5EA;
+      SCROLLBAR-3DLIGHT-COLOR:#DDE7F0;
+      SCROLLBAR-ARROW-COLOR:#5096D0;
+      SCROLLBAR-TRACK-COLOR:#EEF6F8;
+      SCROLLBAR-DARKSHADOW-COLOR:#7E9BC5;
+      CURSOR:Default;
+ position:absolute ;
+ clip: rect(auto auto auto auto)
+}
+.Cmenu_off {CURSOR: hand;background-image: url('images/line.jpg'); background-repeat: no-repeat; background-position:  
+               center bottom; color:#FFFFFF; font-weight:bold; background-color:#0884E1}
+.Cmenu_on {CURSOR: hand; font-family:宋体; ; color:#FFFFFF; font-weight:bold; background-color:#35B1FF}

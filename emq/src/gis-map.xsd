@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.icss.com.cn/km/gismap"
+	xmlns:tns="http://www.icss.com.cn/km/gismap" elementFormDefault="qualified">
+	<element name="map-defines" type="tns:map-defines">
+		 
+	</element>
+	
+	<complexType name="map-defines">
+		<sequence>
+			<element name="map-def" type="tns:map-def" maxOccurs="unbounded"
+				minOccurs="0"></element>
+			<element name="map-def-ref" type="tns:map-def-ref" maxOccurs="unbounded"
+				minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	
+
+	<complexType name="map-def">
+		<sequence>
+			<element name="main-map-def-file" type="string" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="main-map-img-width" type="int" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="main-map-img-hight" type="int" maxOccurs="1"
+				minOccurs="1">
+			</element> 
+
+			<element name="preview-map-def-file" type="string" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="preview-map-img-width" type="int" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="preview-map-img-hight" type="int" maxOccurs="1"
+				minOccurs="1">
+			</element>  
+		</sequence>
+		<attribute name="id" type="string" use="required"></attribute>
+		<attribute name="class" type="string" use="required"></attribute>
+	</complexType>
+
+	<complexType name="map-def-ref">
+		<attribute name="id" type="string"></attribute>
+		<attribute name="ref" type="string"></attribute>
+	</complexType>
+</schema>

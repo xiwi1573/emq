@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="EMQ"
+  id="myeclipse.1271427000937"
+  context-root="/EMQ"
+  j2ee-spec="1.4"
+  archive="EMQ.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
