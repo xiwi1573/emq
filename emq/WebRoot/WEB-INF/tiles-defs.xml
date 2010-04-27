@@ -15,7 +15,7 @@
     <!-- 控制是否有左框架，1为有，2为没 -->
     <put name="leftControl" value="2"></put>
     <!-- 控制是否有右框架，1为有，2为没 -->
-    <put name="rightControl" value="1"></put>
+    <put name="rightControl"  value="1"></put>
     <!-- 控制是否有多行查询条件，1为有，2为没 -->
     <put name="conditionControl" value="2"></put>
   </definition>
