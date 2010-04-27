@@ -34,8 +34,8 @@ public class InitServlet extends HttpServlet {
 		WebApplicationContext   ctx= WebApplicationContextUtils.getRequiredWebApplicationContext(this.getServletContext()); 
 		GisConRegionDao gisConRegionDao=(GisConRegionDao)ctx.getBean("gisConRegionDao");  
 		SystemConfig.getInstance().init(); 
-		List<GisConRegion> gisConRegionList = gisConRegionDao.getValidGisConRegions();
-		SystemConfig.getInstance().loadOrgMapMappings(gisConRegionList);
+		//List<GisConRegion> gisConRegionList = gisConRegionDao.getValidGisConRegions();
+		//SystemConfig.getInstance().loadOrgMapMappings(gisConRegionList);
 		log.debug("gis-map init end");
 		
 	}

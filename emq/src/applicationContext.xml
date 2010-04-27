@@ -14,15 +14,14 @@
 		</property>
 		<property name="url">
 			<value>
-     jdbc:sqlserver://172.168.16.103:1433;DatabaseName=cigstore 
-			<!--jdbc:sqlserver://10.98.129.2:7841;DatabaseName=cigstore-->
+              jdbc:sqlserver://localhsot:1433;DatabaseName=emq 
 			</value>
 		</property>
 		<property name="username">
-			<value>kmgiss</value>
+			<value>liuyt</value>
 		</property>
 		<property name="password">
-			<value>kmgiss</value>
+			<value>liuyt</value>
 		</property>
 	</bean>
 
@@ -42,7 +41,7 @@
 	<tx:annotation-driven transaction-manager="txManager" />
 
 	<!-- 基础服务 -->
-	<bean id="baseService" class="com.icss.km.gis.service.BaseService"
+	<bean id="baseService" class="com.emq.service.BaseService"
 		lazy-init="false">
 		<property name="baseDao">
 			<ref local="baseDao" />
@@ -52,52 +51,30 @@
 		</property>
 	</bean>
 
-	<bean id="baseDao" class="com.icss.km.gis.dao.BaseDao" lazy-init="false">
-		<property name="dataSource">
-			<ref local="dataSource" />
-		</property>
-	</bean>
-
-	<!-- 地图原形 -->
-	<bean id="homeService" class="com.icss.km.gis.service.HomeService"
-		lazy-init="false">
-		<property name="homeDao">
-			<ref local="homeDao" />
-		</property>
-	</bean>
-
-	<bean id="homeDao" class="com.icss.km.gis.dao.HomeDao" lazy-init="false">
+	<bean id="baseDao" class="com.emq.dao.BaseDao" lazy-init="false">
 		<property name="dataSource">
 			<ref local="dataSource" />
 		</property>
 	</bean>
 
 	<!-- 地图-组织机构映射表数据访问对象  -->
-	<bean id="gisConRegionDao" class="com.icss.km.gis.dao.jdbc.GisConRegionDaoImpl"
+	<bean id="gisConRegionDao" class="com.emq.dao.jdbc.GisConRegionDaoImpl"
 		lazy-init="false">
 		<property name="dataSource">
 			<ref local="dataSource" />
 		</property>
 	</bean>
 	
-	<!-- 组织机构数据访问对象 -->
-	<bean id="gisSsOrgDao" class="com.icss.km.gis.dao.jdbc.GisSsOrgDaoImpl"
-		lazy-init="false">
-		<property name="dataSource">
-			<ref local="dataSource" />
-		</property>
-	</bean>
- 
 	<!-- 数据访问控制器 -->
-	<bean id="dataAccessController" class="com.icss.km.gis.service.impl.DataAccessControllerImpl"
+	<bean id="dataAccessController" class="com.emq.service.impl.DataAccessControllerImpl"
 		lazy-init="false">
-		<property name="gisSsOrgDao">
+		<!-- <property name="gisSsOrgDao">
 			<ref local="gisSsOrgDao" />
-		</property>
+		</property> -->
 	</bean>
 	
 	<!-- 地图创建工厂 -->
-	<bean id="gisMapFactory" class="com.icss.km.gis.model.GISMapFactory"
+	<bean id="gisMapFactory" class="com.emq.model.GISMapFactory"
 		lazy-init="false">
 		<property name="dataAccessController">
 			<ref local="dataAccessController" />
@@ -107,12 +84,7 @@
 
 	<!-- 抽象的地图查询dwr接口 -->
 	<bean id="gisMapDataFinderService" lazy-init="true"
-		class="com.icss.km.gis.ui.dwr.AbstractGISMapDataFinder" abstract="true">
-	</bean>
-
-	<!-- 卷烟专卖店地图查询dwr接口 -->
-	<bean id="cigStoreFinderService" lazy-init="true"
-		class="com.icss.km.gis.ui.dwr.CigStoreFinderImpl" parent="gisMapDataFinderService">
+		class="com.emq.ui.dwr.AbstractGISMapDataFinder" abstract="true">
 	</bean>
 
 </beans>
