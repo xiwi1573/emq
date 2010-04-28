@@ -14,11 +14,11 @@
 		</property>
 		<property name="url">
 			<value>
-              jdbc:sqlserver://localhsot:1433;DatabaseName=emq 
+              jdbc:sqlserver://127.0.0.1:1433;DatabaseName=emq 
 			</value>
 		</property>
 		<property name="username">
-			<value>liuyt</value>
+			<value>sa</value>
 		</property>
 		<property name="password">
 			<value>liuyt</value>
@@ -87,4 +87,17 @@
 		class="com.emq.ui.dwr.AbstractGISMapDataFinder" abstract="true">
 	</bean>
 
+    <!-- 平台相关服务 -->
+	<bean id="plantService" class="com.emq.service.PlantService"
+		lazy-init="false">
+		<property name="plantDao">
+			<ref local="plantDao" />
+		</property>
+	</bean>
+
+	<bean id="plantDao" class="com.emq.dao.PlantDao" lazy-init="false">
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+	</bean>
 </beans>
