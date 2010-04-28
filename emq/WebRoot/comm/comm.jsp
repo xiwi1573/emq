@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=GBK"%>
 <%
 	String WEBAPP = request.getContextPath();
-	String DWR = WEBAPP + "/dwr/interface";	 
+	String DWR = WEBAPP + "/dwr/interface";
+	String DWRToolRoot = WEBAPP + "/dwr";		 
 	String ExtRoot = request.getContextPath() + "/js/Ext2.1";
 %>
 <script type="text/javascript" src="<%=WEBAPP%>/jsp/base/consts.js"></script>
+<script type='text/javascript' src='<%=WEBAPP%>/js/Globals.js'></script>
 <!-- dwrÖ§³Ö¿â -->
 <script type='text/javascript' src='<%=DWRToolRoot%>/engine.js'></script>
 <script type='text/javascript' src='<%=DWRToolRoot%>/util.js'></script>
@@ -36,8 +38,6 @@
 <script type="text/javascript" src="<%=ExtRoot%>/icss/date/DatePickerEx.js"></script>
 <script type="text/javascript" src="<%=ExtRoot%>/icss/date/DateFieldEx.js"></script>
 <script type="text/javascript" src="<%=ExtRoot%>/icss/combox/ComboEx.js"></script>
-
-<script type="text/javascript">Ext.BLANK_IMAGE_URL="<%=ExtRoot%>/resources/images/default/s.gif";</script>
 <script type="text/javascript" src="<%=ExtRoot%>/icss/plugins/ProgressColumn/Ext.ux.grid.ProgressColumn.js"></script>
 <link rel="stylesheet" type="text/css" href="<%=ExtRoot%>/icss/plugins/ProgressColumn/Ext.ux.grid.ProgressColumn.css" />
 
