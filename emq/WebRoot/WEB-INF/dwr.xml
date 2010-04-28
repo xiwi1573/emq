@@ -7,6 +7,11 @@
 	    <create creator="spring" javascript="BaseService" scope="request">
 		    <param name="beanName" value="baseService"/>
 	    </create>
+	    
+	    <!-- 平台相关服务 -->
+	    <create creator="spring" javascript="PlantService" scope="request">
+		    <param name="beanName" value="plantService"/>
+	    </create>
 		
 	<!-- javaBean -->
 		
