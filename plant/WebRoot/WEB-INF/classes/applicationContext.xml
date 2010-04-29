@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans           
+	          http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/tx           
+           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>com.microsoft.jdbc.sqlserver.SQLServerDriver
+			</value>
+		</property>
+		<property name="url">
+			<value>
+              jdbc:sqlserver://127.0.0.1:1433;DatabaseName=emq 
+			</value>
+		</property>
+		<property name="username">
+			<value>sa</value>
+		</property>
+		<property name="password">
+			<value>liuyt</value>
+		</property>
+	</bean>
+
+
+	<!--
+		<bean id="dataSource"
+		class="org.springframework.jndi.JndiObjectFactoryBean"> <property
+		name="jndiName"> <value>jdbc/cigstore</value> </property> <property
+		name="resourceRef"> <value>false</value> </property> </bean>
+	-->
+
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<!-- 采用@transactional注解方式使用事务 -->
+	<tx:annotation-driven transaction-manager="txManager" />
+
+
+    <!-- 平台相关服务 -->
+	<bean id="plantService" class="com.emq.service.PlantService"
+		lazy-init="false">
+		<property name="plantDao">
+			<ref local="plantDao" />
+		</property>
+	</bean>
+
+	<bean id="plantDao" class="com.emq.dao.PlantDao" lazy-init="false">
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+	</bean>
+</beans>
