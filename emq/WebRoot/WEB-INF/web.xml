@@ -146,6 +146,11 @@
 			com.emq.ui.servlet.PreviewMapServlet
 		</servlet-class>
 	</servlet>
+	<!-- 文件导入servlet -->
+	<servlet>
+		<servlet-name>FileImportServlet</servlet-name>
+		<servlet-class>com.emq.ui.servlet.FileImportServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>action</servlet-name>
 		<url-pattern>*.do</url-pattern>
@@ -158,6 +163,11 @@
 	<servlet-mapping>
 		<servlet-name>mapxtreme</servlet-name>
 		<url-pattern>/mapxtreme</url-pattern>
+	</servlet-mapping>
+	<!-- 文件导入servlet -->
+	<servlet-mapping>
+		<servlet-name>FileImportServlet</servlet-name>
+		<url-pattern>/fileImportServlet</url-pattern>
 	</servlet-mapping>
 	<!-- dwr -->
 	<servlet-mapping>
