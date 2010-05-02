@@ -393,7 +393,7 @@ public abstract class AbstractJdbcBaseDao extends JdbcDaoSupport {
 	public Map getDataForMap(String sql){
 		Map data = null;
 		try {
-			data = (Map)this.getJdbcTemplate().queryForMap(sql);	
+			data = this.getJdbcTemplate().queryForMap(sql);	
 		} catch (DataAccessException e) {
 			log.debug(e.getMessage());
 			e.printStackTrace();
