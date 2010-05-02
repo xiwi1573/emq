@@ -3,7 +3,7 @@
 	String WEBAPP = request.getContextPath();
 	String DWR = WEBAPP + "/dwr/interface";
 	String DWRToolRoot = WEBAPP + "/dwr";		 
-	String ExtRoot = request.getContextPath() + "/js/Ext2.1";
+	String ExtRoot = request.getContextPath() + "/js/ext";
 %>
 <script type="text/javascript" src="<%=WEBAPP%>/jsp/base/consts.js"></script>
 <script type='text/javascript' src='<%=WEBAPP%>/js/Globals.js'></script>
