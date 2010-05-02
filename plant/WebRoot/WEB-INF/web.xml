@@ -16,7 +16,7 @@
 		<param-name>log4jConfigLocation</param-name>
 		<param-value>/WEB-INF/classes/log4j.xml</param-value>
 	</context-param>
-	
+
 	<servlet>
 		<servlet-name>log4jConfigServlet</servlet-name>
 		<servlet-class>
@@ -42,11 +42,21 @@
 			<param-value>true</param-value>
 		</init-param>
 	</servlet>
-	
+	<!-- login -->
+	<servlet>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>com.plant.servlet.Login</servlet-class>
+	</servlet>
 	<!-- dwr -->
 	<servlet-mapping>
 		<servlet-name>dwr-invoker</servlet-name>
 		<url-pattern>/dwr/*</url-pattern>
 	</servlet-mapping>
-	
+
+	<!-- login -->
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/servlet/Login</url-pattern>
+	</servlet-mapping>
+
 </web-app>
