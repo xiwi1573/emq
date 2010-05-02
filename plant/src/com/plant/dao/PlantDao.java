@@ -14,4 +14,12 @@ public class PlantDao extends BaseJdbcDaoImp{
 		Map person =  this.getDataForMap("select personName,personId,password from plant_person where personId='"+personId+"'");
 		return person;
 	}
+	
+	/**
+	 * 验证用户密码
+	 */
+	public Map checkPurview(String personId,String password){
+		Map person =  this.getDataForMap("select personName,personId,password from plant_person where personId='"+personId+"' and password='"+password+"'");
+		return person;
+	}
 }
