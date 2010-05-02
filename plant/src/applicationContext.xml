@@ -14,14 +14,14 @@
 		</property>
 		<property name="url">
 			<value>
-              jdbc:sqlserver://127.0.0.1:1433;DatabaseName=emq 
+              jdbc:sqlserver://127.0.0.1:1433;DatabaseName=emp 
 			</value>
 		</property>
 		<property name="username">
 			<value>sa</value>
 		</property>
 		<property name="password">
-			<value>liuyt</value>
+			<value>1</value>
 		</property>
 	</bean>
 
@@ -42,14 +42,14 @@
 
 
     <!-- 平台相关服务 -->
-	<bean id="plantService" class="com.emq.service.PlantService"
+	<bean id="plantService" class="com.plant.service.PlantService"
 		lazy-init="false">
 		<property name="plantDao">
 			<ref local="plantDao" />
 		</property>
 	</bean>
 
-	<bean id="plantDao" class="com.emq.dao.PlantDao" lazy-init="false">
+	<bean id="plantDao" class="com.plant.dao.PlantDao" lazy-init="false">
 		<property name="dataSource">
 			<ref local="dataSource" />
 		</property>
