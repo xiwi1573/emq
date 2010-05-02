@@ -40,6 +40,7 @@ public class ErrorMsgConstants {
 	 * UI错误
 	 */
 	public static final String EMQ_UI_01 = "EMQ_UI_01: 文件导入出错";
+	public static final String EMQ_UI_02 = "EMQ_UI_02: 该文件中没有内容";
 	/**
 	 * 未知错误
 	 */

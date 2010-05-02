@@ -90,6 +90,7 @@ public class BaseJdbcDaoImp extends AbstractJdbcBaseDao implements BaseJdbcDao {
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 			log.debug(e.getMessage());
+			return new HashMap();
 		}
 		if (data == null) {
 			return new HashMap();
