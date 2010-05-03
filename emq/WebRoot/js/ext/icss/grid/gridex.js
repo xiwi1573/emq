@@ -9,65 +9,8 @@
 /**
  * @class Ext.grid.EditorGridPanelEx
  * @extends Ext.grid.EditorGridPanel
- * @author 张尧伟
  * @version 1.0
- * <p>此类是为增加合计行而设计的</p>
- * <br><br>Usage:
- * <pre><code>
-	 function createPreplanDetailGrid()
-	{
-		 var preplanDetailStore = new Ext.data.DWRStore({id:'preplanDetailStore',fn:UIPreContractReport.getPreContractDetail,
-	        fields: [
-	           {name: 'bar'},
-	           {name: 'itemName'},
-	           {name: 'storeAmount', type: 'float'},
-	           {name: 'endAmount',type:'float'},
-	           {name: 'currentRate',type:'float'},
-	           {name: 'weekPercent',type:'float'},
-	           {name: 'confirmAmount',type:'float'},
-	           {name: 'accPreAmount',type:'float'},
-	           {name: 'surplusTargetAmount',type:'int'},
-	           {name:'surplusHyearAmount',type:'float'}
-	        ]
-	    });
-	    
-		var sm = new Ext.grid.CheckboxSelectionModel();
-	    var preplanDetailGrid = new Ext.grid.EditorGridPanelEx({
-	    	id:'preplanDetailGrid',
-	    	title:'卷烟规格明细',
-	        store: preplanDetailStore,
-	        cm: new Ext.grid.ColumnModelEx({sumheader:true,columns:[
-	            sm,
-	            {header: "卷烟条码", width:90,  sortable: true, dataIndex: 'bar',sumcaption:'合计'},
-	            {header: "卷烟规格",  width:110,sortable: true,  dataIndex: 'itemName'},
-	            {header: "预计划量",  width:100,sortable: true, dataIndex: 'endAmount',editor:new Ext.form.NumberField(),align:'right',renderer:Util.rmbMoney,issum:true},
-	            {header: "商业库存",  width:100,sortable: true, dataIndex: 'storeAmount',align:'right',renderer:Util.rmbMoney},
-	            {header: "到货存销比",  width:100,sortable: true, dataIndex: 'currentRate',align:'right',renderer:Util.rmbMoney},
-	            {header: "周进度",  width:100,sortable: true, dataIndex: 'weekPercent',align:'right'},
-	            {header: "商业请求量",  width:100,sortable: true, dataIndex: 'confirmAmount',align:'right',renderer:Util.rmbMoney,issum:true},
-	            {header: "累计预计划量",  width:100,sortable: true, dataIndex: 'accPreAmount',align:'right',renderer:Util.rmbMoney},
-	            {header: "剩余指标量",  width:100,sortable: true, dataIndex: 'surplusTargetAmount',align:'right',renderer:Util.rmbMoney,issum:true},
-	            {header: "剩余协议量",  width:100,sortable: true, dataIndex: 'surplusHyearAmount',align:'right',renderer:Util.rmbMoney,issum:true}
-	        ]}),
-	        sm:sm,
-	       	stripeRows: true,
-	        height:Util.getH(0.4),
-	        bbar:[
-	        	{pressed:true,text:'删除',handler:deletePreplanDetail},{xtype:'tbseparator'},
-	        	{pressed:true,text:'保存',handler:saveModified}
-	        	]
-	    });
-	
-	    return preplanDetailGrid;
-	}
- </code></pre>
- * <b>Notes:</b> <br/>
- * - Ext.grid.ColumnModel需要增加属性:sumheader:true以指示需要使用合计行
- * - Ext.grid.ColumnModel的columns属性中，需要增加sumcaption:'合计'属性，以指示需要显示的合计标题名称
- * - Ext.grid.ColumnModel的columns属性中，需要增加issum:true属性，以指示该列需要计算合计
- * - Ext.grid.ColumnModel的columns属性中，可选增加sfn:function(sumvalue,colvalue,record){return 计算结果;}，
- * 以指示该列需要使用用户自定义函数进行计算sumvalue:此列当前的合计值,colvalue当前计算的列值,record当前记录对象
- * <br>
+ * <p>此类是为Ext表格封装</p>
  * @constructor
  * @param {Object} config The config object
  */
@@ -80,8 +23,65 @@ Ext.grid.GridPanelEx = Ext.extend(Ext.grid.GridPanel, {
         return this.view;
     },
   initComponent : function() {
+  	var cm = null;
+    if(typeof(this.cm)=="undefined"){
+    	var headerList = [];
+    	var fieldList = [];
+    	var rowsList = [];
+    	if(typeof(this.extdata)!="undefined"){
+    		var gridDate = this.extdata.getExtGrid();
+    		headerList = gridDate[0];
+    		fieldList = gridDate[1];
+    		if(this.extdata.tableType!=1){
+    			rowsList = gridDate[2];
+    		}
+    	}
+    	var rowNum =  new Ext.grid.RowNumberer({
+	      width : 30
+	    });
+	    rowNum.locked = true;
+	    var sm = new Ext.grid.CheckboxSelectionModel();
+	    sm.locked = true;
+	    var columnMetadata ="[";
+	    for(var i=0;i<headerList.length;i++){
+	    	columnMetadata += headerList[i]+",";
+		}
+		if(columnMetadata.length>2){
+			columnMetadata = columnMetadata.substring(0,columnMetadata.length-1);
+		}
+		columnMetadata += "]";
+		columnMetadata = Ext.util.JSON.decode(columnMetadata);
+		Util.Array.insert(columnMetadata,0,rowNum);
+		Util.Array.insert(columnMetadata,1,sm);
+		cm = new Ext.grid.LockingColumnModel(columnMetadata);
+		if(this.extdata.tableType!=1&&rowsList.length>0){
+			var rowsMetadata ="[";
+		    for(var i=0;i<rowsList.length;i++){
+		    	rowsMetadata += "[";
+		    	var rowList = rowsList[i];
+		    	for(var j=0;j<rowList.length;j++){
+		    		rowsMetadata += rowList[j]+",";
+		    	}
+		    	if(rowsMetadata.length>5){
+				    rowsMetadata = rowsMetadata.substring(0,rowsMetadata.length-1);
+			    }
+			    rowsMetadata += "],"
+			}
+			rowsMetadata = rowsMetadata.substring(0,rowsMetadata.length-1);
+			rowsMetadata += "]";
+		    cm.rows = Ext.util.JSON.decode(rowsMetadata);
+	    }
+	}
+	this.cm=cm;
+	this.trackMouseOver=true;
+	this.loadMask={msg:'正在加载数据，请稍候……'};
+	this.frame=true;
+	this.border=false;
+	if(typeof(this.height)=="undefined"){
+		this.height=Ext.icss.Util.getH(0.4);
+	}
+	
     if (!this.cm) {
-    	
         this.cm = new Ext.grid.ColumnModelEx(this.columns);
         this.colModel = this.cm;
         delete this.columns;
@@ -94,10 +94,31 @@ Ext.grid.GridPanelEx = Ext.extend(Ext.grid.GridPanel, {
     {
     	this.loadMask = Global.getDefaultLoadMask();
     }
-     this.getStore().on('load',this.onload,this);
-   this.on('afteredit',this.onAfteredit,this);
-    //在编辑完成后，需要更新合计列
-    //this.on('afteredit',this.onAfteredit,this);
+    var fns = null;
+    if(typeof(this.fn)=="undefined"){
+    	this.fn = null;
+    }
+    fns = this.fn;
+    if(typeof(this.store)=="undefined"){
+    	var storeMetadata = "{fields:[";
+    	for(var i=0;i<fieldList.length;i++){
+	    	storeMetadata += fieldList[i]+",";
+		}
+		if(storeMetadata.length>10){
+			storeMetadata = storeMetadata.substring(0,storeMetadata.length-1);
+		}
+		storeMetadata += "]}";
+		storeMetadata = Ext.util.JSON.decode(storeMetadata);
+		storeMetadata.fn = fns;
+		this.store = new Ext.data.DWRStore(storeMetadata);  	
+	}
+	if(this.extdata.tableType!=1){
+		this.plugins=[new Ext.ux.plugins.GroupHeaderGrid()];
+	}
+	this.getStore().on('load',this.onload,this);
+    this.on('afteredit',this.onAfteredit,this);
+    this.on('headerclick',Util.Grid.selectAll);
+   
     Ext.grid.GridPanelEx.superclass.initComponent.call(this);
   },
   onload:function(ds,recs,opt){
@@ -108,6 +129,14 @@ Ext.grid.GridPanelEx = Ext.extend(Ext.grid.GridPanel, {
 	  	}
 	  	
 	  }
+  },
+  load:function(p){
+  	if(typeof(p)=="undefined"){
+  		this.store.load({params:[]});
+  	}else{
+  		this.store.load({params:[p]});
+  	}
+  	
   },
   getGroupedHeaders : function(){
         return this.groupedHeaders;

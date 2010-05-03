@@ -5,6 +5,7 @@
     <title>condition page</title>
   </head>
 <%@ include file="comm/comm.jsp" %>
+<script type="text/javascript" src="<%=WEBAPP%>/js/ext/icss/excel/fileImport.js"></script>
 <script type="text/javascript" src="<%=DWR%>/PlantService.js"></script>
 <script type="text/javascript">
 
