@@ -13,7 +13,6 @@
 <script type='text/javascript' src='<%=request.getContextPath()%>/comm/comm.js'></script>
 <!-- extÖ§³Ö¿â -->
 <link rel="stylesheet" type="text/css" href="<%=ExtRoot%>/resources/css/ext-all.css" />
-<link rel="stylesheet" type="text/css" href="<%=ExtRoot%>/resources/css/icon.css" />
 
 <script type="text/javascript" src="<%=ExtRoot%>/adapter/ext/ext-base.js"></script>
 <!-- 
@@ -32,7 +31,9 @@
 <script type="text/javascript" src="<%=ExtRoot%>/icss/grid/lockgrid.js"></script>
 <script type="text/javascript" src="<%=ExtRoot%>/icss/grid/gridex.js"></script>
 <script type="text/javascript" src="<%=ExtRoot%>/icss/plugins/XGridPlugin.js"></script>
-
+<script type="text/javascript" src="<%=ExtRoot%>/icss/grid/gridEmq.js"></script>
+<script type="text/javascript" src="<%=ExtRoot%>/icss/grid/gridex.js"></script>
+<script type="text/javascript" src="<%=ExtRoot%>/icss/grid/GroupHeaderPlugin.js"></script>
 <script type="text/javascript" src="<%=ExtRoot%>/icss/date/DateItemEx.js"></script>
 <script type="text/javascript" src="<%=ExtRoot%>/icss/date/DateMenuEx.js"></script>
 <script type="text/javascript" src="<%=ExtRoot%>/icss/date/DatePickerEx.js"></script>

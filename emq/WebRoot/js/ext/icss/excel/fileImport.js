@@ -24,10 +24,10 @@ Ext.FileImportPanel = Ext.extend(Ext.form.FormPanel, {
 			this.type = 1;
 		}
 		var fileType = this.type;
+		this.height=20;
 		this.method='POST';
 		this.frame=false;
 		this.border=false;
-		this.bodyBorder=false;
 		this.fileUpload=true;
 		this.labelAlign="left";	
 		this.labelWidth=76;
@@ -47,19 +47,19 @@ Ext.FileImportPanel = Ext.extend(Ext.form.FormPanel, {
 						return false;
 					}
 					Ext.getCmp(panelId).getForm().submit({
-					method:"post",
-					url:'/EMQ/fileImportServlet?type='+fileType, 
-					waitMsg:"正在导入文件,请稍等.....",
-					success:function(form,action){
-						Msg.info("文件导入成功！");
-					},
-					failure:function(form,action){
-						if(action){
-							Msg.info("文件导入失败！"+action.result.message);
-						}
-					},
-					scope:this
-				});
+						method:"post",
+						url:'/EMQ/fileImportServlet?type='+fileType, 
+						waitMsg:"正在导入文件,请稍等.....",
+						success:function(form,action){
+							Msg.info("文件导入成功！");
+						},
+						failure:function(form,action){
+							if(action){
+								Msg.info("文件导入失败！"+action.result.message);
+							}
+						},
+						scope:this
+				   });
 				}
 	      }]}
 	    ];	
