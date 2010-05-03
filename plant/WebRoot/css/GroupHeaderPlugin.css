@@ -1,0 +1,9 @@
+.x-grid3-header-offset {
+	width: auto;
+}
+.ext-ie .x-grid3 table.ux-grid-group-table, .ext-safari .x-grid3 table.ux-grid-group-table {
+	table-layout: auto;
+}
+.ux-grid-hd-group-cell {
+	background: url(../resources/images/default/grid/grid3-hrow.gif) repeat-x bottom;
+}
