@@ -1,6 +1,7 @@
 package com.emq.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
@@ -133,7 +134,7 @@ public class BaseService {
 	}
 	
 	/**
-	 * 根据查询条件进行查询
+	 * 根据查询条件进行地图查询
 	 * @param mapId
 	 * @param startx
 	 * @param starty
@@ -211,6 +212,11 @@ public class BaseService {
 		return mark;
 	}
 	
+	/**
+	 * 批量执行SQL
+	 * @param sqlList
+	 * @return
+	 */
 	public boolean exeUpdateSqlByBach(List sqlList){
 		boolean mark = true;
 		try{
