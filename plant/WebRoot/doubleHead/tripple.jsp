@@ -16,7 +16,7 @@ Ext.onReady(function() {
 			name:'gridLike',
 			buttonAlign:"right",
 			bbar:[{text:"下载EXCEL",handler:copy}],
-			title: 'GroupHeaderPlugin Example',
+			title: '三表头',
 			store: new Ext.data.SimpleStore({
 				fields: ['id', 'nr1', 'text1', 'info1', 'special1', 'nr2', 'text2', 'info2', 'special2', 'special3', 'changed'],
 				data: [
