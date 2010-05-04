@@ -159,7 +159,7 @@ function getAirTicketGrid(){
 	  extdata:gridEmq.getExtGrid(),
 	  fn:PlantService.testExtGrid
     });*/
-    
+    var gridEmq = new GridEmq();
     gridEmq.head="姓名,性别,年龄,学历,婚姻状况,住址,公司,职业,爱好,工作性质,个人方向";
     gridEmq.tableType=2;
     gridEmq.moreHead=[[";基本信息,4;其他信息,4;备注,2"]];
