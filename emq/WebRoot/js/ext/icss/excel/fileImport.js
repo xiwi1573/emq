@@ -8,6 +8,7 @@
 /**
  * 文件导入Panel
  * @param {Object} config
+ * type:el-电能关口台帐模板,mi-互感器关口台帐模板
  */
 Ext.FileImportPanel = function(config){
 	this.initConfig = config || {};
@@ -21,7 +22,7 @@ Ext.FileImportPanel = Ext.extend(Ext.form.FormPanel, {
 		var pan = this;
 		var panelId = this.id;
 		if(typeof(this.type)=="undefined"){
-			this.type = 1;
+			this.type = "el";
 		}
 		var fileType = this.type;
 		this.height=20;
