@@ -78,87 +78,6 @@ function createMainUI(){
  * @return {}
  */
 function getAirTicketGrid(){
-//	var airListStore = new Ext.data.DWRStore({
-//		id:'airListStore',
-//		fn:null,
-//	 	pruneModifiedRecords:true,
-//        fields: [
-//           {name: 'id',type:'int'},//流水号
-//           {name: 'organise',type:'string'},//报销机构名称
-//           {name: 'organiseId',type:'int'},//报销机构ID
-//           {name: 'sortId',type:'string'}, // 行程单号       
-//           {name: 'boardingDate',type:'date'},//乘机日期
-//           {name: 'personId',type:'int'},//乘机人ID
-//           {name: 'name',type:'string'},//乘机人姓名
-//           {name: 'duty',type:'string'},//乘机人职务
-//           {name: 'dutyId',type:'int'},//乘机人职务ID
-//           {name: 'voyage',type:'string'},//航程
-//           {name: 'fullPrice',type:"float"},//全价
-//		   {name: 'agio',type:'string'},//折扣
-//		   {name: 'agioPrice',type:"float"},//折扣价
-//		   {name: 'tax',type:"float"},//税费
-//		   {name: 'totalPrice',type:"float"},//票面金额  小计
-//		   {name: 'writeOffFee',type:"float"},//限额标准
-//		   {name: 'backingSum',type:"float"},//当期节余
-//		   {name: 'booker',type:'string'},//订票人
-//		   {name: 'remark',type:'string'},//
-//		   {name: 'auditState',type:'int'},//单据状态
-//		   {name: 'pid',type:'string'},//工号
-//		   {name: 'auditDate',type:'date'},//综合管理部审核时间
-//  		   {name: 'auditPersonId',type:'string'},//综合管理部审核人ID
-//  		   {name: 'auditPersonName',type:'string'},//综合管理部审核人NAME
-//  		   {name: 'finalPersonId',type:'string'},//财务审核人ID
-//  		   {name: 'finalPersonName',type:'string'},//财务审核人NAME
-//  		   {name: 'finalAuditDate',type:'string'},//财务审核时间
-//  		   {name: 'writeState',type:'int'},//与差旅费报销状态
-//  		   {name: 'importDate',type:'date'}//机票导入时间
-//        ]
-//    });
-//    var rowNum =  new Ext.grid.RowNumberer({
-//     width : 30
-//    });
-//    rowNum.locked = true;
-// 	 var sm = new Ext.grid.CheckboxSelectionModel();
-//     sm.locked = true;
-//	var airListCM = new Ext.grid.LockingColumnModel({sumheader:true,columns:[
-//		//rowNum,
-//		//sm,
-//		{header:'流水号',dataIndex:'id',width:50,locked:true,sortable:true,align:'right',sumcaption:'合计'}
-//		,{header:'工号',dataIndex:'pid',width:80,locked:true,sortable:true,align:'left'}
-//		,{header:'行程单号',dataIndex:'sortId',locked:true,width:130,sortable:true,align:'right'}
-//		,{header:'单据状态',dataIndex:'auditState',locked:true,sortable: true,hidden:false}
-//		,{header:'部门',dataIndex:'organise',width:90,locked:true,sortable:true,align:'left'}
-//		,{header:'姓名',dataIndex:'name',width:80,locked:true,sortable:true,align:'left'}
-//		,{header:'职务',dataIndex:'duty',width:80,locked:true,sortable:true,align:'left'}
-//		,{header:'乘机时间',dataIndex:'boardingDate',width:80,locked:false,sortable:true,align:'left',renderer: Ext.util.Format.dateRenderer('Y-m-d')}
-//		,{header:'航程',dataIndex:'voyage',width:80,locked:false,sortable:true,align:'left'}
-//		,{header:'全价',dataIndex:'fullPrice',locked:false,sortable:true,align:'right',renderer:Util.rmbMoney,issum:true}
-//		,{header:'折扣',dataIndex:'agio',locked:false,sortable:true,align:'right'}
-//		,{header:'折扣价',dataIndex:'agioPrice',locked:false,sortable:true,align:'right',renderer:Util.rmbMoney,issum:true}
-//		,{header:'税费',dataIndex:'tax',locked:false,sortable:true,align:'right',renderer:Util.rmbMoney,issum:true}
-//		,{header:'票面金额',dataIndex:'totalPrice',locked:false,sortable:true,align:'right',renderer:Util.rmbMoney,issum:true}
-//		,{header:'限制金额',dataIndex:'writeOffFee',locked:false,sortable:true,align:'right',renderer:Util.rmbMoney,issum:true}
-//		,{header:'当期节余',dataIndex:'backingSum',locked:false,sortable:true,align:'right',renderer:Util.rmbMoney,issum:true}
-//		,{header:'导入时间',dataIndex:'importDate',locked:false,width:120,sortable:true,align:'left',renderer: Ext.util.Format.dateRenderer('Y-m-d')}
-//		,{header:'备注',dataIndex:'remark',locked:false,sortable:true,align:'left'}
-//	]});	
-//	var airListGrid = null;
-//	PlantService.testExtGrid(function(list){
-//	  var airListGrid = new Ext.grid.GridPanelEx({
-//	  	id:"airListGrid"
-//	  });
-//	  return airListGrid;
-//	});
-//	var gridEmq = new GridEmq();
-	/* 
-	 * 单表头封装测试
-	gridEmq.head="编号,姓名";
-	
-	var airListGrid = new Ext.grid.GridPanelEx({
-	  id:"airListGrid",
-	  extdata:gridEmq.getExtGrid(),
-	  fn:PlantService.testExtGrid
-    });*/
     var gridEmq = new GridEmq();
     gridEmq.head="姓名,性别,年龄,学历,婚姻状况,住址,公司,职业,爱好,工作性质,个人方向";
     gridEmq.tableType=2;
@@ -169,15 +88,6 @@ function getAirTicketGrid(){
 	  fn:PlantService.testExtGrid
     });
 	
-//    	height: Ext.icss.Util.getH(0.7),
-//    	trackMouseOver:true,//鼠标跟踪轨迹
-    	//store:airListStore,
-	  	//cm:"undefined", 
-//	    loadMask: {msg:'正在加载数据，请稍候……'},
-//	    frame:true,
-//	    border:false
-  
-	//airListGrid.on('headerclick',Util.Grid.selectAll);
     return airListGrid;
 }
 /**
@@ -186,7 +96,8 @@ function getAirTicketGrid(){
  */
 function getAirTicketTbar(){
 	var form = new Ext.FileImportPanel({
-		id:"docForm"
+		id:"docForm",
+		type:"mi"
 	});
 	var tbar = new Ext.Toolbar(	
 		{id:'airtbar',items:[
