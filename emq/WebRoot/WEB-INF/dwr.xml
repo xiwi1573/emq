@@ -12,6 +12,11 @@
 	    <create creator="spring" javascript="PlantService" scope="request">
 		    <param name="beanName" value="plantService"/>
 	    </create>
+	    
+	    <create creator="new" javascript="Test">
+			<param name="class"
+				value="Test" />
+		</create>
 		
 	<!-- javaBean -->
 		
