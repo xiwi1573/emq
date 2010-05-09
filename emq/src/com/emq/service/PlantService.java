@@ -39,4 +39,15 @@ public class PlantService {
 		mapList.add(map);
 		return mapList;
 	}
+	
+	public List testCombox(){
+		List list = new ArrayList();
+		for(int i=0;i<10;i++){
+			Map map = new HashMap();
+			map.put("code", i+"1");
+			map.put("text", i+"ming");
+			list.add(map);
+		}
+		return list;
+	}
 }
