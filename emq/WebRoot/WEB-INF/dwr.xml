@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://www.getahead.ltd.uk/dwr/dwr20.dtd">
 <dwr>
-    <allow>
-	<!-- 业务服务 -->
-	<!-- 基础服务 -->
-	    <create creator="spring" javascript="BaseService" scope="request">
-		    <param name="beanName" value="baseService"/>
-	    </create>
-	    
-	    <!-- 平台相关服务 -->
-	    <create creator="spring" javascript="PlantService" scope="request">
-		    <param name="beanName" value="plantService"/>
-	    </create>
-	    
-	    <create creator="new" javascript="Test">
-			<param name="class"
-				value="Test" />
+	<allow>
+		<!-- 业务服务 -->
+		<!-- 基础服务 -->
+		<create creator="spring" javascript="BaseService"
+			scope="request">
+			<param name="beanName" value="baseService" />
 		</create>
-		
-	<!-- javaBean -->
-		
+
+		<!-- 平台相关服务 -->
+		<create creator="spring" javascript="PlantService"
+			scope="request">
+			<param name="beanName" value="plantService" />
+		</create>
+
+
+		<!-- javaBean -->
+
 		<!-- 查询条件对象 -->
-		<convert converter="bean" match="com.icss.km.gis.model.ConditionObject"/>
-		
+		<convert converter="bean"
+			match="com.icss.km.gis.model.ConditionObject" />
+		<!--通用下拉框对象 -->
+		<convert converter="bean" match="com.emq.model.CommonCheckbox" />
+
 	</allow>
 	<signatures>
-	  
-	 <![CDATA[ 
+
+		<![CDATA[ 
 		 import java.util.*; 
 	 ]]>
 	</signatures>

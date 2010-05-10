@@ -26,13 +26,18 @@ Ext.form.commonCombox = Ext.extend(Ext.form.ComboBox, {
 					this.store = new Ext.data.DWRStore({
 								fn : this.fn,
 								fields : [{
-											name : this.valueField
+											name : "code"
 										}, {
-											name : this.displayField
+											name : "text"
+										}, {
+											name : "otherInfo"
 										}]
 							});
 				}
-				this.typeAhead = true;
+				this.valueField = "code";
+				this.displayField = "text";
+				this.otherInfo ="otherInfo" ;
+				this.otherInfo = this.typeAhead = true;
 				this.selectOnFocus = true;
 				this.mode = 'remote';
 				this.triggerAction = 'all';
@@ -41,16 +46,16 @@ Ext.form.commonCombox = Ext.extend(Ext.form.ComboBox, {
 				Ext.form.commonCombox.superclass.initComponent.call(this);
 			},
 			onBeforeQuery : function(queryEvent) {
-				if (this.co!=null) {
+				if (this.co != null) {
 					queryEvent.query = [this.co];
 				}
 			},
 			init : function(co) {
-				if (co!=null) {
+				if (co != null) {
 					this.store.load({
 								params : [co]
 							});
-				} 
+				}
 			}
 		});
 Ext.reg('commonCombox', Ext.form.commonCombox);

@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<%@ include file="../comm/comm.jsp"%>
-		<script type="text/javascript" src="<%=DWR%>/Test.js"></script>
+		<script type="text/javascript" src="<%=DWR%>/PlantService.js"></script>
 		<script type="text/javascript" src="test.js"></script>
 		<title>right page</title>
 	</head>
