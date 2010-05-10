@@ -34,9 +34,12 @@ Ext.form.commonCombox = Ext.extend(Ext.form.ComboBox, {
 					new Ext.Msg.alert("错误!", "请您添加有效的数据源。");
 				} else {
 					this.store = new Ext.data.DWRStore({
-								fn : this.fn,
-								fields : CommonCheckbox
-							});
+						fn : this.fn,
+						fields : CommonCheckbox
+					});
+				}
+				if(typeof(this.width)=="undefined"){
+					this.width=90;
 				}
 				this.valueField = "code";
 				this.displayField = "text";
@@ -48,11 +51,23 @@ Ext.form.commonCombox = Ext.extend(Ext.form.ComboBox, {
 				Ext.form.commonCombox.superclass.initComponent.call(this);
 			},
 			init : function(co) {
-				if (co != null) {
-					this.store.load({
-								params : [co]
-							});
-				}
+				if(typeof(co)=="undefined"){
+			  		this.store.load({params:[]});
+			  	}else{
+			  		this.store.load({params:[co]});
+			  	}
+			  	if(typeof(this.isAll)!="undefined"){
+			  		var data;
+			  		data.code="all";
+			  		data.text="-全部-";
+			  		this.store.insert(0,data);
+			  	}
+			  	if(typeof(this.hasSelect)!="undefined"){
+			  		var data;
+			  		data.code="";
+			  		data.text="-请选择-";
+			  		this.store.insert(0,data);
+			  	}
 			},
 			getOtherInfo : function() {
 				var id = this.getValue();

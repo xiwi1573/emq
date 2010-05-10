@@ -99,13 +99,15 @@ function getAirTicketTbar(){
 		id:"docForm",
 		type:"mi"
 	});
+	var commbo = new Ext.form.commonCombox({
+		id:"combo",
+		fn:PlantService.testCombox,
+		fieldLabel:"商业公司",
+		hasSelect:true,
+		isAll:true
+	});
 	var tbar = new Ext.Toolbar(	
 		{id:'airtbar',items:[
-				{xtype:'tbtext',text:'导入时间:'},
-				{xtype:'tbspacer'},
-				{xtype:'datefieldex',fieldLabel:'导入时间',id:'importDateStart',format:'Y-m-d',width:85},
-				{xtype:'tbtext',text:'至'},
-				{xtype:'tbspacer'},
 				{xtype:'datefieldex',fieldLabel:'终止日期',id:'importDateEnd',format:'Y-m-d',width:85},
 				{xtype:'tbspacer'},
 				{xtype:'tbtext',text:'姓名'},
@@ -117,7 +119,9 @@ function getAirTicketTbar(){
 				{pressed:true,id:'querryAir',text:'查询',handler:querryAir},
 				{xtype:'tbseparator'},
 				form,
-				{pressed:true,id:'downLoad',text:'下载',handler:handlerClickBtnDownLoad}
+				{pressed:true,id:'downLoad',text:'下载',handler:handlerClickBtnDownLoad},
+				{xtype:'tbtext',text:'下拉框'},
+				commbo
 	]});
 	return tbar;
 }
