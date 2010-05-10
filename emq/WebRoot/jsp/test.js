@@ -12,6 +12,7 @@ function createMianUI() {
 				fn : PlantService.testCombox1,
 				fieldLabel:"商业公司",
 				emptyText:"请选择商业公司"
+				width:10
 			});
 	var frm = new Ext.form.FormPanel({
 	  items:[combo],
