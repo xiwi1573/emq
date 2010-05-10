@@ -56,18 +56,6 @@ Ext.form.commonCombox = Ext.extend(Ext.form.ComboBox, {
 			  	}else{
 			  		this.store.load({params:[co]});
 			  	}
-			  	if(typeof(this.isAll)!="undefined"){
-			  		var data;
-			  		data.code="all";
-			  		data.text="-È«²¿-";
-			  		this.store.insert(0,data);
-			  	}
-			  	if(typeof(this.hasSelect)!="undefined"){
-			  		var data;
-			  		data.code="";
-			  		data.text="-ÇëÑ¡Ôñ-";
-			  		this.store.insert(0,data);
-			  	}
 			},
 			getOtherInfo : function() {
 				var id = this.getValue();
