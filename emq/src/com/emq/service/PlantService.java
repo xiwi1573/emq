@@ -7,9 +7,8 @@ import java.util.Map;
 
 import com.emq.dao.PlantDao;
 import com.emq.model.CommonCheckbox;
-import com.emq.util.Global;
 
-public class PlantService {
+public class PlantService extends BaseService{
 
 	private PlantDao plantDao;
 	
@@ -43,31 +42,21 @@ public class PlantService {
 		return mapList;
 	}
 	
+	public String getDataList(){
+		List dataList = new ArrayList();
+		dataList = plantDao.getDataList("select * from EMQ_PASS_BOOK");
+		return this.createPassBookExcel(dataList);
+	}
+	
 	public List testCombox(){
 		List list = new ArrayList();
 		for(int i=0;i<10;i++){
-			CommonCheckbox map = new CommonCheckbox();
-			map.setCode("1"+i);
-			map.setText("显示"+i);
-			map.setOtherInfo(i+"bb");
+			Map map = new HashMap();
+			map.put("code", i);
+			map.put("text","显示"+i);
+			map.put("otherInfo",i+"bb");
 			list.add(map);
 		}
-		list.add(0,Global.IS_ALL);//是否有全部属性设置
-		list.add(0,Global.HAS_SELECT);// 是否包含请选择属性设置
-		return list;
-	}
-	
-	public List testCombox1(String mm,String pp){
-		List list = new ArrayList();
-		for(int i=0;i<4;i++){
-			CommonCheckbox map = new CommonCheckbox();
-			map.setCode("1"+i);
-			map.setText("显示"+i);
-			map.setOtherInfo(i+"bb");
-			list.add(map);
-		}
-		list.add(0,Global.IS_ALL);//是否有全部属性设置
-		list.add(0,Global.HAS_SELECT);// 是否包含请选择属性设置
 		return list;
 	}
 }
