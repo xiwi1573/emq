@@ -2,12 +2,14 @@
 
 Ext.onReady(function() {
 			createMianUI();
+			initCombox();
 		});
 
 function createMianUI() {
+	
 	var combo = new Ext.form.commonCombox({
 				id : "combo",
-				fn : PlantService.testCombox,
+				fn : PlantService.testCombox1,
 				fieldLabel:"商业公司",
 				emptyText:"请选择商业公司"
 			});
@@ -17,6 +19,12 @@ function createMianUI() {
 	});
 	frm.render(Ext.getBody());
 	
+}
+
+function initCombox(){
+  Ext.getCmp("combo").on("beforequery",function(queryEvent){
+     queryEvent.query =["11","22"];
+  });
 }
 
 function advent(){
