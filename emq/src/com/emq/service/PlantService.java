@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.emq.Global;
 import com.emq.dao.PlantDao;
 import com.emq.model.CommonCheckbox;
 
@@ -50,6 +51,8 @@ public class PlantService extends BaseService{
 	
 	public List testCombox(){
 		List list = new ArrayList();
+		list.add(Global.HAS_SELECT);
+		list.add(Global.IS_ALL);
 		for(int i=0;i<10;i++){
 			Map map = new HashMap();
 			map.put("code", i);
