@@ -3,9 +3,8 @@
  * 
  * @param co(condition)
  *            查询条件数组,fn数据源方法,
- *            isAll:false,是否有全部,默认为没有。hasSelect:false是否包含请选择,默认不包含。 调用示例：var
+ *          调用示例：var
  *            combo = Ext.form.commonCombox({ id:"combo", fn:Util.getCombo,
- *            valueField:"code",displayField:"text"})
  *            获取值：Ext.getCmp('').getValue(); 获取显示值：Ext.getCmp('').getRawValue();
  *            获取附带信息：getOtherInfo()
  * 
@@ -46,13 +45,7 @@ Ext.form.commonCombox = Ext.extend(Ext.form.ComboBox, {
 				this.mode = 'remote';
 				this.triggerAction = 'all';
 				this.readOnly = true;
-				this.on('beforequery', this.onBeforeQuery);
 				Ext.form.commonCombox.superclass.initComponent.call(this);
-			},
-			onBeforeQuery : function(queryEvent) {
-				if (this.co != null) {
-					queryEvent.query = [this.co];
-				}
 			},
 			init : function(co) {
 				if (co != null) {

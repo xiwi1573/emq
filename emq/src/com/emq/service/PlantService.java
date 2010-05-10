@@ -52,8 +52,22 @@ public class PlantService {
 			map.setOtherInfo(i+"bb");
 			list.add(map);
 		}
-		list.add(0,Global.IS_ALL);
-		list.add(0,Global.HAS_SELECT);
+		list.add(0,Global.IS_ALL);//是否有全部属性设置
+		list.add(0,Global.HAS_SELECT);// 是否包含请选择属性设置
+		return list;
+	}
+	
+	public List testCombox1(String mm,String pp){
+		List list = new ArrayList();
+		for(int i=0;i<4;i++){
+			CommonCheckbox map = new CommonCheckbox();
+			map.setCode("1"+i);
+			map.setText("显示"+i);
+			map.setOtherInfo(i+"bb");
+			list.add(map);
+		}
+		list.add(0,Global.IS_ALL);//是否有全部属性设置
+		list.add(0,Global.HAS_SELECT);// 是否包含请选择属性设置
 		return list;
 	}
 }
