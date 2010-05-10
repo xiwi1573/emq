@@ -376,8 +376,9 @@ public class TimeUtil {
   }
 
   public static void main(String[] args) {
-    String time = "2005-12-30 00:00:00.00000";
-    String format = "yyyy-MM-dd hh:mm:ss";
-    System.out.println(TimeUtil.dateToString(new java.util.Date(), format));
+//    String time = "2005-12-30 00:00:00.00000";
+//    String format = "yyyy-MM-dd hh:mm:ss";
+//    System.out.println(TimeUtil.dateToString(new java.util.Date(), format));
+	  System.out.println(dateToString(new Date(),"yyyyMMddHHmmss"));
   }
 }
