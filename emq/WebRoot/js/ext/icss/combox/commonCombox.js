@@ -7,6 +7,7 @@
  *            combo = Ext.form.commonCombox({ id:"combo", fn:Util.getCombo,
  *            valueField:"code",displayField:"text"})
  *            获取值：Ext.getCmp('').getValue(); 获取显示值：Ext.getCmp('').getRawValue();
+ *            获取附带信息：getOtherInfo()
  * 
  */
 
@@ -17,6 +18,16 @@ Ext.form.commonCombox = function(config) {
 
 Ext.form.commonCombox = Ext.extend(Ext.form.ComboBox, {
 			initComponent : function() {
+				var CommonCheckbox = Ext.data.Record.create([{
+							name : "code",
+							mapping : "code"
+						}, {
+							name : "text",
+							mapping : "text"
+						}, {
+							name : "otherInfo",
+							mapping : "otherInfo"
+						}]);
 				if (typeof(this.co) == 'undefined') {
 					this.co = null;
 				}
@@ -25,19 +36,12 @@ Ext.form.commonCombox = Ext.extend(Ext.form.ComboBox, {
 				} else {
 					this.store = new Ext.data.DWRStore({
 								fn : this.fn,
-								fields : [{
-											name : "code"
-										}, {
-											name : "text"
-										}, {
-											name : "otherInfo"
-										}]
+								fields : CommonCheckbox
 							});
 				}
 				this.valueField = "code";
 				this.displayField = "text";
-				this.otherInfo ="otherInfo" ;
-				this.otherInfo = this.typeAhead = true;
+				this.typeAhead = true;
 				this.selectOnFocus = true;
 				this.mode = 'remote';
 				this.triggerAction = 'all';
@@ -56,6 +60,16 @@ Ext.form.commonCombox = Ext.extend(Ext.form.ComboBox, {
 								params : [co]
 							});
 				}
+			},
+			getOtherInfo : function() {
+				var id = this.getValue();
+				var index = this.store.find("code", id);
+				var otherInfo = null;
+				if (index >= 0) {
+					var record = this.store.getAt(index);
+					otherInfo = record.get("otherInfo");
+				}
+				return otherInfo;
 			}
 		});
 Ext.reg('commonCombox', Ext.form.commonCombox);

@@ -6,7 +6,7 @@ public class CommonCheckbox {
 
 	private String text;
 
-	private String otherInfo ="";
+	private String otherInfo =null;
 
 	public String getCode() {
 		return code;

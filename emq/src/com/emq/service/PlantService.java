@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.emq.dao.PlantDao;
 import com.emq.model.CommonCheckbox;
+import com.emq.util.Global;
 
 public class PlantService {
 
@@ -48,8 +49,11 @@ public class PlantService {
 			CommonCheckbox map = new CommonCheckbox();
 			map.setCode("1"+i);
 			map.setText("œ‘ æ"+i);
+			map.setOtherInfo(i+"bb");
 			list.add(map);
 		}
+		list.add(0,Global.IS_ALL);
+		list.add(0,Global.HAS_SELECT);
 		return list;
 	}
 }
