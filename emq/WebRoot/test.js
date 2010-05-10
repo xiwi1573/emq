@@ -103,8 +103,7 @@ function getAirTicketTbar(){
 		id:"combo",
 		fn:PlantService.testCombox,
 		fieldLabel:"商业公司",
-		hasSelect:true,
-		isAll:true
+		emptyText:"请选择商业公司"
 	});
 	var tbar = new Ext.Toolbar(	
 		{id:'airtbar',items:[
