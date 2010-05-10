@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import com.emq.dao.PlantDao;
+import com.emq.model.CommonCheckbox;
 
 public class PlantService {
 
@@ -43,9 +45,9 @@ public class PlantService {
 	public List testCombox(){
 		List list = new ArrayList();
 		for(int i=0;i<10;i++){
-			Map map = new HashMap();
-			map.put("code", i+"1");
-			map.put("text", i+"ming");
+			CommonCheckbox map = new CommonCheckbox();
+			map.setCode("1"+i);
+			map.setText("ÏÔÊ¾"+i);
 			list.add(map);
 		}
 		return list;
