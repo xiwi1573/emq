@@ -116,7 +116,8 @@ function getAirTicketTbar(){
 				{xtype:'tbspacer'},
 				{pressed:true,id:'querryAir',text:'≤È—Ø',handler:querryAir},
 				{xtype:'tbseparator'},
-				form
+				form,
+				{pressed:true,id:'downLoad',text:'œ¬‘ÿ',handler:handlerClickBtnDownLoad}
 	]});
 	return tbar;
 }
@@ -154,6 +155,12 @@ function setAirStartDate(com){
 function setAirEndDate(com){
 	var today = (new Date()).format("Y-m-d");
 	com.setValue(today);
+}
+
+function handlerClickBtnDownLoad(){
+	PlantService.getDataList(function(fileName){
+	    location="do_download.jsp?name="+fileName;
+	});
 }
 
 /**
