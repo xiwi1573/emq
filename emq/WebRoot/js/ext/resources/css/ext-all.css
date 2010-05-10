@@ -327,6 +327,7 @@ fieldset.x-panel-collapsed .x-fieldset-bwrap{visibility:hidden;position:absolute
 .x-grid-panel .x-panel-mc .x-panel-body{border:1px solid #99bbe8;}
 .x-grid3 table{table-layout:fixed;}
 .x-grid3-viewport{overflow:hidden;}
+.x-grid3-hd-row TD{border-top:#ccc 1px solid ;}
 .x-grid3-hd-row td,.x-grid3-row td,.x-grid3-summary-row td{font:normal 11px arial,tahoma,helvetica,sans-serif;-moz-outline:none;-moz-user-focus:normal;}
 .x-grid3-row td,.x-grid3-summary-row td{line-height:13px;vertical-align:top;padding-left:1px;padding-right:1px;-moz-user-select:none;}
 .x-grid3-hd-row td{line-height:15px;vertical-align:middle;border-left:1px solid #eee;border-right:1px solid #d0d0d0;}
