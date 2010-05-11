@@ -25,6 +25,11 @@ public abstract class AbstractJdbcBaseDao extends JdbcDaoSupport {
 		this.getJdbcTemplate().execute(sql);
 	}
 	
+	/**
+	 * 执行存过，包含两个输出参数
+	 * @param sql
+	 * @return
+	 */
 	public List execute_proc(String sql) {
 		List dataList = new ArrayList();
 		CallableStatement proc = null; 
@@ -59,6 +64,11 @@ public abstract class AbstractJdbcBaseDao extends JdbcDaoSupport {
 		return dataList;
 	}
 	
+	/**
+	 * 执行存过，没有输出参数
+	 * @param sql
+	 * @return
+	 */
 	public List execute_procNonReturn(String sql) {
 		List dataList = new ArrayList();
 		//sql = "exec pro_gis_sale_sum \"201\",\"gsdm = '53010100'\",\"005\",\"1\"";
@@ -90,6 +100,11 @@ public abstract class AbstractJdbcBaseDao extends JdbcDaoSupport {
 		return dataList;
 	}
 	
+	/**
+	 * 执行存过，包含两个输出参数，并且返回两个list(name,value),用于在页面上不破坏显示顺序
+	 * @param sql
+	 * @return
+	 */
 	public List execute_procByArray(String sql) {
 		List returnList = new ArrayList();
 		List dataList = new ArrayList();
@@ -131,6 +146,11 @@ public abstract class AbstractJdbcBaseDao extends JdbcDaoSupport {
 		return returnList;
 	}
 	
+	/**
+	 * 批量执行存过，包含两个输出参数，并且返回两个list(name,value),用于在页面上不破坏显示顺序
+	 * @param sqlList
+	 * @return
+	 */
 	public List execute_procByArray(List sqlList) {
 		List list = new ArrayList();
 		//CallableStatement proc = null; 
@@ -180,6 +200,11 @@ public abstract class AbstractJdbcBaseDao extends JdbcDaoSupport {
 		return list;
 	}
 	
+	/**
+	 * 执行存过，并且返回3个对象1：list(name,value)，2：CallableStatement，3：Connection,用于处理需要手动控制数据库连接关闭
+	 * @param sql
+	 * @return
+	 */
 	public List execute_procByArrayNC(String sql) {
 		List returnList = new ArrayList();
 		List dataList = new ArrayList();
@@ -218,6 +243,11 @@ public abstract class AbstractJdbcBaseDao extends JdbcDaoSupport {
 		return rList;
 	}
 	
+	/**
+	 * 批量执行存过，并且返回多个list(name,value),不具备排序功能
+	 * @param sqlList
+	 * @return
+	 */
 	public List execute_proc(List sqlList) {
 		List returnList = new ArrayList();
 		CallableStatement proc = null; 
@@ -257,6 +287,11 @@ public abstract class AbstractJdbcBaseDao extends JdbcDaoSupport {
 		return returnList;
 	}
 	
+	/**
+	 * 执行存过，只有一个输出参数，并返回该输出参数
+	 * @param sql
+	 * @return
+	 */
 	public int executeProc_fa_fc_createtask(String sql) {
 		List dataList = new ArrayList();
 		CallableStatement proc = null; 
@@ -283,6 +318,11 @@ public abstract class AbstractJdbcBaseDao extends JdbcDaoSupport {
 		return returnValue;
 	}
 	
+	/**
+	 * 执行存过，有两个输出参数，并返回2个输出参数
+	 * @param sql
+	 * @return
+	 */
 	public String[] executeProcByReturn(String sql) {
 		String[] result = new String[2];
 		CallableStatement proc = null; 
@@ -309,6 +349,13 @@ public abstract class AbstractJdbcBaseDao extends JdbcDaoSupport {
 		return result;
 	}
 	
+	/**
+	 * 执行存过，并带有2个输入参数，并返回两个输出参数
+	 * @param sql
+	 * @param inout1
+	 * @param inout2
+	 * @return
+	 */
 	public String[] executeProcByReturn(String sql,int inout1,String inout2) {
 		String[] result = new String[2];
 		CallableStatement proc = null; 
@@ -338,6 +385,10 @@ public abstract class AbstractJdbcBaseDao extends JdbcDaoSupport {
 		return result;
 	}
 	
+	/**
+	 * 执行存过，固定写入一个输入参数
+	 * @param sql
+	 */
 	public void executeProc_normal(String sql) {
 		CallableStatement proc = null; 
 		Connection con = null; 

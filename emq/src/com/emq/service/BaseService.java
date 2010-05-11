@@ -12,6 +12,7 @@ import jxl.Workbook;
 import jxl.format.Border;
 import jxl.format.BorderLineStyle;
 import jxl.write.Label;
+import jxl.write.NumberFormats;
 import jxl.write.WritableCellFormat;
 import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
@@ -240,6 +241,21 @@ public class BaseService {
 	}
 	
 	/**
+	 * 执行UpdateSQL
+	 * @param sqlList
+	 * @return
+	 */
+	public boolean exeUpdateSql(String sql){
+		boolean mark = true;
+		try{
+			this.baseDao.execute(sql);
+		}catch(Exception e){
+			return false;
+		}
+		return mark;
+	}
+	
+	/**
 	 * Excel导入记录表最大ID
 	 * @param sqlList
 	 * @return
@@ -269,12 +285,15 @@ public class BaseService {
 			for(int i=0;i<71;i++){
 				sheet.setColumnView(i,20);
 			}
+			WritableCellFormat contentFromart = new WritableCellFormat(NumberFormats.TEXT); 
 			WritableFont font1 = new WritableFont(WritableFont.ARIAL,10,WritableFont.BOLD);
 			WritableFont datafont = new WritableFont(WritableFont.ARIAL,10,WritableFont.NO_BOLD); 
 			WritableCellFormat wf_head = new WritableCellFormat(font1);
 			wf_head.setBorder(Border.ALL, BorderLineStyle.THIN);
 			WritableCellFormat wf_data = new WritableCellFormat(datafont);
 			wf_data.setBorder(Border.ALL, BorderLineStyle.THIN);
+			wf_data.setAlignment(jxl.format.Alignment.CENTRE);
+			wf_data.setVerticalAlignment(jxl.format.VerticalAlignment.CENTRE);
 			wf_head.setAlignment(jxl.format.Alignment.CENTRE);
 			wf_head.setVerticalAlignment(jxl.format.VerticalAlignment.CENTRE);
 			sheet.addCell(new Label(0,0,"厂站名称",wf_head));
@@ -378,7 +397,14 @@ public class BaseService {
 				sheet.addCell(new Label(9,dataRow,map.get("E_MODEL").toString(),wf_data));
 				sheet.addCell(new Label(10,dataRow,map.get("E_TYPE").toString(),wf_data));
 				sheet.addCell(new Label(11,dataRow,map.get("E_MANUFACTURER").toString(),wf_data));
-				sheet.addCell(new Label(12,dataRow,map.get("E_FACTORY_NUMBER").toString(),wf_data));
+				
+//				sheet.addCell(new Label(12,dataRow,map.get("E_FACTORY_NUMBER").toString(),contentFromart));
+				if(map.get("E_FACTORY_NUMBER")!=null&&!map.get("E_FACTORY_NUMBER").equals("")){
+					sheet.addCell(new jxl.write.Number(12,dataRow,new Double(map.get("E_FACTORY_NUMBER").toString()),wf_data));
+				}else{
+					sheet.addCell(new Label(12,dataRow,map.get("E_FACTORY_NUMBER").toString(),wf_data));
+				}
+				
 				sheet.addCell(new Label(13,dataRow,map.get("E_CONNECTION").toString(),wf_data));
 				sheet.addCell(new Label(14,dataRow,map.get("E_TENSION").toString(),wf_data));
 				sheet.addCell(new Label(15,dataRow,map.get("E_ELECTRICITY").toString(),wf_data));
@@ -396,7 +422,14 @@ public class BaseService {
 				sheet.addCell(new Label(27,dataRow,map.get("T_TYPE").toString(),wf_data));
 				sheet.addCell(new Label(28,dataRow,map.get("T_FACTORY").toString(),wf_data));
 				sheet.addCell(new Label(29,dataRow,map.get("T_DISCREPANCY").toString(),wf_data));
-				sheet.addCell(new Label(30,dataRow,map.get("T_UNMBER").toString(),wf_data));
+				
+//				sheet.addCell(new Label(30,dataRow,map.get("T_UNMBER").toString(),contentFromart));
+				if(map.get("T_UNMBER")!=null&&!map.get("T_UNMBER").equals("")){
+					sheet.addCell(new jxl.write.Number(30,dataRow,new Double(map.get("T_UNMBER").toString()),wf_data));
+				}else{
+					sheet.addCell(new Label(30,dataRow,map.get("T_UNMBER").toString(),wf_data));
+				}
+				
 				sheet.addCell(new Label(31,dataRow,map.get("T_TENSION_FIRST").toString(),wf_data));
 				sheet.addCell(new Label(32,dataRow,map.get("T_TENSION_SECOND").toString(),wf_data));
 				sheet.addCell(new Label(33,dataRow,map.get("T_TENSION_SECOND_CHARGE").toString(),wf_data));
@@ -410,7 +443,14 @@ public class BaseService {
 				sheet.addCell(new Label(41,dataRow,map.get("EI_TYPE").toString(),wf_data));
 				sheet.addCell(new Label(42,dataRow,map.get("EI_MANUFACTURER").toString(),wf_data));
 				sheet.addCell(new Label(43,dataRow,map.get("EI_DISCREPANCY").toString(),wf_data));
-				sheet.addCell(new Label(44,dataRow,map.get("EI_UNMBER").toString(),wf_data));
+				
+//				sheet.addCell(new Label(44,dataRow,map.get("EI_UNMBER").toString(),contentFromart));
+				if(map.get("EI_UNMBER")!=null&&!map.get("EI_UNMBER").equals("")){
+					sheet.addCell(new jxl.write.Number(44,dataRow,new Double(map.get("EI_UNMBER").toString()),wf_data));
+				}else{
+					sheet.addCell(new Label(44,dataRow,map.get("EI_UNMBER").toString(),wf_data));
+				}
+				
 				sheet.addCell(new Label(45,dataRow,map.get("EI_RATED_TENSION_FIRST").toString(),wf_data));
 				sheet.addCell(new Label(46,dataRow,map.get("EI_RATED_TENSION_SECOND").toString(),wf_data));
 				sheet.addCell(new Label(47,dataRow,map.get("EI_RATED_TENSION_SECOND_CHARGE").toString(),wf_data));
@@ -423,11 +463,25 @@ public class BaseService {
 				sheet.addCell(new Label(54,dataRow,map.get("LT_MODEL").toString(),wf_data));
 				sheet.addCell(new Label(55,dataRow,map.get("LT_TYPE").toString(),wf_data));
 				sheet.addCell(new Label(56,dataRow,map.get("LT_MANUFACTURER").toString(),wf_data));
-				sheet.addCell(new Label(57,dataRow,map.get("LT_UNMBER").toString(),wf_data));
+				
+//				sheet.addCell(new Label(57,dataRow,map.get("LT_UNMBER").toString(),contentFromart));
+				if(map.get("LT_UNMBER")!=null&&!map.get("LT_UNMBER").equals("")){
+					sheet.addCell(new jxl.write.Number(57,dataRow,new Double(map.get("LT_UNMBER").toString()),wf_data));
+				}else{
+					sheet.addCell(new Label(57,dataRow,map.get("LT_UNMBER").toString(),wf_data));
+				}
+				
 				sheet.addCell(new Label(58,dataRow,map.get("GPS_MODEL").toString(),wf_data));
 				sheet.addCell(new Label(59,dataRow,map.get("GPS_TYPE").toString(),wf_data));
 				sheet.addCell(new Label(60,dataRow,map.get("GPS_MANUFACTURER").toString(),wf_data));
-				sheet.addCell(new Label(61,dataRow,map.get("GPS_UNMBER").toString(),wf_data));
+				
+//				sheet.addCell(new Label(61,dataRow,map.get("GPS_UNMBER").toString(),contentFromart));
+				if(map.get("GPS_UNMBER")!=null&&!map.get("GPS_UNMBER").equals("")){
+					sheet.addCell(new jxl.write.Number(61,dataRow,new Double(map.get("GPS_UNMBER").toString()),wf_data));
+				}else{
+					sheet.addCell(new Label(61,dataRow,map.get("GPS_UNMBER").toString(),wf_data));
+				}
+				
 				sheet.addCell(new Label(62,dataRow,map.get("TV_AREA").toString(),wf_data));
 				sheet.addCell(new Label(63,dataRow,map.get("TV_LENGTH").toString(),wf_data));
 				sheet.addCell(new Label(64,dataRow,map.get("TA_LENGTH").toString(),wf_data));
@@ -463,6 +517,16 @@ public class BaseService {
 			ex.printStackTrace();
 		}
 		return fileName;
+	}
+	
+	/**
+	 * 根据上传文件ID获取文件保存路径
+	 * @param id
+	 * @return
+	 */
+	public String getDownLoadFile(Integer id){
+		Map map = baseDao.getDataForMap("select FILE_PATH from EMQ_BOOK_IMPORT where id="+id);
+		return map.get("FILE_PATH").toString();
 	}
 	
 }
