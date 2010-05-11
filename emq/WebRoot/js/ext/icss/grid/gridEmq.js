@@ -105,7 +105,7 @@
 		}
 		
 //		ÊÇ·ñºÏ¼Æ
-		if(this.issum!=null&&this.renderer!=""){
+		if(this.issum!=null&&this.issum!=""){
 			issumTypeList = this.issum.split(",");
 		}else{
 			for(var i=0;i<headList.length;i++){
@@ -132,7 +132,7 @@
 			}
 		}
 		if(rendererList.length<headList.length){
-			for(var i=colunmTypeList.length;i<headList.length;i++){
+			for(var i=rendererList.length;i<headList.length;i++){
 				rendererList.push("");
 			}
 		}
@@ -165,6 +165,9 @@
 		renturnList.push(header);
 		renturnList.push(fields);
 		
+		if(typeof(this.tableType)=="undefined"){
+			this.tableType = 1;
+		}
 		if(this.tableType!=1){
 			var moreHeadList = [];
 			for(var i=0;i<this.moreHead.length;i++){
