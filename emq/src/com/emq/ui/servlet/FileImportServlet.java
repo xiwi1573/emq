@@ -41,6 +41,9 @@ import com.jspsmart.upload.SmartUploadException;
 /**
  * 
  * 文件导入Servlet
+ * type:  passBook 上传到服务器并保存到对应人员的文件夹，并解析Excel文件将数据存入数据库
+ *        commonFile 上传到服务器保存到upload\commonFile文件夹下，供下载用
+ *        picture  设备获取其供页面展示用的图片文件，保存在imgs文件夹下
  */
 public class FileImportServlet extends HttpServlet {
 
@@ -48,7 +51,7 @@ public class FileImportServlet extends HttpServlet {
 	/**
 	 * 用于存放上传文件的临时目录
 	 */
-	public static final String UPLOAD_DIR = "\\upload\\";	
+	public String UPLOAD_DIR = "\\upload\\";	
 	/**
 	 * 参数名：type 文件类型
 	 */
@@ -87,31 +90,43 @@ public class FileImportServlet extends HttpServlet {
 		res.setCharacterEncoding("utf-8");
 		PrintWriter out = res.getWriter(); 
 		String type = req.getParameter("type"); 
+		
 		try { 
 			String userName = "test";
 			String personUnit = "testUnit";
-			List<String> files = smartUploadFile(req, res,userName);
-			for(String fileName: files){
-				File f = new File(fileName);
-				if (!f.exists())
-					throw new Exception(ErrorMsgConstants.EMQ_UI_01);
-				BaseService baseService = getBaseService();	
-				String fileId = baseService.getImportMaxId();
-				String name = fileName.substring(fileName.lastIndexOf("\\")+1, fileName.length());
-				//解析
-				List sqlList = parseFile(fileName, type,fileId);
-				sqlList.add("insert into EMQ_BOOK_IMPORT(FILE_ID,FILE_NAME,FILE_PATH,IMPORT_PERSON,PERSON_UNIT,IMPORT_TIME,STATE) values('"+fileId+"','"+name+"','"+fileName+"','"+userName+"','"+personUnit+"',getDate(),0)");
-				//保存	 
-				
-				boolean flag = baseService.exeUpdateSqlByBach(sqlList);
-				if(true == flag){//保存成功
-					out.println("{success:true}");
-					out.flush(); 
-				}else{
-					out.println("{success:false");
-					out.flush();
+			if(type.equalsIgnoreCase("passBook")){
+				UPLOAD_DIR = "\\upload\\"+userName+"\\";
+			}else if(type.equalsIgnoreCase("commonFile")){
+				UPLOAD_DIR = "\\upload\\commonFile\\";
+			}else if(type.equalsIgnoreCase("picture")){
+				UPLOAD_DIR = "\\imgs\\";
+			}else{
+				UPLOAD_DIR = "\\upload\\";
+			}
+			List<String> files = smartUploadFile(req, res,userName,personUnit);
+			boolean flag = true;
+			if(type.equals("passBook")){
+				for(String fileName: files){
+					File f = new File(fileName);
+					if (!f.exists())
+						throw new Exception(ErrorMsgConstants.EMQ_UI_01);
+					BaseService baseService = getBaseService();	
+					String fileId = baseService.getImportMaxId();
+					String name = fileName.substring(fileName.lastIndexOf("\\")+1, fileName.length());
+					//解析
+					List sqlList = parseFile(fileName, type,fileId);
+					//保存	 
+					flag = baseService.exeUpdateSqlByBach(sqlList);
 				}
 			}
+			if(true == flag){//保存成功
+				out.println("{success:true}");
+				out.flush(); 
+			}else{
+				out.println("{success:false");
+				out.flush();
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			out.println("{success:false,message:'" + e.getMessage() + "'}");
@@ -569,17 +584,34 @@ public class FileImportServlet extends HttpServlet {
 	 * @throws SmartUploadException
 	 * @throws IOException
 	 */
-	private String saveFile(String path, com.jspsmart.upload.File file,String userName) throws SmartUploadException, IOException {
+	private String saveFile(String path, com.jspsmart.upload.File file,String userName,String personUnit) throws SmartUploadException, IOException {
 		//获取文件名 
-		String fileName =  path+UPLOAD_DIR+userName+"\\"+TimeUtil.dateToString(new Date(),"yyyyMMddHHmmss")+"."+file.getFileExt(); 
-		File dir = new File(path + UPLOAD_DIR+userName+"\\");
+		String fileName =  TimeUtil.dateToString(new Date(),"yyyyMMddHHmmss")+"."+file.getFileExt(); 
+		String filePath = path+UPLOAD_DIR+userName+"\\"+fileName;
+		File dir = new File(path + UPLOAD_DIR);
 		if(!dir.exists())
 			dir.mkdirs();
-		File exsit = new File(fileName);
-		if(exsit.exists())
+		File exsit = new File(filePath);
+		if(exsit.exists()){
 			exsit.delete(); 
-		file.saveAs(fileName, com.jspsmart.upload.File.SAVEAS_PHYSICAL); 
-		return fileName;
+		}
+		//保存记录
+		BaseService baseService = getBaseService();	
+		String fileId = baseService.getImportMaxId();
+		String oldName = file.getFileName();
+		String fileType = file.getFileExt();
+		if(fileType.equals("xls")||fileType.equals("xlsx")){
+			fileType = "Excel";
+		}else if(fileType.equals("doc")||fileType.equals("docx")){
+			fileType = "Word";
+		}else if(fileType.equals("png")||fileType.equals("gif")||fileType.equals("jpg")){
+			fileType = "Picture";
+		}else{
+			fileType = "Unknown";
+		}
+		file.saveAs(filePath, com.jspsmart.upload.File.SAVEAS_PHYSICAL); 
+		baseService.exeUpdateSql("insert into EMQ_BOOK_IMPORT(FILE_ID,FILE_NAME,OLD_FILE_NAME,FILE_PATH,IMPORT_PERSON,PERSON_UNIT,IMPORT_TIME,STATE,) values('"+fileId+"','"+fileName+"','"+oldName+"'"+filePath+"'"+"','"+userName+"','"+personUnit+"',getDate(),0,'"+fileType+"')");
+		return filePath;
 	}
 	/**
 	 * 上传文件
@@ -589,14 +621,14 @@ public class FileImportServlet extends HttpServlet {
 	 * 		上传文件名(带路径)列表
 	 * @throws HYEMException
 	 */
-	private List<String> smartUploadFile(HttpServletRequest req, HttpServletResponse res,String userName)
+	private List<String> smartUploadFile(HttpServletRequest req, HttpServletResponse res,String userName,String personUnit)
 			throws  Exception {
 		List<String> fileList = new ArrayList<String>(); 
 		try{
 			//上传文件
 		  	SmartUpload supload = new SmartUpload();
 			supload.initialize(this.getServletConfig(), req, res);
-			supload.setAllowedFilesList("xls,xlsx");
+//			supload.setAllowedFilesList("xls,xlsx");
 			supload.setMaxFileSize(MAX_FILE_SIZE);
 			supload.upload();
 			//保存文件
@@ -608,7 +640,7 @@ public class FileImportServlet extends HttpServlet {
 					continue;
 				} 
 				String path = req.getSession().getServletContext().getRealPath("");
-				String fileName = saveFile(path, file,userName); 
+				String fileName = saveFile(path, file,userName,personUnit); 
 				fileList.add(fileName);
 			} 
 			 
