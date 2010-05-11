@@ -260,12 +260,12 @@ public class BaseService {
 	 * @param sqlList
 	 * @return
 	 */
-	public String getImportMaxId(){
-		String maxIdStr = "1";
+	public int getImportMaxId(){
+		int maxIdStr = 0;
 		try{
-			Map maxId = this.baseDao.getMapData("select max(FILE_ID) as MAXID from EMQ_BOOK_IMPORT");
+			Map maxId = this.baseDao.getMapData("select max(ID) as ID from EMQ_BOOK_IMPORT");
 			if(maxId!=null||maxId.size()==1){
-				maxIdStr = String.valueOf(new Integer(maxId.get("MAXID").toString()).intValue()+1);
+				maxIdStr = new Integer(maxId.get("ID").toString()).intValue();
 			}
 		}catch(Exception e){
 			e.printStackTrace();

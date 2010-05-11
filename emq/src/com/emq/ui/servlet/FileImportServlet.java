@@ -111,7 +111,7 @@ public class FileImportServlet extends HttpServlet {
 					if (!f.exists())
 						throw new Exception(ErrorMsgConstants.EMQ_UI_01);
 					BaseService baseService = getBaseService();	
-					String fileId = baseService.getImportMaxId();
+					int fileId = baseService.getImportMaxId();
 					String name = fileName.substring(fileName.lastIndexOf("\\")+1, fileName.length());
 					//解析
 					List sqlList = parseFile(fileName, type,fileId);
@@ -210,7 +210,7 @@ public class FileImportServlet extends HttpServlet {
 	 * 解析Excel2007
 	 * @return
 	 */
-	private List<String> parseFileByXlsx(String fileName,String fileId) throws Exception{
+	private List<String> parseFileByXlsx(String fileName,int fileId) throws Exception{
 		List sqlList = new ArrayList();
 		XSSFWorkbook xwb = null;
 		String tableColName = "insert into EMQ_PASS_BOOK(STATION_NAME,BELONG_UNIT_NAME," +
@@ -254,73 +254,16 @@ public class FileImportServlet extends HttpServlet {
 					sqlList.add(sql.toString());
 				}
 			}
-//			if(type.equals("el")){
-////				循环解析每行数据(从第三行开始)
-//				for (int i = sheet.getFirstRowNum()+2; i < sheet.getPhysicalNumberOfRows(); i++) {
-//					StringBuffer sql = new StringBuffer(tableColName);
-//				    row = sheet.getRow(i);
-//				    StringBuffer sqlValue = new StringBuffer();
-//				    for (int j = row.getFirstCellNum(); j < row.getPhysicalNumberOfCells(); j++) {
-//				        // 获取单元格内容，   
-//				        cell = row.getCell(j).toString();
-//				        if(cell==null||cell.equals("null")){
-//				        	cell = "";
-//				        }
-//				        sqlValue.append("'"+cell+"',");
-//				    }
-//				    if(sqlValue.length()>220){
-//						sql.append(sqlValue+"'"+fileId+"')");
-//						sqlList.add(sql.toString());
-//					}
-//				}
-//			}else{
-//				List rowspanList = this.getRowspanList(sheet);
-//				logger.info("复杂2007表格共有"+rowspanList.size()+"条数据！");
-//				XSSFRow firstRow = sheet.getRow(2);
-////				循环解析每行数据(从第三行开始)
-//				for(int x=0;x<rowspanList.size();x++){
-//					int startRow = ((Integer)rowspanList.get(x)).intValue();
-//					int endRow = 0;
-//					if(x!=rowspanList.size()-1){
-//						endRow = ((Integer)rowspanList.get(x+1)).intValue()-1;
-//					}else{
-//						endRow = sheet.getPhysicalNumberOfRows()-1;
-//					}
-//					StringBuffer sql = new StringBuffer(tableColName);
-//					StringBuffer sqlValue = new StringBuffer();
-//					for(int j=firstRow.getFirstCellNum();j<=firstRow.getPhysicalNumberOfCells();j++){
-//						sqlValue.append("'");
-//						for(int i=startRow;i<=endRow;i++){
-//							row = sheet.getRow(i);
-//							cell = row.getCell(j).toString();
-//							if(cell==null||cell.equals("null")){
-//					        	cell = "";
-//					        }
-//							if(!cell.equals("")){
-//								sqlValue.append(cell+";");
-//							}
-//						}
-//						if(sqlValue.lastIndexOf(";")==sqlValue.length()-1){
-//							sqlValue.deleteCharAt(sqlValue.length()-1);
-//						}
-//						sqlValue.append("',");
-//					}
-//					if(sqlValue.length()>220){
-//						sql.append(sqlValue+"'"+fileId+"')");
-//						sqlList.add(sql.toString());
-//					}
-//				}
-//			}
 
 		}catch(Exception e){
 			e.printStackTrace();
 			logger.error(ErrorMsgConstants.EMQ_UI_01, e);
 			throw new Exception(ErrorMsgConstants.EMQ_UI_01);
 		}finally{
-//			File f = new File(fileName);
-//			if(f.exists()){
-//				f.delete();
-//			}
+			File f = new File(fileName+"_");
+			if(f.exists()){
+				f.delete();
+			}
 		}
 		return sqlList;
 	}
@@ -330,7 +273,7 @@ public class FileImportServlet extends HttpServlet {
 	 * @param fileName,type:el-电能关口台帐模板,mi-互感器关口台帐模板
 	 * @return
 	 */
-	private List<String> parseFileByXls(String fileName,String fileId) throws Exception{
+	private List<String> parseFileByXls(String fileName,int fileId) throws Exception{
 		List sqlList = new ArrayList();
 		Workbook rw = jxl.Workbook.getWorkbook(new File(fileName)); 
 		WritableWorkbook wb = null;
@@ -370,52 +313,6 @@ public class FileImportServlet extends HttpServlet {
 					sqlList.add(sql.toString());
 				}
 			}
-//			if(type.equals("el")){
-////				循环解析每行数据(从第三行开始)
-//				for(int i=2;i<rows;i++){
-//					StringBuffer sql = new StringBuffer(tableColName);
-//					StringBuffer sqlValue = new StringBuffer();
-//					for(int j=0;j<=sheet.getColumns();j++){
-//						sqlValue.append("'"+this.getCellValue(sheet.getCell(j, i))+"',");
-//					}
-//					if(sqlValue.length()>220){
-//						sql.append(sqlValue+"'"+fileId+"')");
-//						sqlList.add(sql.toString());
-//					}
-//				}
-//			}else{
-//				List rowspanList = this.getRowspanList(sheet);
-//				logger.info("复杂表格共有"+rowspanList.size()+"条数据！");
-////				循环解析每行数据(从第三行开始)
-//				for(int x=0;x<rowspanList.size();x++){
-//					int startRow = ((Integer)rowspanList.get(x)).intValue();
-//					int endRow = 0;
-//					if(x!=rowspanList.size()-1){
-//						endRow = ((Integer)rowspanList.get(x+1)).intValue()-1;
-//					}else{
-//						endRow = sheet.getRows()-1;
-//					}
-//					StringBuffer sql = new StringBuffer(tableColName);
-//					StringBuffer sqlValue = new StringBuffer();
-//					for(int j=0;j<=sheet.getColumns();j++){
-//						sqlValue.append("'");
-//						for(int i=startRow;i<=endRow;i++){
-//							String tempValue = this.getCellValue(sheet.getCell(j, i)).toString();
-//							if(!tempValue.equals("")){
-//								sqlValue.append(tempValue+";");
-//							}
-//						}
-//						if(sqlValue.lastIndexOf(";")==sqlValue.length()-1){
-//							sqlValue.deleteCharAt(sqlValue.length()-1);
-//						}
-//						sqlValue.append("',");
-//					}
-//					if(sqlValue.length()>220){
-//						sql.append(sqlValue+"'"+fileId+"')");
-//						sqlList.add(sql.toString());
-//					}
-//				}
-//			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error(ErrorMsgConstants.EMQ_UI_01, e);
@@ -564,7 +461,7 @@ public class FileImportServlet extends HttpServlet {
 	 * 		List<EmFeeAirticket>
 	 * @throws HYEMException
 	 */
-	private List<String> parseFile(String fileName, String type,String fileId) throws Exception{
+	private List<String> parseFile(String fileName, String type,int fileId) throws Exception{
 		List sqlList = new ArrayList();
 		String fileType = fileName.substring(fileName.lastIndexOf(".")+1,fileName.length());
 		if(fileType.equalsIgnoreCase("xlsx")){
@@ -587,7 +484,7 @@ public class FileImportServlet extends HttpServlet {
 	private String saveFile(String path, com.jspsmart.upload.File file,String userName,String personUnit) throws SmartUploadException, IOException {
 		//获取文件名 
 		String fileName =  TimeUtil.dateToString(new Date(),"yyyyMMddHHmmss")+"."+file.getFileExt(); 
-		String filePath = path+UPLOAD_DIR+userName+"\\"+fileName;
+		String filePath = path+UPLOAD_DIR+fileName;
 		File dir = new File(path + UPLOAD_DIR);
 		if(!dir.exists())
 			dir.mkdirs();
@@ -597,7 +494,6 @@ public class FileImportServlet extends HttpServlet {
 		}
 		//保存记录
 		BaseService baseService = getBaseService();	
-		String fileId = baseService.getImportMaxId();
 		String oldName = file.getFileName();
 		String fileType = file.getFileExt();
 		if(fileType.equals("xls")||fileType.equals("xlsx")){
@@ -607,10 +503,10 @@ public class FileImportServlet extends HttpServlet {
 		}else if(fileType.equals("png")||fileType.equals("gif")||fileType.equals("jpg")){
 			fileType = "Picture";
 		}else{
-			fileType = "Unknown";
+			fileType = "Other";
 		}
 		file.saveAs(filePath, com.jspsmart.upload.File.SAVEAS_PHYSICAL); 
-		baseService.exeUpdateSql("insert into EMQ_BOOK_IMPORT(FILE_ID,FILE_NAME,OLD_FILE_NAME,FILE_PATH,IMPORT_PERSON,PERSON_UNIT,IMPORT_TIME,STATE,) values('"+fileId+"','"+fileName+"','"+oldName+"'"+filePath+"'"+"','"+userName+"','"+personUnit+"',getDate(),0,'"+fileType+"')");
+		baseService.exeUpdateSql("insert into EMQ_BOOK_IMPORT(NEW_FILE_NAME,OLD_FILE_NAME,FILE_PATH,IMPORT_PERSON,PERSON_UNIT,IMPORT_TIME,STATE,FILE_TYPE) values('"+fileName+"','"+oldName+"','"+filePath+"','"+userName+"','"+personUnit+"',getDate(),0,'"+fileType+"')");
 		return filePath;
 	}
 	/**
