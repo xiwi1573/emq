@@ -33,6 +33,7 @@
 <script type="text/javascript" src="<%=ExtRoot%>/icss/plugins/XGridPlugin.js"></script>
 <script type="text/javascript" src="<%=ExtRoot%>/icss/grid/gridEmq.js"></script>
 <script type="text/javascript" src="<%=ExtRoot%>/icss/grid/gridex.js"></script>
+<script type="text/javascript" src="<%=ExtRoot%>/render.js"></script>
 <script type="text/javascript" src="<%=ExtRoot%>/icss/grid/GroupHeaderPlugin.js"></script>
 <script type="text/javascript" src="<%=ExtRoot%>/icss/date/DateItemEx.js"></script>
 <script type="text/javascript" src="<%=ExtRoot%>/icss/date/DateMenuEx.js"></script>

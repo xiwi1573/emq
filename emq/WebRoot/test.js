@@ -80,8 +80,9 @@ function createMainUI(){
 function getAirTicketGrid(){
     var gridEmq = new GridEmq();
     gridEmq.head="姓名,性别,年龄,学历,婚姻状况,住址,公司,职业,爱好,工作性质,个人方向";
-    gridEmq.tableType=2;
-    gridEmq.moreHead=[[";基本信息,4;其他信息,4;备注,2"]];
+    //gridEmq.tableType=2;
+    gridEmq.renderer="renderIcon";
+    //gridEmq.moreHead=[[";基本信息,4;其他信息,4;备注,2"]];
 	var airListGrid = new Ext.grid.GridPanelEx({
 	  id:"airListGrid",
 	  extdata:gridEmq,
@@ -97,7 +98,7 @@ function getAirTicketGrid(){
 function getAirTicketTbar(){
 	var form = new Ext.FileImportPanel({
 		id:"docForm",
-		type:"mi"
+		type:"commonFile"
 	});
 	var commbo = new Ext.form.commonCombox({
 		id:"combo",
@@ -120,7 +121,17 @@ function getAirTicketTbar(){
 				form,
 				{pressed:true,id:'downLoad',text:'下载',handler:handlerClickBtnDownLoad},
 				{xtype:'tbtext',text:'下拉框'},
-				commbo
+				commbo,
+				{   
+				    xtype: 'box', //或者xtype: 'component',   
+				    width: 20, //图片宽度   
+				    height: 20, //图片高度   
+				    autoEl: {   
+				        tag: 'img',    //指定为img标签   
+				        src: 'imgs/cmpCtrol/4.png'    //指定url路径   
+				    }
+				}
+
 	]});
 	return tbar;
 }
