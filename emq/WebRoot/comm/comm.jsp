@@ -41,6 +41,7 @@
 <script type="text/javascript" src="<%=ExtRoot%>/icss/date/DateFieldEx.js"></script>
 <script type="text/javascript" src="<%=ExtRoot%>/icss/combox/ComboEx.js"></script>
 <script type="text/javascript" src="<%=ExtRoot%>/icss/combox/commonCombox.js"></script>
+<script type="text/javascript" src="<%=ExtRoot%>/icss/tree/commonTree.js"></script>
 <script type="text/javascript" src="<%=ExtRoot%>/icss/plugins/ProgressColumn/Ext.ux.grid.ProgressColumn.js"></script>
 <link rel="stylesheet" type="text/css" href="<%=ExtRoot%>/icss/plugins/ProgressColumn/Ext.ux.grid.ProgressColumn.css" />
 
