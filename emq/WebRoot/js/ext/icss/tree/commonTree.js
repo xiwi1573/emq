@@ -27,7 +27,7 @@ Ext.tree.commonTree = Ext.extend(Ext.tree.TreePanel, {
 				var root = new Ext.tree.AsyncTreeNode({
 							text : rootName,
 							id : '-1',
-							nid : '-3'
+							nid : '-1'
 						});
 
 				this.root = root;
