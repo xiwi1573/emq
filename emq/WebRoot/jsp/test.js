@@ -79,6 +79,7 @@ function createMainTree() {
 					childNodes[i].on("click", function(node, event) {
                       alert(node.isLeaf());
                      alert(node.id);
+                     alert(node.attributes.nid);
 							});
 				}
 			});
