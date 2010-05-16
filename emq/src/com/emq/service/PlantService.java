@@ -170,12 +170,14 @@ public class PlantService extends BaseService {
 			map.put("nid", "测试");
 			map.put("leaf", isLeaf);
 			map.put("treeLevel", treeLevel);
-			map.put("id", "1_2");
-			map.put("text", "下关");
-			map.put("nid", "测试");
-			map.put("leaf", isLeaf);
-			map.put("treeLevel", treeLevel);
+			Map map1 = new HashMap();
+			map1.put("id", "1_2");
+			map1.put("text", "下关");
+			map1.put("nid", "测试");
+			map1.put("leaf", isLeaf);
+			map1.put("treeLevel", treeLevel);
 			mapList.add(map);
+			mapList.add(map1);
 		}else if(nodeId.equals("2")){
 			//以下虚拟数据,实际从库中取
 			Map map = new HashMap();
@@ -184,12 +186,14 @@ public class PlantService extends BaseService {
 			map.put("nid", "测试");
 			map.put("leaf", isLeaf);
 			map.put("treeLevel", treeLevel);
-			map.put("id", "2_2");
-			map.put("text", "云山");
-			map.put("nid", "测试");
-			map.put("leaf", isLeaf);
-			map.put("treeLevel", treeLevel);
+			Map map1 = new HashMap();
+			map1.put("id", "2_2");
+			map1.put("text", "云山");
+			map1.put("nid", "测试");
+			map1.put("leaf", isLeaf);
+			map1.put("treeLevel", treeLevel);
 			mapList.add(map);
+			mapList.add(map1);
 		}
 		return mapList;
 	}
