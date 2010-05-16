@@ -4,12 +4,7 @@
 
 Ext.onReady(function() {
 			createMianUI();
-			init();
 		});
-function init() {
-	var root = Ext.getCmp('mainTree').getRootNode();
-	root.expand();
-}
 
 function createMianUI() {
 	var combo = new Ext.form.commonCombox({
@@ -65,21 +60,21 @@ function queryInfo() {
 function createMainTree() {
 	var tree = new Ext.tree.commonTree({
 				id : 'mainTree',
-				fn : PlantService.getTreeNode,
-				rootName : '≤‚ ‘'
+				treeType : '1'
 			});
+
 	var treeLoader = tree.getLoader();
 	treeLoader.on("load", function(o, node, response) {
 				node.on("click", function(node, event) {
-                     alert(node.isLeaf());
-                     alert(node.id);
+							alert(node.isLeaf());
+							alert(node.id);
 						});
 				var childNodes = node.childNodes;
 				for (var i = 0; i < childNodes.length; i++) {
 					childNodes[i].on("click", function(node, event) {
-                      alert(node.isLeaf());
-                     alert(node.id);
-                     alert(node.attributes.nid);
+								alert(node.isLeaf());
+								alert(node.id);
+								alert(node.attributes.nid);
 							});
 				}
 			});
