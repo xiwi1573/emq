@@ -60,7 +60,7 @@ function queryInfo() {
 function createMainTree() {
 	var tree = new Ext.tree.commonTree({
 				id : 'mainTree',
-				treeType : '1'
+				treeAssemble : ['Gdj','Xqs','Bdz']
 			});
 
 	var treeLoader = tree.getLoader();

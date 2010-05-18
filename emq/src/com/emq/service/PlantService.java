@@ -83,186 +83,135 @@ public class PlantService extends BaseService {
 		return mapList;
 	}
 
-	/**
-	 * 
-	 * @param nodeId
-	 * @param treeLevel
-	 * @param treeType
-	 * @param otherInfo 
-	 * treeType指定树的类型
-	 * otherInfo记录节点的其他信息,没有则无需指定,可以为空。
-	 * nodeId为节点的唯一标志,当nodeId='-1'表示为树的根。
-	 */
-
 	public List getCommonTreeNode(String nodeId, String treeLevel,
-			String treeType, String otherInfo) {
+			String[] treeType, String otherInfo) {
 		List mapList = new ArrayList();
-		if(treeType.trim().equals(Global.TREE_TYPE_1)){
-			//(供电局+县区市+变电站)
-			mapList = this.getTreeType1Data(nodeId, treeLevel, otherInfo);
-		}else if(treeType.trim().equals(Global.TREE_TYPE_2)){
-            //(供电局+维护班组+人员)
-		}else if(treeType.trim().equals(Global.TREE_TYPE_3)){
-            //(用电户+变电站)
-		}else if(treeType.trim().equals(Global.TREE_TYPE_4)){
-            //(线路+变电站)
-		}
+		
 		return mapList;
 	}
 	
-	/**
-	 * 
-	 * @param nodeId
-	 * @param treeLevel
-	 * @param otherInfo
-	 * @return(供电局+县区市+变电站)树形构造
-	 */
-	private List getTreeType1Data(String nodeId, String treeLevel,String otherInfo){
-		List mapList = new ArrayList();
-		if(treeLevel.equals(Global.TREE_ROOT)){
-			//树根,下级应该取供电局
-			mapList = this.getPowerSupplyOffice(Global.TREE_LEVEL_1_1,false);
-		}else if(treeLevel.equals(Global.TREE_LEVEL_1_1)){
-			//供电局,下级应该取县区市
-			mapList = this.getProvinceByPowerSupplyOffice(nodeId, Global.TREE_LEVEL_1_2, false);
-		}else if(treeLevel.equals(Global.TREE_LEVEL_1_2)){
-			//县区市,下级应该取变电站
-			mapList = this.getTransformerSubstationByPro(nodeId, treeLevel, true);
-		}
-		return mapList;
-	}
-	
-	/**
-	 * 取供电局方法
-	 * @param treeLevel
-	 * @param isLeaf
-	 */
-	private List getPowerSupplyOffice(String treeLevel,boolean isLeaf){
-		List mapList = new ArrayList();
+   public List getGdj(String nodeId,String treeLevel,String nextLevel,boolean ifleaf){
+	   List mapList = new ArrayList();
 		//以下虚拟数据,实际从库中取
 		Map map = new HashMap();
 		map.put("id", "1");
 		map.put("text", "大理供电局");
-		map.put("nid", "测试");
-		map.put("leaf", isLeaf);
-		map.put("treeLevel", treeLevel);
+		//map.put("nextLevel", nextLevel);
+		map.put("leaf", ifleaf);
+		map.put("treeLevel", nextLevel);
 		Map map1 = new HashMap();
 		map1.put("id", "2");
 		map1.put("text", "丽江供电局");
-		map1.put("nid", "测试");
-		map1.put("leaf", isLeaf);
-		map1.put("treeLevel", treeLevel);
+		//map1.put("nextLevel", nextLevel);
+		map1.put("leaf", ifleaf);
+		map1.put("treeLevel", nextLevel);
 		mapList.add(map);
 		mapList.add(map1);
 		return mapList;
-	}
-	
-	/**
-	 * 供电局下的县区市
-	 */
-	public List getProvinceByPowerSupplyOffice(String nodeId,String treeLevel,boolean isLeaf){
-		List mapList = new ArrayList();
-		if(nodeId.equals("1")){
-         //以下虚拟数据,实际从库中取
-			Map map = new HashMap();
-			map.put("id", "1_1");
-			map.put("text", "祥云");
-			map.put("nid", "测试");
-			map.put("leaf", isLeaf);
-			map.put("treeLevel", treeLevel);
-			Map map1 = new HashMap();
-			map1.put("id", "1_2");
-			map1.put("text", "下关");
-			map1.put("nid", "测试");
-			map1.put("leaf", isLeaf);
-			map1.put("treeLevel", treeLevel);
-			mapList.add(map);
-			mapList.add(map1);
-		}else if(nodeId.equals("2")){
-			//以下虚拟数据,实际从库中取
-			Map map = new HashMap();
-			map.put("id", "2_1");
-			map.put("text", "古城");
-			map.put("nid", "测试");
-			map.put("leaf", isLeaf);
-			map.put("treeLevel", treeLevel);
-			Map map1 = new HashMap();
-			map1.put("id", "2_2");
-			map1.put("text", "云山");
-			map1.put("nid", "测试");
-			map1.put("leaf", isLeaf);
-			map1.put("treeLevel", treeLevel);
-			mapList.add(map);
-			mapList.add(map1);
-		}
+   }
+   
+   public List getGdjXqs(String nodeId,String treeLevel,String nextLevel,boolean ifleaf){
+	   List mapList = new ArrayList();
+		//以下虚拟数据,实际从库中取
+	   if(nodeId.equals("1")){
+	         //以下虚拟数据,实际从库中取
+				Map map = new HashMap();
+				map.put("id", "1_1");
+				map.put("text", "祥云");
+				//map.put("nextLevel", nextLevel);
+				map.put("leaf", ifleaf);
+				map.put("treeLevel", nextLevel);
+				Map map1 = new HashMap();
+				map1.put("id", "1_2");
+				map1.put("text", "下关");
+				//map1.put("nextLevel",nextLevel);
+				map1.put("leaf", ifleaf);
+				map1.put("treeLevel", nextLevel);
+				mapList.add(map);
+				mapList.add(map1);
+			}else if(nodeId.equals("2")){
+				//以下虚拟数据,实际从库中取
+				Map map = new HashMap();
+				map.put("id", "2_1");
+				map.put("text", "古城");
+				//map.put("nextLevel", nextLevel);
+				map.put("leaf", ifleaf);
+				map.put("treeLevel", nextLevel);
+				Map map1 = new HashMap();
+				map1.put("id", "2_2");
+				map1.put("text", "云山");
+				//map1.put("nextLevel", nextLevel);
+				map1.put("leaf", ifleaf);
+				map1.put("treeLevel", nextLevel);
+				mapList.add(map);
+				mapList.add(map1);
+			}
 		return mapList;
-	}
-	
-	public List getTransformerSubstationByPro(String nodeId,String treeLevel,boolean isLeaf){
-		List mapList = new ArrayList();
-		//数据库中则根据id就能取出数据不用判断
-		if(nodeId.equals("1_1")){
+   }
+   public List getGdjXqsBdz(String nodeId,String treeLevel,String nextLevel,boolean ifleaf){
+	   List mapList = new ArrayList();
+	   if(nodeId.equals("1_1")){
 	         //以下虚拟数据,实际从库中取
 				Map map = new HashMap();
 				map.put("id", "1_1_1");
 				map.put("text", "变电站祥云1");
-				map.put("nid", "测试");
-				map.put("leaf", isLeaf);
-				map.put("treeLevel", treeLevel);
+			//	map.put("nextLevel", nextLevel);
+				map.put("leaf", ifleaf);
+				map.put("treeLevel", nextLevel);
 				Map map1 = new HashMap();
 				map1.put("id", "1_1_2");
 				map1.put("text", "变电站祥云2");
-				map1.put("nid", "测试");
-				map1.put("leaf", isLeaf);
-				map1.put("treeLevel", treeLevel);
+			//	map1.put("nextLevel", nextLevel);
+				map1.put("leaf", ifleaf);
+				map1.put("treeLevel", nextLevel);
 				mapList.add(map);
 				mapList.add(map1);
 			}else if(nodeId.equals("1_2")){
 				Map map = new HashMap();
 				map.put("id", "1_2_1");
 				map.put("text", "变电站下关1");
-				map.put("nid", "测试");
-				map.put("leaf", isLeaf);
-				map.put("treeLevel", treeLevel);
+				//map.put("nextLevel", nextLevel);
+				map.put("leaf", ifleaf);
+				map.put("treeLevel", nextLevel);
 				Map map1 = new HashMap();
 				map1.put("id", "1_2_2");
 				map1.put("text", "变电站下关2");
-				map1.put("nid", "测试");
-				map1.put("leaf", isLeaf);
-				map1.put("treeLevel", treeLevel);
+				//map1.put("nextLevel", nextLevel);
+				map1.put("leaf", ifleaf);
+				map1.put("treeLevel", nextLevel);
 				mapList.add(map);
 				mapList.add(map1);
 			}else if(nodeId.equals("2_1")){
 				Map map = new HashMap();
 				map.put("id", "2_1_1");
 				map.put("text", "变电站古城1");
-				map.put("nid", "测试");
-				map.put("leaf", isLeaf);
-				map.put("treeLevel", treeLevel);
+				//map.put("nextLevel",nextLevel);
+				map.put("leaf", ifleaf);
+				map.put("treeLevel", nextLevel);
 				Map map1 = new HashMap();
 				map1.put("id", "2_1_2");
 				map1.put("text", "变电站古城2");
-				map1.put("nid", "测试");
-				map1.put("leaf", isLeaf);
-				map1.put("treeLevel", treeLevel);
+				//map1.put("nextLevel", nextLevel);
+				map1.put("leaf", ifleaf);
+				map1.put("treeLevel", nextLevel);
 				mapList.add(map);
 				mapList.add(map1);
 			}else if(nodeId.equals("2_2")){
 				Map map = new HashMap();
 				map.put("id", "2_2_1");
 				map.put("text", "变电站云山1");
-				map.put("nid", "测试");
-				map.put("leaf", isLeaf);
-				map.put("treeLevel", treeLevel);
+				//map.put("nextLevel", nextLevel);
+				map.put("leaf", ifleaf);
+				map.put("treeLevel", nextLevel);
 				Map map1 = new HashMap();
 				map1.put("id", "2_2_2");
 				map1.put("text", "变电站云山2");
-				map1.put("nid", "测试");
-				map1.put("leaf", isLeaf);
-				map1.put("treeLevel", treeLevel);
+				//map1.put("nextLevel", nextLevel);
+				map1.put("leaf", ifleaf);
+				map1.put("treeLevel", nextLevel);
 				mapList.add(map);
 				mapList.add(map1);
 			}
-		return mapList;
-	}
+	   return mapList;
+   }
 }
