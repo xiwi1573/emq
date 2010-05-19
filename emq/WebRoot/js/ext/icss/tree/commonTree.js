@@ -2,7 +2,7 @@
  * use common tree
  * 定义树中层次字典：
  * (供电局:Gdj)(县区市:Xqs)(变电站:Bdz)(维护班组:Whbz)(人员:Ry)(用电户:Ydh)(线路:Xl)
- * 方法以getGdj这种定义。二级getGdjXqs
+ * 例如：(供电局+县区市+变电站)方法以getGdj这种定义。二级getGdjXqs,三级getGdjXqsBdz
  * ('1':供电局+县区市+变电站),('2':供电局+维护班组+人员),('3':用电户+变电站),('4':线路+变电站)
  */
 
