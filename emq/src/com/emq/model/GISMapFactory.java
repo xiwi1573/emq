@@ -48,7 +48,7 @@ public class GISMapFactory {
 	public AbstractGISMap create(String mapRefId, String OrgId)throws GISException{
 		MapDef mapDef = SystemConfig.getInstance().getMapDef(mapRefId);
 		if(mapDef.isAbstractDef())
-			throw new GISException(ErrorMsgConstants.KMGIS_MAP_03);
+			throw new GISException(ErrorMsgConstants.EMQ_MAP_03);
 		else
 			return create(mapRefId, mapDef, OrgId);
 	}
@@ -75,12 +75,12 @@ public class GISMapFactory {
 			if(areaDef == null){			
 				List<String> allowed = SystemConfig.getInstance().getAllowAccessMaps().get(orgCode);
 				if(allowed == null || allowed.isEmpty()){
-					throw new GISException(ErrorMsgConstants.KMGIS_SECURITY_02);
+					throw new GISException(ErrorMsgConstants.EMQ_SECURITY_02);
 				}else{
 					String defId = allowed.get(0); 
 					areaDef = SystemConfig.getInstance().getMapDefines().getMapDefById(defId); 
 					if(areaDef == null)
-						throw new GISException(ErrorMsgConstants.KMGIS_MAP_08);
+						throw new GISException(ErrorMsgConstants.EMQ_MAP_08);
 				}
 	 		}
 			map.setMapDef(mapDef.mergeFrom(areaDef));

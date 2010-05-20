@@ -91,7 +91,7 @@ public class CigStoreGISMap extends SearchableGISMap {
 		if (co instanceof ConditionObject)
 			return this.searchByCondition((ConditionObject) co,tableName);
 		else {
-			throw new GISException(ErrorMsgConstants.KMGIS_MAP_02);
+			throw new GISException(ErrorMsgConstants.EMQ_MAP_02);
 		}
 	}
 

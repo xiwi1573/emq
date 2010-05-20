@@ -173,7 +173,7 @@ public class GISMapSearchCommand extends AbstractGISMapControlCommand {
 	 */
 	public void doExecute() throws GISException {
 		if(!(map instanceof SearchableGISMap))
-			throw new GISException(ErrorMsgConstants.KMGIS_MAP_04);		
+			throw new GISException(ErrorMsgConstants.EMQ_MAP_04);		
 		try {
 			switch (searchType.intValue()) {
 			case SEARCH_POINT:

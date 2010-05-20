@@ -30,7 +30,7 @@ public class InvalidFeatureSet extends RewindableFeatureSet {
 			tableInfo = arg0.getTableInfo();
 			this.map = map;
 		}catch(Exception e){
-			log.error(ErrorMsgConstants.KMGIS_UNKNOWN_01, e);
+			log.error(ErrorMsgConstants.EMQ_UNKNOWN_01, e);
 		}
 	}
 
@@ -54,7 +54,7 @@ public class InvalidFeatureSet extends RewindableFeatureSet {
 			} while (true);
 			
 		} catch (Exception e) {
-			log.error(ErrorMsgConstants.KMGIS_MAP_09, e);
+			log.error(ErrorMsgConstants.EMQ_MAP_09, e);
 			throw new GISException(e);
 		}
 	}

@@ -718,7 +718,7 @@ public abstract class SearchableGISMap extends AbstractGISMap {
 			PrimaryKey layerPk = this.getPk(layer);
 			int cols = layerPk.getAttributeCount();
 			if (cols != pk.length) {
-				throw new GISException(ErrorMsgConstants.KMGIS_MAP_05);
+				throw new GISException(ErrorMsgConstants.EMQ_MAP_05);
 			}
 			for (int i = 0; i < cols; i++) {
 				pkNames.add(layerPk.getAttribute(i).getString());

@@ -101,7 +101,7 @@ public abstract class AbstractJdbcBaseDao extends JdbcDaoSupport {
 	}
 	
 	/**
-	 * 执行存过，包含两个输出参数，并且返回两个list(name,value),用于在页面上不破坏显示顺序
+	 * 执行存过，包含两个输出参数，并且返回一个list:value,一个map:name,用于在页面上不破坏显示顺序
 	 * @param sql
 	 * @return
 	 */
@@ -130,7 +130,7 @@ public abstract class AbstractJdbcBaseDao extends JdbcDaoSupport {
 				nameList.add(nameMap);
 				dataList.add(map);
 			}
-			returnList.add(nameList);
+			returnList.add((Map)nameList.get(0));
 			returnList.add(dataList);
 		}catch(Exception ex){
 			ex.printStackTrace();
