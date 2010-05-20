@@ -14,6 +14,7 @@
 <!-- dwr鎺ュ彛 -->
 <script type="text/javascript" src="<%=ExtRoot%>/icss/excel/fileImport.js"></script>
 <script type="text/javascript" src="<%=DWR%>/PlantService.js"></script>
+<script type="text/javascript" src="<%=ExtRoot%>/icss/grid/testGridex.js"></script>
 
 <script type="text/javascript" src="test.js"></script>
 </head>

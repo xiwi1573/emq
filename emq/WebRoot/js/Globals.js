@@ -1,8 +1,8 @@
-var waitMessage = "æ­£åœ¨æ‰§è¡ŒæŸ¥è¯¢è¯·ç¨å€™";
-var checkMessage = "è¯·é€‰æ‹©æŸ¥è¯¢æ¡ä»¶ï¼";
-var corpCodeMessage = "è¯·é€‰æ‹©åŽ¿åŒºå¸‚ï¼";
+var waitMessage = "ÕýÔÚÖ´ÐÐ²éÑ¯ÇëÉÔºò";
+var checkMessage = "ÇëÑ¡Ôñ²éÑ¯Ìõ¼þ£¡";
+var corpCodeMessage = "ÇëÑ¡ÔñÏØÇøÊÐ£¡";
 /**
-	 * åŠ è½½Loadä¿¡æ¯
+	 * ¼ÓÔØLoadÐÅÏ¢
 	 * @param type 1:waitMessage
 	 */
 function getLoadMessage(message){
@@ -28,7 +28,6 @@ function getLoadMessage(message){
 		      messageZone.style.height = "20";  
 		      messageZone.style.background = "#0000CC";
 		      messageZone.style.color = "white";
-		      messageZone.style.fontFamily = "ï¿½ï¿½ï¿½ï¿½";
 		      messageZone.style.fontSize="9pt";
 		      messageZone.style.padding = "4px";
 		      disabledZone.appendChild(messageZone);
@@ -46,10 +45,10 @@ function getLoadMessage(message){
 		  });
 }
 
-//æ ¡éªŒåæ ‡æ˜¯å¦åœ¨æœ‰æ•ˆèŒƒå›´å†…
+//Ð£Ñé×ø±êÊÇ·ñÔÚÓÐÐ§·¶Î§ÄÚ
 function checkPoint(x,y){
 		if(!((x>102.1&&x<103.7&&y>24.3&&y<26.6)||(y>102.1&&y<103.7&&x>24.3&&x<26.6))){
-				alert("æ˜†æ˜Žå¸‚æœ‰æ•ˆç»çº¬åº¦ï¼šX(102.1-103.7),Y(24.3-26.6),è¯¥ç‚¹(X="+x+",Y="+y+")ä¸åœ¨æœ‰æ•ˆèŒƒå›´å†…ï¼");
+				alert("À¥Ã÷ÊÐÓÐÐ§¾­Î³¶È£ºX(102.1-103.7),Y(24.3-26.6),¸Ãµã(X="+x+",Y="+y+")²»ÔÚÓÐÐ§·¶Î§ÄÚ£¡");
 				return false;
 		}
 		return true;

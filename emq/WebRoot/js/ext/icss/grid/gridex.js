@@ -42,6 +42,7 @@ Ext.grid.GridPanelEx = Ext.extend(Ext.grid.GridPanel, {
 	    rowNum.locked = true;
 	    var sm = new Ext.grid.CheckboxSelectionModel();
 	    sm.locked = true;
+	    var issum = false;
 	    var columnMetadata ="[";
 	    for(var i=0;i<headerList.length;i++){
 	    	columnMetadata += headerList[i]+",";
@@ -50,10 +51,14 @@ Ext.grid.GridPanelEx = Ext.extend(Ext.grid.GridPanel, {
 			columnMetadata = columnMetadata.substring(0,columnMetadata.length-1);
 		}
 		columnMetadata += "]";
+		if(columnMetadata.indexOf('sumcaption')!=-1){
+			issum = true;
+		}
 		columnMetadata = Ext.util.JSON.decode(columnMetadata);
 		Util.Array.insert(columnMetadata,0,rowNum);
 		Util.Array.insert(columnMetadata,1,sm);
-		cm = new Ext.grid.LockingColumnModel(columnMetadata);
+		cm = new Ext.grid.ColumnModelEx(columnMetadata);
+		cm.sumheader = issum;
 		if(this.extdata.tableType!=1&&rowsList.length>0){
 			var rowsMetadata ="[";
 		    for(var i=0;i<rowsList.length;i++){
