@@ -2,7 +2,7 @@ package com.emq.util;
 
 import java.text.*;
 import java.util.*;
-import com.emq.exception.UtilException;
+import com.emq.exception.EmqException;
 
 public class TimeUtil {
 
@@ -33,7 +33,7 @@ public class TimeUtil {
    * @throws UtilException
    */
   public static java.util.Date stringToUtilDate(String str, String format) throws
-          UtilException {
+          EmqException {
     if (str == null || format == null) {
       return null;
     }
@@ -43,7 +43,7 @@ public class TimeUtil {
     try {
       date = sdf.parse(str);
     } catch (ParseException pe) {
-      throw new UtilException(pe.getMessage());
+      throw new EmqException(pe.getMessage());
     }
     return date;
   }
@@ -53,10 +53,10 @@ public class TimeUtil {
    * @param str String String类型日期
    * @param format String 时间格式
    * @return Date
-   * @throws UtilException
+   * @throws EmqException
    */
   public static java.sql.Date stringToSqlDate(String str, String format) throws
-          UtilException {
+          EmqException {
     if (str == null || format == null) {
       return null;
     }
@@ -66,7 +66,7 @@ public class TimeUtil {
     try {
       date = sdf.parse(str);
     } catch (ParseException pe) {
-      throw new UtilException(pe.getMessage());
+      throw new EmqException(pe.getMessage());
     }
     return new java.sql.Date(date.getTime());
   }
@@ -76,10 +76,10 @@ public class TimeUtil {
    * @param str String String类型日期
    * @param format String 时间格式
    * @return Timestamp
-   * @throws UtilException
+   * @throws EmqException
    */
   public static java.sql.Timestamp stringToTimestamp(String str, String format) throws
-          UtilException {
+          EmqException {
     if (str == null || format == null) {
       return null;
     }
@@ -89,7 +89,7 @@ public class TimeUtil {
     try {
       date = sdf.parse(str);
     } catch (ParseException pe) {
-      throw new UtilException(pe.getMessage());
+      throw new EmqException(pe.getMessage());
     }
     return new java.sql.Timestamp(date.getTime());
   }
@@ -112,10 +112,10 @@ public class TimeUtil {
    * @param oldformat String
    * @param newformat String
    * @return String
-   * @throws UtilException
+   * @throws EmqException
    */
   public static String toDateString(String str, String oldformat,
-                                    String newformat) throws UtilException {
+                                    String newformat) throws EmqException {
     return dateToString(stringToUtilDate(str, oldformat), newformat);
   }
 
@@ -191,10 +191,10 @@ public class TimeUtil {
    * @param time String String类型日期
    * @param format String 时间格式
    * @return boolean
-   * @throws UtilException
+   * @throws EmqException
    */
   public static boolean isAfterCurrentTime(String time, String format) throws
-          UtilException {
+          EmqException {
     java.util.Date date = stringToUtilDate(time, format);
     if (new java.util.Date().after(date)) {
       return false;
@@ -254,11 +254,11 @@ public class TimeUtil {
    * 根据月份获取季度值
    * @param month int
    * @return int
-   * @throws UtilException
+   * @throws EmqException
    */
-  public static int getQuarter(int month) throws UtilException {
+  public static int getQuarter(int month) throws EmqException {
     if (month <= 0 && month > 12)
-      throw new UtilException("请传入正确的月份值，正确的月份值为:1-12，当前月份参数值为:" + month);
+      throw new EmqException("请传入正确的月份值，正确的月份值为:1-12，当前月份参数值为:" + month);
     if (month > 0 && month < 4)
       return 1;
     else if (month > 3 && month < 7)

@@ -138,7 +138,7 @@ public abstract class AbstractGISMapDataFinder implements GISMapDataFinder{
 		String key = "KMGIS.MAP." + mapDefRefId;
 		SearchableGISMap theMap = (SearchableGISMap) session.getAttribute(key);
 		if (theMap == null)
-			throw new GISException(ErrorMsgConstants.KMGIS_MAP_06);
+			throw new GISException(ErrorMsgConstants.EMQ_MAP_06);
 		return theMap;
 	}
 
@@ -367,7 +367,7 @@ public abstract class AbstractGISMapDataFinder implements GISMapDataFinder{
 			return buildXml(returnColumns, featureSetList);
 		} catch (Exception e) {
 			log.error("地图条件查询失败", e);
-			throw new GISException(ErrorMsgConstants.KMGIS_MAP_07, e);
+			throw new GISException(ErrorMsgConstants.EMQ_MAP_07, e);
 		} finally {
 			if (featureSetList != null) {
 				try {

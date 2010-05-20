@@ -555,7 +555,7 @@ public abstract class AbstractGISMap {
 			log.error(this.getZoom());
 			log.error("map screenCenter: ");
 			log.error(this.getScreenCenter());
-			throw new GISException(ErrorMsgConstants.KMGIS_MAP_01, e);
+			throw new GISException(ErrorMsgConstants.EMQ_MAP_01, e);
 		}
 	}
 

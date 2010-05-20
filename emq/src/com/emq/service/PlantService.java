@@ -26,7 +26,7 @@ public class PlantService extends BaseService {
 
 	public List testExtGrid() {
 		Map map = new HashMap();
-		map.put("姓名", "\\cmpCtrol\\2-2.png");
+		map.put("姓名", "/cmpCtrol/1-1.png");
 		map.put("性别", "男");
 		map.put("年龄", "7");
 		map.put("学历", "4");

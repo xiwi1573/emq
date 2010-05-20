@@ -1,12 +1,25 @@
 package com.emq.service;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpSession;
+
+import org.apache.poi.hwpf.HWPFDocument;
+import org.apache.poi.hwpf.model.StyleSheet;
+import org.apache.poi.hwpf.usermodel.CharacterProperties;
+import org.apache.poi.hwpf.usermodel.Paragraph;
+import org.apache.poi.hwpf.usermodel.ParagraphProperties;
+import org.apache.poi.hwpf.usermodel.Range;
+import org.apache.poi.hwpf.usermodel.Table;
+import org.apache.poi.hwpf.usermodel.TableCell;
+import org.apache.poi.hwpf.usermodel.TableIterator;
+import org.apache.poi.hwpf.usermodel.TableRow;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
 import jxl.Workbook;
 import jxl.format.Border;
@@ -27,6 +40,10 @@ import com.emq.model.ConditionObject;
 import com.emq.model.GISMapFactory;
 import com.emq.ui.dwr.CigStoreFinderImpl;
 import com.emq.util.TimeUtil;
+import com.jacob.activeX.ActiveXComponent;
+import com.jacob.com.ComThread;
+import com.jacob.com.Dispatch;
+import com.jacob.com.Variant;
 import com.mapinfo.util.DoublePoint;
 /**
  * 基础业务逻辑服务
@@ -527,6 +544,177 @@ public class BaseService {
 	public String getDownLoadFile(Integer id){
 		Map map = baseDao.getDataForMap("select FILE_PATH from EMQ_BOOK_IMPORT where id="+id);
 		return map.get("FILE_PATH").toString();
+	}
+	
+	/**
+	 * 生成word
+	 * @param fileName
+	 * @return
+	 */
+	public Object[] createWordFile(String fileName){
+		ActiveXComponent msWordApp = new ActiveXComponent("Word.Application");
+		Dispatch documents = Dispatch.get(msWordApp,"Documents").toDispatch();
+		Dispatch document = Dispatch.call(documents,"Add").toDispatch(); 
+		Dispatch selection = Dispatch.get(msWordApp,"Selection").toDispatch();
+//		Dispatch.put(selection,"Text","new word!");
+		Dispatch.call(selection, "MoveDown");
+		Dispatch.call(document,"SaveAs","D:/"+fileName);
+		Object[] object = new Object[3];
+		object[0] = msWordApp;
+		object[1] = document;
+		object[2] = selection;
+		return object;
+	}
+	
+	/**
+	 * 插入表格
+	 * @param document
+	 * @param selection
+	 * @param dataList
+	 * @param headStr
+	 */
+	private void setTable(Dispatch document,Dispatch selection,List dataList,String headStr){
+		String[] headList = headStr.split(",");
+//		 建立表格
+        Dispatch tables = Dispatch.get(document, "Tables").toDispatch();
+        Dispatch range = Dispatch.get(selection, "Range").toDispatch();
+//      设置列数,栏数,表格外框宽度
+        Dispatch newTable = Dispatch.call(tables, "Add", range,new Variant(dataList.size()+1), new Variant(headList.length)).toDispatch(); 
+        Dispatch.call(selection, "MoveRight"); // 光标移到最右边
+        putTxtToCell(document,selection,dataList,headList); // 表格内写入内容(从第1列第1栏开始)
+        autoFitTable(document); //自动调整表格
+        // mergeCell(1,1,1,all_count,1); //表格合并(从第1列第1栏开始,第X列第1栏结束)
+//		 取消选择(因为最后insert进去的文字会显示反白,所以要取消)
+        Dispatch.call(selection, "MoveRight", new Variant(1), new Variant(1));
+	}
+	
+	/**
+	 * 插入图片
+	 * @param document
+	 * @param selection
+	 * @param dataList
+	 * @param headStr
+	 */
+	private void setImage(Dispatch selection,String imgPath){
+		Dispatch.call(Dispatch.get(selection, "InLineShapes").toDispatch(),"AddPicture",imgPath);
+		Dispatch.call(selection, "MoveDown");
+	}
+	
+	/**
+	 * 关闭word
+	 * @param MsWordApp
+	 * @param document
+	 */
+	private void closeWord(ActiveXComponent MsWordApp,Dispatch document){
+		Dispatch.call(document,"Close");
+		Dispatch.call(MsWordApp,"Quit");
+		MsWordApp = null; 
+		document = null;
+	}
+	
+	/**
+     * 自动调整表格
+     */
+    private void autoFitTable(Dispatch document){
+        Dispatch tables = Dispatch.get(document, "Tables").toDispatch();
+        int count = Dispatch.get(tables, "Count").toInt(); // word中的表格数量
+        for (int i = 0; i < count; i++){
+            Dispatch table = Dispatch.call(tables, "Item", new Variant(i + 1)).toDispatch();
+            Dispatch cols = Dispatch.get(table, "Columns").toDispatch();
+            Dispatch.call(cols, "AutoFit");
+        }
+    }
+    
+    /**
+     * 在指定的表格里填入内容
+     * @param tableIndex 表格起始点
+     * @param cellRowIdx 第几列
+     * @param cellColIdx 第几栏
+     * @param txt 内容字符串数组
+     */
+    private void putTxtToCell(Dispatch document,Dispatch selection,List dataList,String[] headList){
+        // 所有表格
+        Dispatch tables = Dispatch.get(document, "Tables").toDispatch();
+        Dispatch font = Dispatch.get(selection, "Font").toDispatch(); // 字型格式化需要的对象
+		Dispatch alignment = Dispatch.get(selection, "ParagraphFormat").toDispatch(); // 行列格式化需要的对象
+		Dispatch table = Dispatch.call(tables, "Item",new Variant(1)).toDispatch();
+		Dispatch borders = Dispatch.get(table, "Borders").toDispatch();    
+		Dispatch border = null;
+		for(int i=1;i<7;i++){
+			border = Dispatch.call(borders, "Item", new Variant(i)).toDispatch();  
+//			Dispatch.put(border, "LineWidth", new Variant(0.1));    
+			Dispatch.put(border, "Visible", new Variant(true));   
+		}
+		//写表头
+		for(int i=0;i<headList.length;i++){
+	        Dispatch cell = Dispatch.call(table, "Cell",new Variant(1), new Variant(i+1)).toDispatch();
+	        // Dispatch.put(cell, "Height",new Variant(1)); //设置列高
+	        Dispatch.call(cell, "Select");
+	        // 主要内容
+	        // Dispatch.call(selection, "TypeParagraph"); //空一行段落
+	        // Dispatch.put(alignment, "Alignment", "3"); //(1:置中 2:靠右 3:靠左)
+	        Dispatch.put(selection, "Text", headList[i]); // 写入word的内容
+	        Dispatch.put(font, "Bold", "1"); // 字型租体(1:粗体 0:取消租体)
+	        Dispatch.put(font, "Color", "1,1,1,1"); // 字型颜色
+	        // Dispatch.put(font, "Italic", "1"); //字型斜体(1:斜体 0:取消斜体)
+	        // Dispatch.put(font, "Underline", "1"); //文字加底线
+	        //Dispatch.call(selection, "TypeParagraph"); // 空一行段落
+	        Dispatch.put(alignment, "Alignment", "1"); // (1:置中 2:靠右 3:靠左)
+		}
+		Dispatch.call(selection, "MoveDown"); // 光标往下一行(才不会输入盖过上一输入位置)
+        // 主要内容(即参数数组中的值)
+        for (int i = 0; i < dataList.size(); i++){
+            Map dataMap = (Map)dataList.get(i);
+//            border = Dispatch.call(borders, "Item", new Variant(i)).toDispatch();  
+//			Dispatch.put(border, "LineWidth", new Variant(1));    
+//            Dispatch.put(border, "Visible", new Variant(true));
+            for (int j = 0; j < headList.length; j++){
+                // 要填入的表格(对表格列依序填入内容),cellRowIdx++代表从第一列开始
+                Dispatch cell = Dispatch.call(table, "Cell",new Variant(i+2), new Variant(j+1)).toDispatch();
+                // Dispatch.put(cell, "Height",new Variant(1)); //设置列高
+                Dispatch.call(cell, "Select");
+                // 主要内容
+                // Dispatch.call(selection, "TypeParagraph"); //空一行段落
+                // Dispatch.put(alignment, "Alignment", "3"); //(1:置中 2:靠右 3:靠左)
+                Dispatch.put(selection, "Text", dataMap.get(headList[j])); // 写入word的内容
+                Dispatch.put(font, "Bold", "0"); // 字型租体(1:粗体 0:取消租体)
+                Dispatch.put(font, "Color", "1,1,1,1"); // 字型颜色
+                // Dispatch.put(font, "Italic", "1"); //字型斜体(1:斜体 0:取消斜体)
+                // Dispatch.put(font, "Underline", "1"); //文字加底线
+                //Dispatch.call(selection, "TypeParagraph"); // 空一行段落
+                Dispatch.put(alignment, "Alignment", "1"); // (1:置中 2:靠右 3:靠左)
+                Dispatch.call(selection, "MoveDown"); // 光标往下一行(才不会输入盖过上一输入位置)
+            }
+        }
+    }
+
+
+	
+	public static void main(String[] args){
+		String fileName = TimeUtil.dateToString(new Date(),"yyyyMMddHHmmss")+".doc";
+		BaseService baseService = new BaseService();
+		List dataList = new ArrayList();
+		Map map = new HashMap();
+		map.put("姓名", "/cmpCtrol/10.png");
+		map.put("性别", "男");
+		map.put("年龄", "7");
+		map.put("学历", "4");
+		map.put("婚姻状况", "4");
+		map.put("住址", "3");
+		map.put("公司", "2");
+		map.put("职业", "1");
+		map.put("爱好", "6");
+		map.put("工作性质", "sdf");
+		map.put("个人方向", "tt");
+		dataList.add(map);
+		String headStr = "姓名,性别,年龄,学历,婚姻状况,住址,公司,职业,爱好,工作性质,个人方向";
+		Object[] object = baseService.createWordFile(fileName);
+		ActiveXComponent msWordApp = (ActiveXComponent)object[0]; 
+		Dispatch document = (Dispatch)object[1];
+		Dispatch selection = (Dispatch)object[2];
+		baseService.setTable(document, selection, dataList, headStr);
+		baseService.setImage(selection, "D:/tool/Tomcat 5.0/webapps/EMQ/imgs/cmpCtrol/10.png");
+		baseService.closeWord(msWordApp, document);
 	}
 	
 }
