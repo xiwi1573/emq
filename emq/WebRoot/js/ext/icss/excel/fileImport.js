@@ -8,7 +8,9 @@
 /**
  * 文件导入Panel
  * @param {Object} config
- * type:el-电能关口台帐模板,mi-互感器关口台帐模板
+ * type:passBook 上传到服务器并保存到对应人员的文件夹，并解析Excel文件将数据存入数据库
+ *      commonFile 上传到服务器保存到upload\commonFile文件夹下，供下载用
+ *      picture  设备获取其供页面展示用的图片文件，保存在imgs文件夹下
  */
 Ext.FileImportPanel = function(config){
 	this.initConfig = config || {};

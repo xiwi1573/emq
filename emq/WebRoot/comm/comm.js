@@ -17,7 +17,7 @@ function DWRErrorHandler(msg,e)
 	}else if(typeof(msg) == 'string'){
 		errmsg = msg;
 	}
-	
+	Ext.Msg.hide();
 	alert(errmsg);
 	/*		
 	Ext.Msg.show({

@@ -24,19 +24,18 @@ Ext.onReady(function(){
 			}),
 			colModel: new Ext.grid.ColumnModel({
 				columns: [
-					{header: '姓名', width: 50, dataIndex: 'id'},
-					{header: '性别', width: 50, dataIndex: 'nr1'},
+					{header: '姓名', width: 25, dataIndex: 'id'},
+					{header: '性别', width: 25, dataIndex: 'nr1'},
 					{header: '年龄', width: 50, dataIndex: 'text1'},
 					{header: '学历', width: 50, dataIndex: 'info1'},
 					{header: '婚姻状况', width: 60, dataIndex: 'special1'},
-					{header: '住址', width: 50, dataIndex: 'nr2'},
+					{header: '住址', width: 25, dataIndex: 'nr2'},
 					{header: '公司', width: 50, dataIndex: 'text2'},
 					{header: '职业', width: 50, dataIndex: 'info2'},
 					{header: '爱好', width: 60, dataIndex: 'special2'},
 					{header: '工作性质', width: 60, dataIndex: 'special3'},
 					{header: '个人方向', width: 50, dataIndex: 'changed'}
 				],
-				
 				rows: [
 					[
 						{},
@@ -80,9 +79,10 @@ function createMainUI(){
 function getAirTicketGrid(){
     var gridEmq = new GridEmq();
     gridEmq.head="姓名,性别,年龄,学历,婚姻状况,住址,公司,职业,爱好,工作性质,个人方向";
-    //gridEmq.tableType=2;
+//    gridEmq.tableType=2;
     gridEmq.renderer="renderIcon";
-    //gridEmq.moreHead=[[";基本信息,4;其他信息,4;备注,2"]];
+//    gridEmq.issum="false,true";
+//    gridEmq.moreHead=[[";基本信息,4;其他信息,4;备注,2"]];
 	var airListGrid = new Ext.grid.GridPanelEx({
 	  id:"airListGrid",
 	  extdata:gridEmq,
@@ -108,7 +108,7 @@ function getAirTicketTbar(){
 	});
 	var tbar = new Ext.Toolbar(	
 		{id:'airtbar',items:[
-				{xtype:'datefieldex',fieldLabel:'终止日期',id:'importDateEnd',format:'Y-m-d',width:85},
+				{xtype:'datefield',fieldLabel:'终止日期',id:'importDateEnd',format:'Y-m-d',width:85},
 				{xtype:'tbspacer'},
 				{xtype:'tbtext',text:'姓名'},
 				{xtype:'textfield',id:'personName',width:85,listeners:{"focus":function(){openPersonWindow();}}},
@@ -122,15 +122,7 @@ function getAirTicketTbar(){
 				{pressed:true,id:'downLoad',text:'下载',handler:handlerClickBtnDownLoad},
 				{xtype:'tbtext',text:'下拉框'},
 				commbo,
-				{   
-				    xtype: 'box', //或者xtype: 'component',   
-				    width: 20, //图片宽度   
-				    height: 20, //图片高度   
-				    autoEl: {   
-				        tag: 'img',    //指定为img标签   
-				        src: 'imgs/cmpCtrol/4.png'    //指定url路径   
-				    }
-				}
+				{pressed:true,text:'导出word',handler:handlerClickBtnAllAreaWord}
 
 	]});
 	return tbar;
@@ -161,6 +153,21 @@ function querryAir(){
 	Ext.getCmp("airListGrid").load();
 }
 
+
+function handlerClickBtnAllAreaWord()  
+{  
+  var oWD = new ActiveXObject("Word.Application");  
+  Msg.info(oWD);
+  var oDC = oWD.Documents.Add("",0,1);  
+  var orange =oDC.Range(0,1);  
+  var sel = document.body.createTextRange();  
+  sel.moveToElementText(airListGrid);  
+  sel.select();  
+  sel.execCommand("Copy");  
+  orange.Paste();  
+  oWD.Application.Visible = true;  
+}  
+
 function setAirStartDate(com){
 	var firstDayOfMonth = (new Date()).getFirstDateOfMonth().format("Y-m-d");
 	com.setValue(firstDayOfMonth);	
@@ -175,6 +182,51 @@ function handlerClickBtnDownLoad(){
 	PlantService.getDataList(function(fileName){
 	    location="do_download.jsp?name="+fileName;
 	});
+}
+
+function createValidBarDetailGrid()
+{
+	var grid = Ext.getCmp('validBarDetailGrid');
+	if(grid)
+	{
+		return grid;
+	}
+	var validBarDetailStore = new Ext.data.DWRStore({id:'validBarDetailStore',fn:null,
+	    fields:[{name:'yyear',type:'int'},
+	        {name:'mmonth',type:'int'},
+	        {name:'wweek',type:'int'},
+	        {name:'weekName',type:'string'},
+	        {name:'bar',type:'string'},
+	        {name:'barName',type:'string'},
+	        {name:'comId',type:'string'},
+	        {name:'comName',type:'string'},
+	        {name:'weekStartDate',type:'date'},
+	        {name:'weekEndDate',type:'date'},
+	        {name:'targetValue',type:'float'},
+	        {name:'state',type:'int'},
+	        {name:'stateName',type:'string'}]}); 
+	        
+	
+	var sm = new Ext.grid.CheckboxSelectionModel();
+	
+	var cm = new Ext.grid.ColumnModelEx({sumheader:true,columns:[sm,	 		 	
+	 	{header: "卷烟规格", dataIndex: 'bar',sortable:true,sumcaption:'合计'},
+	 	{header: "卷烟名称", dataIndex: 'barName',sortable:true},
+	 	{header: "指标", dataIndex: 'targetValue',align:'right',sortable:true,renderer: Util.rmbMoney,issum:true}
+       ]});
+        
+    var validBarDetailGrid = new Ext.grid.GridPanelEx({
+        id:'validBarDetailGrid', 
+        //title:'需求计划信息',
+        height:Util.getH(.4),
+        store: validBarDetailStore,
+        cm: cm,
+        sm: sm,
+        frame:true,
+        border:true
+    });
+    
+    return validBarDetailGrid;
 }
 
 /**

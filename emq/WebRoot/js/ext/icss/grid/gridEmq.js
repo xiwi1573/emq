@@ -113,7 +113,7 @@
 			}
 		}
 		if(issumTypeList.length<headList.length){
-			for(var i=colunmTypeList.length;i<headList.length;i++){
+			for(var i=issumTypeList.length;i<headList.length;i++){
 				issumTypeList.push("false");
 			}
 		}
