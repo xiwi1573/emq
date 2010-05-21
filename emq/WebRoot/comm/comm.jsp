@@ -56,3 +56,5 @@
 <script type='text/javascript' src='<%=ExtRoot%>/icss/excel/excel_const.js'></script>
 <script type='text/javascript' src='<%=ExtRoot%>/icss/excel/excel_app.js'></script>
 <script type='text/javascript' src='<%=ExtRoot%>/icss/excel/excel.js'></script>
+<!-- »ù´¡·þÎñ -->
+<script type="text/javascript" src="<%=DWR%>/BaseService.js"></script>
