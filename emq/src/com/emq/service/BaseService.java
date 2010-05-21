@@ -688,7 +688,152 @@ public class BaseService {
         }
     }
 
-
+    /**
+     * 获取供电局
+     * @param parentNodeId
+     * @param treeLevel
+     * @param ifleaf
+     * @return
+     */
+    public List getPowerSuppLy(String parentNodeId,int treeLevel,boolean ifleaf){
+ 	   List mapList = new ArrayList();
+ 		//以下虚拟数据,实际从库中取
+ 		Map map = new HashMap();
+ 		map.put("id", "1");
+ 		map.put("text", "大理供电局");
+ 		//map.put("nextLevel", nextLevel);
+ 		map.put("leaf", ifleaf);
+ 		map.put("treeLevel", treeLevel);
+ 		Map map1 = new HashMap();
+ 		map1.put("id", "2");
+ 		map1.put("text", "丽江供电局");
+ 		//map1.put("nextLevel", nextLevel);
+ 		map1.put("leaf", ifleaf);
+ 		map1.put("treeLevel", treeLevel);
+ 		mapList.add(map);
+ 		mapList.add(map1);
+ 		return mapList;
+    }
+    
+    /**
+     * 获取县区市
+     * @param parentNodeId
+     * @param treeLevel
+     * @param ifleaf
+     * @return
+     */
+    public List getArea(String parentNodeId,int treeLevel,boolean ifleaf){
+ 	   List mapList = new ArrayList();
+ 		//以下虚拟数据,实际从库中取
+ 	   if(parentNodeId.equals("1")){
+ 	         //以下虚拟数据,实际从库中取
+ 				Map map = new HashMap();
+ 				map.put("id", "1_1");
+ 				map.put("text", "祥云");
+ 				//map.put("nextLevel", nextLevel);
+ 				map.put("leaf", ifleaf);
+ 				map.put("treeLevel", treeLevel);
+ 				Map map1 = new HashMap();
+ 				map1.put("id", "1_2");
+ 				map1.put("text", "下关");
+ 				//map1.put("nextLevel",nextLevel);
+ 				map1.put("leaf", ifleaf);
+ 				map1.put("treeLevel", treeLevel);
+ 				mapList.add(map);
+ 				mapList.add(map1);
+ 			}else if(parentNodeId.equals("2")){
+ 				//以下虚拟数据,实际从库中取
+ 				Map map = new HashMap();
+ 				map.put("id", "2_1");
+ 				map.put("text", "古城");
+ 				//map.put("nextLevel", nextLevel);
+ 				map.put("leaf", ifleaf);
+ 				map.put("treeLevel", treeLevel);
+ 				Map map1 = new HashMap();
+ 				map1.put("id", "2_2");
+ 				map1.put("text", "云山");
+ 				//map1.put("nextLevel", nextLevel);
+ 				map1.put("leaf", ifleaf);
+ 				map1.put("treeLevel", treeLevel);
+ 				mapList.add(map);
+ 				mapList.add(map1);
+ 			}
+ 		return mapList;
+    }
+    
+    /**
+     * 获取变电站
+     * @param parentNodeId
+     * @param treeLevel
+     * @param ifleaf
+     * @return
+     */
+    public List getTransformerSubstation(String parentNodeId,int treeLevel,boolean ifleaf){
+ 	   List mapList = new ArrayList();
+ 	   if(parentNodeId.equals("1_1")){
+ 	         //以下虚拟数据,实际从库中取
+ 				Map map = new HashMap();
+ 				map.put("id", "1_1_1");
+ 				map.put("text", "变电站祥云1");
+ 			//	map.put("nextLevel", nextLevel);
+ 				map.put("leaf", ifleaf);
+ 				map.put("treeLevel", treeLevel);
+ 				Map map1 = new HashMap();
+ 				map1.put("id", "1_1_2");
+ 				map1.put("text", "变电站祥云2");
+ 			//	map1.put("nextLevel", nextLevel);
+ 				map1.put("leaf", ifleaf);
+ 				map1.put("treeLevel", treeLevel);
+ 				mapList.add(map);
+ 				mapList.add(map1);
+ 			}else if(parentNodeId.equals("1_2")){
+ 				Map map = new HashMap();
+ 				map.put("id", "1_2_1");
+ 				map.put("text", "变电站下关1");
+ 				//map.put("nextLevel", nextLevel);
+ 				map.put("leaf", ifleaf);
+ 				map.put("treeLevel", treeLevel);
+ 				Map map1 = new HashMap();
+ 				map1.put("id", "1_2_2");
+ 				map1.put("text", "变电站下关2");
+ 				//map1.put("nextLevel", nextLevel);
+ 				map1.put("leaf", ifleaf);
+ 				map1.put("treeLevel", treeLevel);
+ 				mapList.add(map);
+ 				mapList.add(map1);
+ 			}else if(parentNodeId.equals("2_1")){
+ 				Map map = new HashMap();
+ 				map.put("id", "2_1_1");
+ 				map.put("text", "变电站古城1");
+ 				//map.put("nextLevel",nextLevel);
+ 				map.put("leaf", ifleaf);
+ 				map.put("treeLevel", treeLevel);
+ 				Map map1 = new HashMap();
+ 				map1.put("id", "2_1_2");
+ 				map1.put("text", "变电站古城2");
+ 				//map1.put("nextLevel", nextLevel);
+ 				map1.put("leaf", ifleaf);
+ 				map1.put("treeLevel", treeLevel);
+ 				mapList.add(map);
+ 				mapList.add(map1);
+ 			}else if(parentNodeId.equals("2_2")){
+ 				Map map = new HashMap();
+ 				map.put("id", "2_2_1");
+ 				map.put("text", "变电站云山1");
+ 				//map.put("nextLevel", nextLevel);
+ 				map.put("leaf", ifleaf);
+ 				map.put("treeLevel", treeLevel);
+ 				Map map1 = new HashMap();
+ 				map1.put("id", "2_2_2");
+ 				map1.put("text", "变电站云山2");
+ 				//map1.put("nextLevel", nextLevel);
+ 				map1.put("leaf", ifleaf);
+ 				map1.put("treeLevel", treeLevel);
+ 				mapList.add(map);
+ 				mapList.add(map1);
+ 			}
+ 	   return mapList;
+    }
 	
 	public static void main(String[] args){
 		String fileName = TimeUtil.dateToString(new Date(),"yyyyMMddHHmmss")+".doc";

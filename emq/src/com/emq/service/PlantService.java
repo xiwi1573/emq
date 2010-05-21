@@ -90,7 +90,7 @@ public class PlantService extends BaseService {
 		return mapList;
 	}
 	
-   public List getGdj(String nodeId,String treeLevel,String nextLevel,boolean ifleaf){
+   public List getGdj(String nodeId,String nextLevel,boolean ifleaf){
 	   List mapList = new ArrayList();
 		//以下虚拟数据,实际从库中取
 		Map map = new HashMap();
@@ -110,7 +110,7 @@ public class PlantService extends BaseService {
 		return mapList;
    }
    
-   public List getGdjXqs(String nodeId,String treeLevel,String nextLevel,boolean ifleaf){
+   public List getGdjXqs(String nodeId,String nextLevel,boolean ifleaf){
 	   List mapList = new ArrayList();
 		//以下虚拟数据,实际从库中取
 	   if(nodeId.equals("1")){
@@ -148,7 +148,7 @@ public class PlantService extends BaseService {
 			}
 		return mapList;
    }
-   public List getGdjXqsBdz(String nodeId,String treeLevel,String nextLevel,boolean ifleaf){
+   public List getGdjXqsBdz(String nodeId,String nextLevel,boolean ifleaf){
 	   List mapList = new ArrayList();
 	   if(nodeId.equals("1_1")){
 	         //以下虚拟数据,实际从库中取
