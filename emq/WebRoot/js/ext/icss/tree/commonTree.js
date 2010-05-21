@@ -13,13 +13,10 @@ Ext.tree.commonTree = function(config) {
 
 Ext.tree.commonTree = Ext.extend(Ext.tree.TreePanel, {
 			initComponent : function() {
-				var serviceJs ="PlantService" ;
 				var treeAssemble = this.treeAssemble ;
-				var levelNum = treeAssemble.length ;
-				var initRootFn = serviceJs+".get"+treeAssemble[0];
 				//初始化loader第一层方法，以root为父节点取数。
 				var treeLoader = new Ext.tree.DWRTreeLoader({
-							fn :eval(initRootFn)
+							fn :eval("BaseService.get"+treeAssemble[0])
 						});
 				var rootName;
 				if (undefined == this.rootName) {
@@ -40,25 +37,19 @@ Ext.tree.commonTree = Ext.extend(Ext.tree.TreePanel, {
 				this.autoScroll = true;
 				treeLoader.on("beforeload", function(loader, node) {
 					        var treeLevel = node.attributes.treeLevel;
-					        var nextLevel = node.attributes.nextLevel;
 					        var ifleaf =false;
 					        if(treeLevel!="root"){
-					          var curL = Number(treeLevel.substring(4,treeLevel.length));
-					          var nextL =curL+1;
-					          nextLevel ="root"+nextL;
-					          if((nextL+1)==levelNum){
-					            ifleaf = true ;
-					          }
-					          var cfn ="";
-					          for(var i=0;i<=nextL;i++){
-					          	cfn +=treeAssemble[i];
-					          }
-					          loader.fn =eval(serviceJs+".get"+cfn);
+						        loader.fn = eval("BaseService.get"+treeAssemble[treeLevel]);
+						        if((treeLevel+1)==treeAssemble.length){
+						        	ifleaf = true;
+						        }
+					        }
+					        if(treeLevel=="root"){
+					        	treeLevel = 0;
 					        }
 					        loader.args[0] = node.id;
-							loader.args[1] = treeLevel;
-							loader.args[2] = nextLevel;
-							loader.args[3] = ifleaf;
+							loader.args[1] = treeLevel+1;
+							loader.args[2] = ifleaf;
 						});
 				Ext.tree.commonTree.superclass.initComponent.call(this);
 				this.init();
