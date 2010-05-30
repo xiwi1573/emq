@@ -1,25 +1,25 @@
-//åŠŸèƒ½ï¼šutil.jsä¸»è¦åŠŸèƒ½ä¸ºæ„é€ æŸ¥è¯¢æ¡ä»¶æ ä¸­å„ç±»æŸ¥è¯¢æ¡ä»¶
-//ä½œè€…ï¼šliuyt
-//ç”Ÿæˆæ—¥æœŸï¼š2009-9-1
+//¹¦ÄÜ£ºutil.jsÖ÷Òª¹¦ÄÜÎª¹¹Ôì²éÑ¯Ìõ¼şÀ¸ÖĞ¸÷Àà²éÑ¯Ìõ¼ş
+//×÷Õß£ºliuyt
+//Éú³ÉÈÕÆÚ£º2009-9-1
 /*
  * @history 2009-10-30 guqiong add getCorpCodeFormHTMLControl
  */
 /**
-	 * æ„é€ æŸ¥è¯¢æ¡ä»¶html
-	 * å›ºå®šä¸‹æ‹‰æ¡†location:å½“å‰ä½ç½® å¦‚æœå­˜åœ¨corpCode:å¿åŒºå¸‚æŸ¥è¯¢æ¡ä»¶åˆ™å½“å‰ä½ç½®ä¸‹æ‹‰æ¡†ä¸å­˜åœ¨
-	 * @param conditionArray è¿‡æ»¤æ¡ä»¶å¯¹è±¡æ•°ç»„
-	 * æ•°ç»„å¯¹è±¡ä¸­çš„åˆæ³•å€¼ï¼š
-	 * licenceNo:è®¸å¯è¯å· storeName:å•†åº—åç§° corporationName:æ³•äººå§“å streetName:è¡—é“åç§° 
-  * areaName:åœ°åŒºåç§° fareTypeName:ç»è¥ä¸šæ€ fareAddress:ç»è¥åœ°å€ line:çº¿è·¯rank:ç­‰çº§
-  * paperTime:åŠè¯æ—¥æœŸ brd:å“ç‰Œ cig:è§„æ ¼ corpCode:å¿åŒºå¸‚ sellType:é›¶å”®ä¸šæ€ markType:å¸‚åœºç±»å‹
-  * fareSize:ç»è¥è§„æ¨¡ logoutTime:æ³¨é”€æ—¥æœŸ noOrderMonth:ä¸å®šè´§æœˆæ•° specialRank:ä¸“å–ç­‰çº§
-  * pc:åœ°å›¾æ ¡éªŒä¸Šä¼ æ–‡ä»¶æ‰¹æ¬¡ dataType:éœ€é‡‡ç‚¹æ•°æ®(1),å·²ä¸Šä¼ æ ¡æ­£æ•°æ®(2),å®Œæˆæ ¡æ­£æ•°æ®(3)
+	 * ¹¹Ôì²éÑ¯Ìõ¼şhtml
+	 * ¹Ì¶¨ÏÂÀ­¿òlocation:µ±Ç°Î»ÖÃ Èç¹û´æÔÚcorpCode:ÏØÇøÊĞ²éÑ¯Ìõ¼şÔòµ±Ç°Î»ÖÃÏÂÀ­¿ò²»´æÔÚ
+	 * @param conditionArray ¹ıÂËÌõ¼ş¶ÔÏóÊı×é
+	 * Êı×é¶ÔÏóÖĞµÄºÏ·¨Öµ£º
+	 * licenceNo:Ğí¿ÉÖ¤ºÅ storeName:ÉÌµêÃû³Æ corporationName:·¨ÈËĞÕÃû streetName:½ÖµÀÃû³Æ 
+  * areaName:µØÇøÃû³Æ fareTypeName:¾­ÓªÒµÌ¬ fareAddress:¾­ÓªµØÖ· line:ÏßÂ·rank:µÈ¼¶
+  * paperTime:°ìÖ¤ÈÕÆÚ brd:Æ·ÅÆ cig:¹æ¸ñ corpCode:ÏØÇøÊĞ sellType:ÁãÊÛÒµÌ¬ markType:ÊĞ³¡ÀàĞÍ
+  * fareSize:¾­Óª¹æÄ£ logoutTime:×¢ÏúÈÕÆÚ noOrderMonth:²»¶¨»õÔÂÊı specialRank:×¨ÂôµÈ¼¶
+  * pc:µØÍ¼Ğ£ÑéÉÏ´«ÎÄ¼şÅú´Î dataType:Ğè²ÉµãÊı¾İ(1),ÒÑÉÏ´«Ğ£ÕıÊı¾İ(2),Íê³ÉĞ£ÕıÊı¾İ(3)
 	 */
 var orgId_ = '';
 function getCondition(conditionArray){
 	getCondition_cmp(conditionArray,'');
 }
-//è§¦æ‘¸å±æŸ¥è¯¢æ¡ä»¶æ„é€ 
+//´¥ÃşÆÁ²éÑ¯Ìõ¼ş¹¹Ôì
 function getCondition_cmp(conditionArray,orgId){
 	orgId_ = orgId;
 	condition = conditionArray;
@@ -43,12 +43,12 @@ function getCondition_cmp(conditionArray,orgId){
 			 }
 			 conditionHtml += addCondition(parameter);
 		}
-		conditionHtml += "<td><input id='queryId' type='button' onclick='query()' value='æŸ¥è¯¢'/></td>";
+		conditionHtml += "<td><input id='queryId' type='button' onclick='query()' value='²éÑ¯'/></td>";
 		if(orgId!=""){
-			conditionHtml += "<td><input type='button' onclick='return_()' value='è¿”å›'/></td>";
+			conditionHtml += "<td><input type='button' onclick='return_()' value='·µ»Ø'/></td>";
 		}
 	 if(flag){
-	 	conditionHtml += "<td align='right' width='68'><font size='2'>å½“å‰ä½ç½®:</font></td><td id='locationSelect' align='right' width='1'></td>";
+	 	conditionHtml += "<td align='right' width='68'><font size='2'>µ±Ç°Î»ÖÃ:</font></td><td id='locationSelect' align='right' width='1'></td>";
 	 }
 	 conditionHtml += "</tr></table></td></tr></table>";
 	}else{
@@ -60,9 +60,9 @@ function getCondition_cmp(conditionArray,orgId){
 			}
 		 conditionHtml += addCondition(parameter);
 	 }
-	 conditionHtml += "<td align='left'><input id='queryId' type='button' onclick='query()' value='æŸ¥è¯¢'/></td>";
+	 conditionHtml += "<td align='left'><input id='queryId' type='button' onclick='query()' value='²éÑ¯'/></td>";
 	 if(flag){
-	 	conditionHtml += "<td align='right' width='68'><font size='2'>å½“å‰ä½ç½®:</font></td><td id='locationSelect' align='right' width='1'></td>";
+	 	conditionHtml += "<td align='right' width='68'><font size='2'>µ±Ç°Î»ÖÃ:</font></td><td id='locationSelect' align='right' width='1'></td>";
 	 }
 	 conditionHtml += "</tr></table>";
 	}
@@ -96,7 +96,7 @@ function getCondition_cmp(conditionArray,orgId){
 	}
 }
 /**
- * è·å–é»˜è®¤å¼€å§‹æ—¶é—´
+ * »ñÈ¡Ä¬ÈÏ¿ªÊ¼Ê±¼ä
  * @return {}
  */
 function getStartTime(){
@@ -115,7 +115,7 @@ function getStartTime(){
 }
 
 /**
- * è·å–é»˜è®¤ç»“æŸæ—¶é—´
+ * »ñÈ¡Ä¬ÈÏ½áÊøÊ±¼ä
  * @return {}
  */
 function getEndTime(){
@@ -130,71 +130,71 @@ function getEndTime(){
 	return endTime;
 }
 /**
-	 * æ ¹æ®å‚æ•°æ„é€ ä¸åŒçš„æŸ¥è¯¢å¯¹è±¡æ§ä»¶
-	 * @param par æŸ¥è¯¢å¯¹è±¡å‚æ•°
-	 * @return æŸä¸ªæŸ¥è¯¢å¯¹è±¡æ§ä»¶html
+	 * ¸ù¾İ²ÎÊı¹¹Ôì²»Í¬µÄ²éÑ¯¶ÔÏó¿Ø¼ş
+	 * @param par ²éÑ¯¶ÔÏó²ÎÊı
+	 * @return Ä³¸ö²éÑ¯¶ÔÏó¿Ø¼şhtml
 	 */
 function addCondition(par) {
 	var temp = "";
 	if (par == "licenceNo") {
-		temp += "<td width='60' nowrap><font size='2'>è®¸å¯è¯å·:</font></td><td  align='left' width='1'><input size='10' id='licenceNo' name='licenceNo' type='text'/></td>";
+		temp += "<td width='60' nowrap><font size='2'>Ğí¿ÉÖ¤ºÅ:</font></td><td  align='left' width='1'><input size='10' id='licenceNo' name='licenceNo' type='text'/></td>";
 	} else if (par == "storeName") {
-		temp += "<td width='60' nowrap><font size='2'>å•†åº—åç§°:</font></td><td  width='1'><input id='storeName' size='10' name='storeName' type='text'/></td>";
+		temp += "<td width='60' nowrap><font size='2'>ÉÌµêÃû³Æ:</font></td><td  width='1'><input id='storeName' size='10' name='storeName' type='text'/></td>";
 	} else if (par == "corporationName") {
-		temp += "<td width='60'><font size='2'>æ³•äººå§“å:</font></td><td  width='1'><input id='corporationName' size='10' name='corporationName' type='text'/></td>";
+		temp += "<td width='60'><font size='2'>·¨ÈËĞÕÃû:</font></td><td  width='1'><input id='corporationName' size='10' name='corporationName' type='text'/></td>";
 	} else if (par == "fareTypeName") {
-		temp += "<td width='60' nowrap><font size='2'>ç»è¥ä¸šæ€:</font></td><td id='fareTypeSelect' width='1'></td>";
+		temp += "<td width='60' nowrap><font size='2'>¾­ÓªÒµÌ¬:</font></td><td id='fareTypeSelect' width='1'></td>";
 	} else if (par == "streetName") {
-		temp += "<td width='60' nowrap><font size='2'>è¡—é“åç§°:</font></td><td id='streetSelect' width='1'></td>";
+		temp += "<td width='60' nowrap><font size='2'>½ÖµÀÃû³Æ:</font></td><td id='streetSelect' width='1'></td>";
 	} else if (par == "areaName") {
-		temp += "<td width='60' nowrap><font size='2'>åœ°åŒºåç§°:</font></td><td id='areaSelect' width='1'></td>";
+		temp += "<td width='60' nowrap><font size='2'>µØÇøÃû³Æ:</font></td><td id='areaSelect' width='1'></td>";
 	} else if (par == "fareAddress") {
-		temp += "<td width='60' nowrap><font size='2'>ç»è¥åœ°å€:</font></td><td  width='1'><input id='fareAddress' size='10' name='fareAddress' type='text'/></td>";
+		temp += "<td width='60' nowrap><font size='2'>¾­ÓªµØÖ·:</font></td><td  width='1'><input id='fareAddress' size='10' name='fareAddress' type='text'/></td>";
 	} else if (par == "line") {
-		temp += "<td width='60' nowrap><font size='2'>çº¿&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;è·¯:</font></td><td id='lineSelect' width='1'></td>";
+		temp += "<td width='60' nowrap><font size='2'>Ïß&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Â·:</font></td><td id='lineSelect' width='1'></td>";
 	} else if (par == "rank") {
-		temp += "<td width='60' nowrap><font size='2'>ç­‰&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;çº§:</font></td><td id='rankSelect' width='1'></td>";
+		temp += "<td width='60' nowrap><font size='2'>µÈ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;¼¶:</font></td><td id='rankSelect' width='1'></td>";
 	} else if (par == "paperTime") {
-		temp += "<td width='60' nowrap><font size='2'>åŠè¯æ—¥æœŸ:</font></td><td width='200'><input name='paperTime_start' id='paperTime_start' type='text' readonly size='6' readonly>"+
-          "<img src='/KMGIS/imgs/time12.gif' style='cursor:hand;' alt='å¼¹å‡ºæ—¥å†ä¸‹æ‹‰èœå•' " +
+		temp += "<td width='60' nowrap><font size='2'>°ìÖ¤ÈÕÆÚ:</font></td><td width='200'><input name='paperTime_start' id='paperTime_start' type='text' readonly size='6' readonly>"+
+          "<img src='/KMGIS/imgs/time12.gif' style='cursor:hand;' alt='µ¯³öÈÕÀúÏÂÀ­²Ëµ¥' " +
           "onClick='document.all.paperTime_start.value=showCalendar(document.all.paperTime_start.value,650,200)'>"+
-          "<font size='2'>&nbsp;åˆ°</font><input name='paperTime_end' id='paperTime_end' type='text' readonly size='6' readonly>"+
-          "<img src='/KMGIS/imgs/time12.gif' style='cursor:hand;' alt='å¼¹å‡ºæ—¥å†ä¸‹æ‹‰èœå•'"+
+          "<font size='2'>&nbsp;µ½</font><input name='paperTime_end' id='paperTime_end' type='text' readonly size='6' readonly>"+
+          "<img src='/KMGIS/imgs/time12.gif' style='cursor:hand;' alt='µ¯³öÈÕÀúÏÂÀ­²Ëµ¥'"+
           "onClick='document.all.paperTime_end.value=showCalendar(document.all.paperTime_end.value,650,200)'></td>";
 	} else if (par == "brd") {
-		temp += "<td width='60' nowrap><font size='2'>å“&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ç‰Œ:</font></td><td id='brdSelect' width='1'></td>";
+		temp += "<td width='60' nowrap><font size='2'>Æ·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ÅÆ:</font></td><td id='brdSelect' width='1'></td>";
 	} else if (par == "cig") {
-		temp += "<td width='60' nowrap><font size='2'>è§„&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;æ ¼:</font></td><td id='cigSelect' width='1'></td>";
+		temp += "<td width='60' nowrap><font size='2'>¹æ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;¸ñ:</font></td><td id='cigSelect' width='1'></td>";
 	} else if (par == "corpCode") {
-		temp += "<td width='60' nowrap><font size='2'>å¿&nbsp;&nbsp;åŒº&nbsp;&nbsp;å¸‚:</font></td><td id='corpSelect' width='1'></td>";
+		temp += "<td width='60' nowrap><font size='2'>ÏØ&nbsp;&nbsp;Çø&nbsp;&nbsp;ÊĞ:</font></td><td id='corpSelect' width='1'></td>";
 	} else if (par == "sellType") {
-		temp += "<td width='60' nowrap><font size='2'>é›¶å”®ä¸šæ€:</font></td><td width='1'><select name='sellType' id='sellType' style='width:96'><option value=''>-è¯·é€‰æ‹©-</option><option value='all'>-å…¨éƒ¨-</option><option value='é£Ÿæ‚åº—'>é£Ÿæ‚åº—</option><option value='ä¾¿åˆ©åº—'>ä¾¿åˆ©åº—</option><option value='è¶…å¸‚'>è¶…å¸‚</option><option value='å•†åœº'>å•†åœº</option><option value='çƒŸé…’å•†åº—'>çƒŸé…’å•†åº—</option><option value='å¨±ä¹æœåŠ¡ç±»'>å¨±ä¹æœåŠ¡ç±»</option><option value='å…¶ä»–'>å…¶ä»–</option></select></td>";
+		temp += "<td width='60' nowrap><font size='2'>ÁãÊÛÒµÌ¬:</font></td><td width='1'><select name='sellType' id='sellType' style='width:96'><option value=''>-ÇëÑ¡Ôñ-</option><option value='all'>-È«²¿-</option><option value='Ê³ÔÓµê'>Ê³ÔÓµê</option><option value='±ãÀûµê'>±ãÀûµê</option><option value='³¬ÊĞ'>³¬ÊĞ</option><option value='ÉÌ³¡'>ÉÌ³¡</option><option value='ÑÌ¾ÆÉÌµê'>ÑÌ¾ÆÉÌµê</option><option value='ÓéÀÖ·şÎñÀà'>ÓéÀÖ·şÎñÀà</option><option value='ÆäËû'>ÆäËû</option></select></td>";
 	} else if (par == "markType") {
-		temp += "<td width='60' nowrap><font size='2'>å¸‚åœºç±»å‹:</font></td><td width='1'><select name='markType' id='markType' style='width:96'><option value=''>-è¯·é€‰æ‹©-</option><option value='all'>-å…¨éƒ¨-</option><option value='åŸé•‡'>åŸé•‡</option><option value='ä¹¡æ‘'>ä¹¡æ‘</option></select></td>";
+		temp += "<td width='60' nowrap><font size='2'>ÊĞ³¡ÀàĞÍ:</font></td><td width='1'><select name='markType' id='markType' style='width:96'><option value=''>-ÇëÑ¡Ôñ-</option><option value='all'>-È«²¿-</option><option value='³ÇÕò'>³ÇÕò</option><option value='Ïç´å'>Ïç´å</option></select></td>";
 	} else if (par == "fareSize") {
-		temp += "<td width='60' nowrap><font size='2'>ç»è¥è§„æ¨¡:</font></td><td width='1'><select name='fareSize' id='fareSize' style='width:96'><option value=''>-è¯·é€‰æ‹©-</option><option value='all'>-å…¨éƒ¨-</option><option value='å¤§'>å¤§</option><option value='ä¸­'>ä¸­</option><option value='å°'>å°</option></select></td>";
+		temp += "<td width='60' nowrap><font size='2'>¾­Óª¹æÄ£:</font></td><td width='1'><select name='fareSize' id='fareSize' style='width:96'><option value=''>-ÇëÑ¡Ôñ-</option><option value='all'>-È«²¿-</option><option value='´ó'>´ó</option><option value='ÖĞ'>ÖĞ</option><option value='Ğ¡'>Ğ¡</option></select></td>";
 	} else if (par == "logoutTime") {
-		temp += "<td width='60' nowrap><font size='2'>æ³¨é”€æ—¥æœŸ:</font></td><td width='200'><input name='logoutTime_start' id='logoutTime_start' type='text' readonly size='6' readonly>"+
-          "<img src='/KMGIS/imgs/time12.gif' style='cursor:hand;' alt='å¼¹å‡ºæ—¥å†ä¸‹æ‹‰èœå•' " +
+		temp += "<td width='60' nowrap><font size='2'>×¢ÏúÈÕÆÚ:</font></td><td width='200'><input name='logoutTime_start' id='logoutTime_start' type='text' readonly size='6' readonly>"+
+          "<img src='/EMQ/imgs/time12.gif' style='cursor:hand;' alt='µ¯³öÈÕÀúÏÂÀ­²Ëµ¥' " +
           "onClick='document.all.logoutTime_start.value=showCalendar(document.all.logoutTime_start.value,650,200)'>"+
-          "<font size='2'>&nbsp;åˆ°</font><input name='logoutTime_end' id='logoutTime_end' type='text' readonly size='6' readonly>"+
-          "<img src='/KMGIS/imgs/time12.gif' style='cursor:hand;' alt='å¼¹å‡ºæ—¥å†ä¸‹æ‹‰èœå•'"+
+          "<font size='2'>&nbsp;µ½</font><input name='logoutTime_end' id='logoutTime_end' type='text' readonly size='6' readonly>"+
+          "<img src='/EMQ/imgs/time12.gif' style='cursor:hand;' alt='µ¯³öÈÕÀúÏÂÀ­²Ëµ¥'"+
           "onClick='document.all.logoutTime_end.value=showCalendar(document.all.logoutTime_end.value,650,200)'></td>";
 	} else if (par == "noOrderMonth") {
-		temp += "<td width='68' nowrap><font size='2'>ä¸å®šè´§æœˆæ•°:</font></td><td  align='left' width='1'><input size='1' id='licenceNo' name='noOrderMonth' type='text' /></td>";
+		temp += "<td width='68' nowrap><font size='2'>²»¶¨»õÔÂÊı:</font></td><td  align='left' width='1'><input size='1' id='licenceNo' name='noOrderMonth' type='text' /></td>";
 	} else if (par == "specialRank") {
-		temp += "<td width='60' nowrap><font size='2'>ä¸“å–ç­‰çº§:</font></td><td  align='left' width='1'><td id='specialRankSelect' width='1'></td>";
+		temp += "<td width='60' nowrap><font size='2'>×¨ÂôµÈ¼¶:</font></td><td  align='left' width='1'><td id='specialRankSelect' width='1'></td>";
 	} else if (par == "pc") {
-		temp += "<td width='60' nowrap><font size='2'>æ‰¹&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;æ¬¡:</font></td><td id='pcSelect' width='1'></td>";
+		temp += "<td width='60' nowrap><font size='2'>Åú&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;´Î:</font></td><td id='pcSelect' width='1'></td>";
 	} else if (par == "dataType") {
-		temp += "<td width='60' nowrap><font size='2'>æ•°æ®ç±»å‹:</font></td><td width='1'><select name='dataType' id='dataType' style='width:96'><option value=''>-è¯·é€‰æ‹©-</option><option value='all'>-å…¨éƒ¨-</option><option value='1'>éœ€é‡‡ç‚¹æ•°æ®</option><option value='2'>å·²ä¸Šä¼ æ ¡æ­£æ•°æ®</option><option value='3'>å®Œæˆæ ¡æ­£æ•°æ®</option></select></td>";
+		temp += "<td width='60' nowrap><font size='2'>Êı¾İÀàĞÍ:</font></td><td width='1'><select name='dataType' id='dataType' style='width:96'><option value=''>-ÇëÑ¡Ôñ-</option><option value='all'>-È«²¿-</option><option value='1'>Ğè²ÉµãÊı¾İ</option><option value='2'>ÒÑÉÏ´«Ğ£ÕıÊı¾İ</option><option value='3'>Íê³ÉĞ£ÕıÊı¾İ</option></select></td>";
 	} 
 	return temp;
 }
 
 /**
-	 * åˆå§‹åŒ–è¡—é“ä¸‹æ‹‰æ¡†
-	 * @param area åŒºåŸŸåç§°
+	 * ³õÊ¼»¯½ÖµÀÏÂÀ­¿ò
+	 * @param area ÇøÓòÃû³Æ
 	 */
 function initStreetSelect(corpCode,area){
 	getLoadMessage(waitMessage);
@@ -204,7 +204,7 @@ function initStreetSelect(corpCode,area){
 }
 
 /**
-	 * åˆå§‹åŒ–åœ°åŒºä¸‹æ‹‰æ¡†
+	 * ³õÊ¼»¯µØÇøÏÂÀ­¿ò
 	 */
 function initAreaSelect(){
 	getLoadMessage(waitMessage);
@@ -220,7 +220,7 @@ function initAreaSelect(){
 	});
 }
 /**
-	 * åˆå§‹åŒ–ä¸“å–ç­‰çº§ä¸‹æ‹‰æ¡†
+	 * ³õÊ¼»¯×¨ÂôµÈ¼¶ÏÂÀ­¿ò
 	 */
 function initSpecialRankSelect(){
 	getLoadMessage(waitMessage);
@@ -230,7 +230,7 @@ function initSpecialRankSelect(){
 }
 
 /**
-	 * åˆå§‹åŒ–ç»è¥ä¸šæ€ä¸‹æ‹‰æ¡†
+	 * ³õÊ¼»¯¾­ÓªÒµÌ¬ÏÂÀ­¿ò
 	 */
 function initFareTypeSelect(){
 	getLoadMessage(waitMessage);
@@ -240,7 +240,7 @@ function initFareTypeSelect(){
 }
 
 /**
-	 * åˆå§‹åŒ–æ‰¹æ¬¡ä¸‹æ‹‰æ¡†
+	 * ³õÊ¼»¯Åú´ÎÏÂÀ­¿ò
 	 */
 function initPcSelect(){
 	getLoadMessage(waitMessage);
@@ -257,7 +257,7 @@ function initPcSelect(){
 }
 
 /**
-	 * åˆå§‹åŒ–å½“å‰ä½ç½®ä¸‹æ‹‰æ¡†
+	 * ³õÊ¼»¯µ±Ç°Î»ÖÃÏÂÀ­¿ò
 	 */
 function initLocationSelect(){
 	getLoadMessage(waitMessage);
@@ -293,7 +293,7 @@ function getLocation(){
 }
  */
 /**
-	 * åˆå§‹åŒ–çº¿è·¯ä¸‹æ‹‰æ¡†
+	 * ³õÊ¼»¯ÏßÂ·ÏÂÀ­¿ò
 	 */
 function initLineSelect(){
 	getLoadMessage(waitMessage);
@@ -309,7 +309,7 @@ function initLineSelect(){
 	});
 }
 /**
-	 * åˆå§‹åŒ–ç­‰çº§ä¸‹æ‹‰æ¡†
+	 * ³õÊ¼»¯µÈ¼¶ÏÂÀ­¿ò
 	 */
 function initRankSelect(){
 	getLoadMessage(waitMessage);
@@ -318,7 +318,7 @@ function initRankSelect(){
 	});
 }
 /**
-	 * åŒºåŸŸä¸‹æ‹‰æ¡†æ”¹å˜å‡½æ•°ï¼Œè”åŠ¨è¡—é“ä¸‹æ‹‰æ¡†
+	 * ÇøÓòÏÂÀ­¿ò¸Ä±äº¯Êı£¬Áª¶¯½ÖµÀÏÂÀ­¿ò
 	 */
 function areaChange(){
 	getLoadMessage(waitMessage);
@@ -338,7 +338,7 @@ function areaChange(){
 }
 
 /**
-	 * å½“å‰ä½ç½®ä¸‹æ‹‰æ¡†æ”¹å˜å‡½æ•°ï¼Œåˆ·æ–°ä¸åŒçš„åœ°å›¾
+	 * µ±Ç°Î»ÖÃÏÂÀ­¿ò¸Ä±äº¯Êı£¬Ë¢ĞÂ²»Í¬µÄµØÍ¼
 	 */
 function locationChange(mapId){
 	getLoadMessage(waitMessage);
@@ -359,7 +359,7 @@ function locationChange(mapId){
 }
 
 /**
-	 * åˆå§‹åŒ–å¿åŒºå¸‚ä¸‹æ‹‰æ¡†
+	 * ³õÊ¼»¯ÏØÇøÊĞÏÂÀ­¿ò
 	 */
 function initCorp(){
 	getLoadMessage(waitMessage);
@@ -375,7 +375,7 @@ function initCorp(){
 }
 
 /**
-	 * å¿åŒºå¸‚ä¸‹æ‹‰æ¡†æ”¹å˜å‡½æ•°ï¼Œè”åŠ¨åŒºåŸŸä¸‹æ‹‰æ¡†
+	 * ÏØÇøÊĞÏÂÀ­¿ò¸Ä±äº¯Êı£¬Áª¶¯ÇøÓòÏÂÀ­¿ò
 	 */
 function corpCodeChange(corpCode){
 	getLoadMessage(waitMessage);
@@ -395,7 +395,7 @@ function corpCodeChange(corpCode){
  }
 }
 /**
-	 * åˆå§‹åŒ–å“ç‰Œä¸‹æ‹‰æ¡†
+	 * ³õÊ¼»¯Æ·ÅÆÏÂÀ­¿ò
 	 */
 function initBrdSelect(){
 	getLoadMessage(waitMessage);
@@ -405,7 +405,7 @@ function initBrdSelect(){
 }
 
 /**
-	 * å“ç‰Œä¸‹æ‹‰æ¡†æ”¹å˜å‡½æ•°ï¼Œè”åŠ¨è§„æ ¼ä¸‹æ‹‰æ¡†
+	 * Æ·ÅÆÏÂÀ­¿ò¸Ä±äº¯Êı£¬Áª¶¯¹æ¸ñÏÂÀ­¿ò
 	 */
 function brdChange(){
 	getLoadMessage(waitMessage);
@@ -418,7 +418,7 @@ function brdChange(){
 }
 
 /**
-	 * åˆå§‹åŒ–è§„æ ¼ä¸‹æ‹‰æ¡†
+	 * ³õÊ¼»¯¹æ¸ñÏÂÀ­¿ò
 	 */
 function initCigSelect(brd){
 	getLoadMessage(waitMessage);
@@ -427,7 +427,7 @@ function initCigSelect(brd){
 	});
 }
 /**
-	 * å‚æ•°æ ¡éªŒ
+	 * ²ÎÊıĞ£Ñé
 	 */
 function valueCheck(co){
 	var corpCode = document.getElementById('corpCode');
@@ -435,7 +435,7 @@ function valueCheck(co){
 	if(corpCode&&(corpCode.value==null||corpCode.value=="")){
 		alert(corpCodeMessage);
 	}else if(noOrderMonth&&(noOrderMonth.value==null||noOrderMonth.value=="")){
-		alert("è¯·è¾“å…¥ä¸å®šè´§æœˆæ•°");
+		alert("ÇëÊäÈë²»¶¨»õÔÂÊı");
 	}else{
 	 var flag = false;
 		if(co.streetName!=null&&co.streetName!=''){
@@ -469,7 +469,7 @@ function valueCheck(co){
 	
 }
 /*
-* ä»htmlæ¡ä»¶æ§ä»¶è·å–å…¬å¸ä»£ç 
+* ´ÓhtmlÌõ¼ş¿Ø¼ş»ñÈ¡¹«Ë¾´úÂë
 */
 function getCorpCodeFormHTMLControl(){
 	var corpCode = null;

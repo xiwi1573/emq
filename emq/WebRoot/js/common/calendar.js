@@ -3,7 +3,7 @@ function showCalendar(fieldValue, showx, showy) {
 	showx = event.screenX - event.offsetX - 190 ; // + deltaX;
 	showy = event.screenY - event.offsetY + 5; // + deltaY;
 	//ret = window.showModalDialog("/stmadc/stma/dc/include/js/date.htm", "", "dialogWidth:197px; dialogHeight:210px; dialogLeft:"+showx+"px; dialogTop:"+showy+"px; status:no; directories:yes;scrollbars:no;Resizable=no; "  );
-	ret = window.showModalDialog("/KMGIS/js/common/date.htm", "", "dialogWidth:100px; dialogHeight:180px; dialogLeft:"+showx+"px; dialogTop:"+showy+"px; status:no; directories:yes;scrollbars:no;Resizable=no; "  );
+	ret = window.showModalDialog("/EMQ/js/common/date.htm", "", "dialogWidth:100px; dialogHeight:180px; dialogLeft:"+showx+"px; dialogTop:"+showy+"px; status:no; directories:yes;scrollbars:no;Resizable=no; "  );
 
     if (ret == null) {
         ret = fieldValue;
@@ -17,7 +17,7 @@ function showCalendar(fieldValue) {
 	showx = event.screenX - event.offsetX - 190 ; // + deltaX;
 	showy = event.screenY - event.offsetY + 5; // + deltaY;
 	//ret = window.showModalDialog("/stmadc/stma/dc/include/js/date.htm", "", "dialogWidth:197px; dialogHeight:210px; dialogLeft:"+showx+"px; dialogTop:"+showy+"px; status:no; directories:yes;scrollbars:no;Resizable=no; "  );
-	ret = window.showModalDialog("/KMGIS/js/common/date.htm", "", "dialogWidth:100px; dialogHeight:180px; dialogLeft:"+showx+"px; dialogTop:"+showy+"px; status:no; directories:yes;scrollbars:no;Resizable=no; "  );
+	ret = window.showModalDialog("/EMQ/js/common/date.htm", "", "dialogWidth:100px; dialogHeight:180px; dialogLeft:"+showx+"px; dialogTop:"+showy+"px; status:no; directories:yes;scrollbars:no;Resizable=no; "  );
 
     if (ret == null) {
         ret = fieldValue;

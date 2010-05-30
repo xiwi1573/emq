@@ -78,15 +78,17 @@ function createMainUI(){
  */
 function getAirTicketGrid(){
     var gridEmq = new GridEmq();
-    gridEmq.head="姓名,性别,年龄,学历,婚姻状况,住址,公司,职业,爱好,工作性质,个人方向";
+    gridEmq.head="ID,STATION_NAME,BELONG_UNIT_NAME,MEASURE_POINT_NAME,SUB_POINT_NAME,SUB_POINT_ADDRESS,MEASURE_POINT_TYPE,MEASURE_POINT_KIND,PASS_TYPE,E_CONFIGURE,E_MODEL,E_TYPE,E_MANUFACTURER,E_FACTORY_NUMBER,E_CONNECTION,E_TENSION,E_ELECTRICITY,E_RANK,E_MESSAGE_INTERFACE,E_MESSAGE_TYPE,E_COL_MODEL,E_COL_FACTORY,E_TV_RATE,E_TA_RATE,E_MULTIPLE,E_CHECK_TIME,E_CHECK_RESULT,T_MODEL,T_TYPE,T_FACTORY,T_DISCREPANCY,T_UNMBER,T_TENSION_FIRST,T_TENSION_SECOND,T_TENSION_SECOND_CHARGE,T_RANK,T_TV_KIND,T_IS_SPECIAL,T_IS_SPECIAL_TV,T_CHECK_TIME,T_CHECK_RESULT,EI_MODEL,EI_TYPE,EI_MANUFACTURER,EI_DISCREPANCY,EI_UNMBER,EI_RATED_TENSION_FIRST,EI_RATED_TENSION_SECOND,EI_RATED_TENSION_SECOND_CHARGE,EI_VERACITY_RANK,EI_TV_KIND,EI_IS_SPECIAL,EI_IS_SPECIAL_TV,EI_CHECK_TIME,EI_CHECK_RESULT,LT_MODEL,LT_TYPE,LT_MANUFACTURER,LT_UNMBER,GPS_MODEL,GPS_TYPE,GPS_MANUFACTURER,GPS_UNMBER,TV_AREA,TV_LENGTH,TA_LENGTH,TV_TIME,TV_RESULT,TV_CHARGE_TIME,TV_CHARGE_RESULT,TA_CHARGE_TIME,TA_CHARGE_RESULT,FILE_ID";
+//    gridEmq.head="姓名,性别,年龄,学历,婚姻状况,住址,公司,职业,爱好,工作性质,个人方向";
 //    gridEmq.tableType=2;
-    gridEmq.renderer="renderIcon";
+//    gridEmq.renderer="renderIcon";
 //    gridEmq.issum="false,true";
 //    gridEmq.moreHead=[[";基本信息,4;其他信息,4;备注,2"]];
 	var airListGrid = new Ext.grid.GridPanelEx({
 	  id:"airListGrid",
 	  extdata:gridEmq,
-	  fn:PlantService.testExtGrid
+	  fn:PlantService.getDataListForGrid
+//	  fn:PlantService.testExtGrid
     });
 	
     return airListGrid;
@@ -98,7 +100,7 @@ function getAirTicketGrid(){
 function getAirTicketTbar(){
 	var form = new Ext.FileImportPanel({
 		id:"docForm",
-		type:"commonFile"
+		type:"passBook"
 	});
 	var commbo = new Ext.form.commonCombox({
 		id:"combo",
@@ -108,7 +110,8 @@ function getAirTicketTbar(){
 	});
 	var tbar = new Ext.Toolbar(	
 		{id:'airtbar',items:[
-				{xtype:'datefield',fieldLabel:'终止日期',id:'importDateEnd',format:'Y-m-d',width:85},
+				{xtype:'datefield',fieldLabel:'开始日期',id:'importDateStart',format:'Y-m-d H:i:s',width:85},
+				{xtype:'datefield',fieldLabel:'终止日期',id:'importDateEnd',format:'Y-m-d H:i:s',width:85},
 				{xtype:'tbspacer'},
 				{xtype:'tbtext',text:'姓名'},
 				{xtype:'textfield',id:'personName',width:85,listeners:{"focus":function(){openPersonWindow();}}},
@@ -150,7 +153,10 @@ function querryAir(){
 //	co.sortId = Ext.getCmp("sortId").getValue();
 //	co.queryType = 2;
 //	co.auditState = null;
+	Ext.getCmp("importDateStart").setValue(new Date());
 	Ext.getCmp("airListGrid").load();
+	Ext.getCmp("airListGrid").getStore().on('load',function(){Ext.getCmp("importDateEnd").setValue(new Date());});
+	
 }
 
 

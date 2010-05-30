@@ -24,7 +24,7 @@ String contextPath = request.getContextPath();
 <script src="<%=request.getContextPath()%>/js/dhtmlXGridCell.js"></script>
 <script src="<%=request.getContextPath()%>/js/dhtmlXGrid_splt.js"></script>
 <script type="text/javascript">
-var serverType = '1';
+/*var serverType = '1';
 //初始化表格
 function window.onload(){
   var co = {licenceNo:-99,storeName:null,corporationName:null,streetName:null,areaName:null,fareTypeName:null};
@@ -129,7 +129,7 @@ function doOnRowSelected(id){
 					infoTable.setOnRowSelectHandler(doOnRowSelected);
 					document.all.detailInfoTable.innerHTML="";
 	  });
-	}
+	}*/
 </script>
 <body scroll="no" topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0">
  <div id="noteInfo"></div>

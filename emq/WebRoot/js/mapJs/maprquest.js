@@ -1,13 +1,13 @@
-//åŠŸèƒ½ï¼šå¤„ç†é¼ æ ‡æ“ä½œåå“åº”äº‹ä»¶
-//ä½œè€…ï¼šliuyt
-//å¤–éƒ¨å‚æ•°ï¼šstate: small=ç‚¹ç¼©ç•¥å›¾ï¼Œpan=æ‹–åŠ¨ï¼Œbig=çŸ©å½¢é€‰æ‹©ï¼Œcircle=åœ†å½¢é€‰æ‹©ï¼Œregion=å¤šè¾¹å½¢é€‰æ‹©
-//        mapIdï¼šé…ç½®åœ°å›¾IDï¼Œpoints:å¤šè¾¹å½¢ç‚¹åæ ‡æ•°ç»„ï¼Œeventstateï¼šæ—¶é—´çŠ¶æ€ï¼ˆäº‹ä»¶å¼€å§‹=eventbeginï¼Œæ—¶é—´ç»“æŸ=eventendï¼‰
-//        oldxï¼šèµ·ç‚¹xåæ ‡ï¼Œoldyï¼šèµ·ç‚¹yåæ ‡ï¼Œnewxï¼šç»ˆç‚¹xåæ ‡ï¼Œnewyï¼šç»ˆç‚¹yåæ ‡ startxï¼šå¼€å§‹xåæ ‡ï¼Œstartyï¼šå¼€å§‹yåæ ‡ï¼ŒtempStateï¼šä¸´æ—¶çŠ¶æ€
-//        mapserviceurlï¼šä¸»åœ°å›¾æ¸²æŸ“è·¯å¾„ï¼Œmapboundserviceurl ç¼©ç•¥å›¾æ¸²æŸ“è·¯å¾„
-//createï¼š2009-10-20
+//¹¦ÄÜ£º´¦ÀíÊó±ê²Ù×÷ºóÏìÓ¦ÊÂ¼ş
+//×÷Õß£ºliuyt
+//Íâ²¿²ÎÊı£ºstate: small=µãËõÂÔÍ¼£¬pan=ÍÏ¶¯£¬big=¾ØĞÎÑ¡Ôñ£¬circle=Ô²ĞÎÑ¡Ôñ£¬region=¶à±ßĞÎÑ¡Ôñ
+//        mapId£ºÅäÖÃµØÍ¼ID£¬points:¶à±ßĞÎµã×ø±êÊı×é£¬eventstate£ºÊ±¼ä×´Ì¬£¨ÊÂ¼ş¿ªÊ¼=eventbegin£¬Ê±¼ä½áÊø=eventend£©
+//        oldx£ºÆğµãx×ø±ê£¬oldy£ºÆğµãy×ø±ê£¬newx£ºÖÕµãx×ø±ê£¬newy£ºÖÕµãy×ø±ê startx£º¿ªÊ¼x×ø±ê£¬starty£º¿ªÊ¼y×ø±ê£¬tempState£ºÁÙÊ±×´Ì¬
+//        mapserviceurl£ºÖ÷µØÍ¼äÖÈ¾Â·¾¶£¬mapboundserviceurl ËõÂÔÍ¼äÖÈ¾Â·¾¶
+//create£º2009-10-20
 
 
-//çŸ©å½¢é€‰æ‹©åœ°å›¾åˆ·æ–°
+//¾ØĞÎÑ¡ÔñµØÍ¼Ë¢ĞÂ 
 function mapbigger(){
  startx = oldx-document.all.mapframe.offsetLeft;
  starty = oldy-document.all.mapframe.offsetTop;
@@ -18,7 +18,7 @@ function mapbigger(){
 	newx = 0;
 	newy = 0;
 }
-//å¤šè¾¹å½¢é€‰æ‹©åœ°å›¾åˆ·æ–°
+//¶à±ßĞÎÑ¡ÔñµØÍ¼Ë¢ĞÂ
 function regioner(){
  var pointArray=points.split(";");
  var pcount = pointArray.length;
@@ -42,7 +42,7 @@ function regioner(){
  }
 }
 
-//åœ†å½¢é€‰æ‹©åœ°å›¾åˆ·æ–°
+//Ô²ĞÎÑ¡ÔñµØÍ¼Ë¢ĞÂ
 function circle(){
  var x_ = Math.abs(window.event.clientX-oldx);
  var y_ = Math.abs(window.event.clientY-oldy);
@@ -54,7 +54,7 @@ function circle(){
 	parent.rightFrame.queryByRadius(mapId,oldx,oldy,radius);
 }
 
-//ç¼©ç•¥å›¾åŒæ­¥
+//ËõÂÔÍ¼Í¬²½
 function mapbounder(){
 	document.getElementById('boundmap').src=mapboundserviceurl + "&refresh=" + Math.random();
 }

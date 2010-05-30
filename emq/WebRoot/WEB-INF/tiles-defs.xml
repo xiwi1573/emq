@@ -23,7 +23,7 @@
   <!-- 昆明GIS地图原形页面 -->
   <definition name=".dypp.home.frame" extends="index-base-define">
     <put name="title" value="昆明GIS" />
-    <put name="conditionControl" value="1"></put>
+    <put name="conditionControl" value="2"></put>
     <put name="top_frame" value="/MyJsp.jsp" />
     <put name="main_frame" value="/map.jsp?mapId=CigStoreMap" />
     <put name="right" value="/MyJsp2.jsp" />
