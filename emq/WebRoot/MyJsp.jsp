@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="GBK"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -7,15 +7,21 @@
 <%@ include file="comm/comm.jsp" %>
 <script type="text/javascript" src="<%=WEBAPP%>/js/ext/icss/excel/fileImport.js"></script>
 <script type="text/javascript" src="<%=DWR%>/PlantService.js"></script>
-<script type="text/javascript">
+<script type="text/javascript" src="<%=WEBAPP%>/js/common/util.js"></script>
 
+<script type="text/javascript">
+function window.onload(){
+  var conditionArray = new Array();
+  conditionArray[0] = "licenceNo";
+  getCondition(conditionArray);
+}
 function query(){
-  //ä¸ºæŸ¥è¯¢æ¡ä»¶å¯¹è±¡èµ‹å€¼
+  //Îª²éÑ¯Ìõ¼ş¶ÔÏó¸³Öµ
   var co = {licenceNo:document.all.licenceNo.value,storeName:document.all.storeName.value,corporationName:document.all.corporationName.value,streetName:document.all.streetName.value,areaName:document.all.areaName.value,fareTypeName:document.all.fareTypeName.value};
   var flag = valueCheck(co);
   if(flag){
-   parent.rightFrame.initInfoTable(co);//è°ƒç”¨è¡¨æ ¼é¡µé¢åˆ·æ–°è¡¨æ ¼
-   parent.rightFrame.document.all.detailInfoTable.innerHTML="";//æ¸…ç©ºè¡¨æ ¼é¡µé¢è¯¦ç»†ä¿¡æ¯
+   parent.rightFrame.initInfoTable(co);//µ÷ÓÃ±í¸ñÒ³ÃæË¢ĞÂ±í¸ñ
+   parent.rightFrame.document.all.detailInfoTable.innerHTML="";//Çå¿Õ±í¸ñÒ³ÃæÏêÏ¸ĞÅÏ¢
    parent.centerFrame.findByCondition(co);
   }
 }
@@ -29,6 +35,6 @@ function test(){
 </script>
 <body scroll="no" topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0">
  <div id="conditionTable"></div>
- <input type="button" onclick="test()"></input>
+ <!-- <input type="button" onclick="test()"></input> -->
 </body>
 </html>
