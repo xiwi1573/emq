@@ -1,5 +1,6 @@
 package com.emq.model;
 import java.util.List; 
+import java.util.Map;
 
 import com.emq.config.MapDef;
 import com.emq.config.SystemConfig;
@@ -74,6 +75,8 @@ public class GISMapFactory {
 			//如果没有默认的地图，再检查允许的列表，都没有则抛异常
 			if(areaDef == null){			
 				List<String> allowed = SystemConfig.getInstance().getAllowAccessMaps().get(orgCode);
+				Map tempmap = SystemConfig.getInstance().getAllowAccessMaps();
+				allowed = (List<String>)tempmap.get(orgCode);
 				if(allowed == null || allowed.isEmpty()){
 					throw new GISException(ErrorMsgConstants.EMQ_SECURITY_02);
 				}else{

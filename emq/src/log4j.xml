@@ -21,7 +21,7 @@
 		<!-- <priority value="off" />-->
 		<priority value="on" />
 	</category>
-	<logger name="com.icss.km.gis">
+	<logger name="com.emq">
 		<level value="debug" />
 		<appender-ref ref="ROLLING_FILE" />
 	</logger> 

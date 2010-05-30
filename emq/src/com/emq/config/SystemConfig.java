@@ -88,8 +88,11 @@ public class SystemConfig {
 				if(gisConRegion.getMrbz() && gisConRegion.getYxbz())
 					orgMapMappings.put(orgCode, mapDef);
 				//允许访问的地图
-				if(allowAccessMaps.get(orgCode) == null)
-					allowAccessMaps.put(orgCode, new ArrayList<String>());
+				if(allowAccessMaps.get(orgCode) == null){
+					List mapIdList = new ArrayList();
+					mapIdList.add("area.km");
+					allowAccessMaps.put(orgCode, mapIdList);
+				}
 				else
 					allowAccessMaps.get(orgCode).add(mapDef.getId());
 			}
@@ -104,7 +107,7 @@ public class SystemConfig {
 		try {
 			// 加载默认配置参数
 			Class<?> config_class = Class
-					.forName("com.icss.km.gis.config.SystemConfig");
+					.forName("com.emq.config.SystemConfig");
 			InputStream is = config_class.getResourceAsStream(default_config);
 			config.load(is);
 			// 打印参数for debug
