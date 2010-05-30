@@ -47,6 +47,12 @@ public class PlantService extends BaseService {
 		dataList = plantDao.getDataList("select * from EMQ_PASS_BOOK");
 		return this.createPassBookExcel(dataList);
 	}
+	
+	public List getDataListForGrid() {
+		List dataList = new ArrayList();
+		dataList = plantDao.getDataList("select * from EMQ_PASS_BOOK");
+		return dataList;
+	}
 
 	public List testCombox() {
 		List list = new ArrayList();

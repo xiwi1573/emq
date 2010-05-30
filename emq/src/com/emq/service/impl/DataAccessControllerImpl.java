@@ -81,7 +81,7 @@ public class DataAccessControllerImpl implements DataAccessController {
 //		}
 		//如果没有取到r1用户信息，则取一个测试信息
 		if(user == null){
-			user = new R1AuthenticatedUser("53010100", ORG_PERM_MASK_COUNTY); 
+			user = new R1AuthenticatedUser("53010000", ORG_PERM_MASK_COUNTY); 
 		}
 		return user;
 	}

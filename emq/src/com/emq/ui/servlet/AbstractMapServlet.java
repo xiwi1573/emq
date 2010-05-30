@@ -26,9 +26,6 @@ import com.emq.ui.formbean.MapFormBean;
  * AbstractMapServlet负责处理请求参数，并调用GISMapCommandParser构造命令对象，最后执行地图操作命令以更新地图状态。
  * <p>
  * AbstractMapServlet将输出图片的选择交给子类，由子类决定输出主地图或是缩略图。
- * 
- * @author guqiong
- * @created 2009-9-21
  */
 public abstract class AbstractMapServlet extends HttpServlet {
 

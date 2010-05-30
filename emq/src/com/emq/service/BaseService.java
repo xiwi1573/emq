@@ -440,12 +440,12 @@ public class BaseService {
 				sheet.addCell(new Label(28,dataRow,map.get("T_FACTORY").toString(),wf_data));
 				sheet.addCell(new Label(29,dataRow,map.get("T_DISCREPANCY").toString(),wf_data));
 				
-//				sheet.addCell(new Label(30,dataRow,map.get("T_UNMBER").toString(),contentFromart));
-				if(map.get("T_UNMBER")!=null&&!map.get("T_UNMBER").equals("")){
-					sheet.addCell(new jxl.write.Number(30,dataRow,new Double(map.get("T_UNMBER").toString()),wf_data));
-				}else{
-					sheet.addCell(new Label(30,dataRow,map.get("T_UNMBER").toString(),wf_data));
-				}
+				sheet.addCell(new Label(30,dataRow,map.get("T_UNMBER").toString(),contentFromart));
+//				if(map.get("T_UNMBER")!=null&&!map.get("T_UNMBER").equals("")){
+//					sheet.addCell(new jxl.write.Number(30,dataRow,new Double(map.get("T_UNMBER").toString()),wf_data));
+//				}else{
+//					sheet.addCell(new Label(30,dataRow,map.get("T_UNMBER").toString(),wf_data));
+//				}
 				
 				sheet.addCell(new Label(31,dataRow,map.get("T_TENSION_FIRST").toString(),wf_data));
 				sheet.addCell(new Label(32,dataRow,map.get("T_TENSION_SECOND").toString(),wf_data));
@@ -461,12 +461,12 @@ public class BaseService {
 				sheet.addCell(new Label(42,dataRow,map.get("EI_MANUFACTURER").toString(),wf_data));
 				sheet.addCell(new Label(43,dataRow,map.get("EI_DISCREPANCY").toString(),wf_data));
 				
-//				sheet.addCell(new Label(44,dataRow,map.get("EI_UNMBER").toString(),contentFromart));
-				if(map.get("EI_UNMBER")!=null&&!map.get("EI_UNMBER").equals("")){
-					sheet.addCell(new jxl.write.Number(44,dataRow,new Double(map.get("EI_UNMBER").toString()),wf_data));
-				}else{
-					sheet.addCell(new Label(44,dataRow,map.get("EI_UNMBER").toString(),wf_data));
-				}
+				sheet.addCell(new Label(44,dataRow,map.get("EI_UNMBER").toString(),contentFromart));
+//				if(map.get("EI_UNMBER")!=null&&!map.get("EI_UNMBER").equals("")){
+//					sheet.addCell(new jxl.write.Number(44,dataRow,new Double(map.get("EI_UNMBER").toString()),wf_data));
+//				}else{
+//					sheet.addCell(new Label(44,dataRow,map.get("EI_UNMBER").toString(),wf_data));
+//				}
 				
 				sheet.addCell(new Label(45,dataRow,map.get("EI_RATED_TENSION_FIRST").toString(),wf_data));
 				sheet.addCell(new Label(46,dataRow,map.get("EI_RATED_TENSION_SECOND").toString(),wf_data));

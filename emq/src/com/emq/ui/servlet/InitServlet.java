@@ -1,5 +1,6 @@
 package com.emq.ui.servlet;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,8 +15,6 @@ import com.emq.model.pojo.GisConRegion;
 import com.emq.dao.GisConRegionDao;
 /**
  * 系统启动初始化
- * @author guqiong
- * @created 2009-10-30
  */
 public class InitServlet extends HttpServlet {
 	 
@@ -35,7 +34,19 @@ public class InitServlet extends HttpServlet {
 		GisConRegionDao gisConRegionDao=(GisConRegionDao)ctx.getBean("gisConRegionDao");  
 		SystemConfig.getInstance().init(); 
 		//List<GisConRegion> gisConRegionList = gisConRegionDao.getValidGisConRegions();
-		//SystemConfig.getInstance().loadOrgMapMappings(gisConRegionList);
+		GisConRegion gisConRegion = new GisConRegion();
+		gisConRegion.setZmjgbm("53010000");
+		gisConRegion.setZmjgmc("昆明市");
+		gisConRegion.setQyjb(1);
+		gisConRegion.setDtpzh("area.km");
+		gisConRegion.setDtmc("昆明市地图");
+		gisConRegion.setX(102.70282506459074);
+		gisConRegion.setY(25.045761728283331);
+		gisConRegion.setMrbz(true);
+		gisConRegion.setYxbz(true);
+		List gisConRegionList = new ArrayList();
+		gisConRegionList.add(gisConRegion);
+		SystemConfig.getInstance().loadOrgMapMappings(gisConRegionList);
 		log.debug("gis-map init end");
 		
 	}
