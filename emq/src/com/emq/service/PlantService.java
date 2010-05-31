@@ -220,4 +220,25 @@ public class PlantService extends BaseService {
 			}
 	   return mapList;
    }
+   
+   public String getLikeGridHtml(){
+	   //<th></th>
+	   StringBuffer sb = new StringBuffer("<table id='gridLike' background-color='#ffffff' border='1' cellspacing='0' style='border-right:none;border-bottom:none;'></tr>");
+	   sb.append("<th rowspan='2'>&nbsp;</th><th colspan='4'>基本情况</th><th colspan='4'>其他信息</th><th colspan='2' rowspan='2'>收入</th></tr>");
+	   sb.append("<tr><th>&nbsp;</th><th colspan='3'>特长</th><th>&nbsp;</th><th colspan='3'>爱好</th></tr>");
+	   sb.append("<tr><th>姓名</th><th>性别</th><th>java</th><th>db2</th><th>oracle</th><th>工作</th><th>羽毛球</th><th>足球</th><th>篮球</th><th>基本工资</th><th>奖金</th></tr>");
+	   for(int i=1;i<12;i++){
+		   sb.append("<tr>");
+		   for(int j=1;j<12;j++){
+			   sb.append("<td>"+i*j+"</td>");
+		   }
+		   sb.append("</tr>");
+	   }
+	   sb.append("<tr><td rowspan='2'>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td>");
+	   sb.append("</tr>");
+	   sb.append("<tr><td>1</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td><td>2</td>");
+	   sb.append("</tr>");
+	   sb.append("</table>");
+	   return sb.toString();
+   }
 }
