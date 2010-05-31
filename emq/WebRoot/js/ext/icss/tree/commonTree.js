@@ -35,6 +35,7 @@ Ext.tree.commonTree = Ext.extend(Ext.tree.TreePanel, {
 				this.border = false;
 				this.loader = treeLoader;
 				this.autoScroll = true;
+				this.lines = false;
 				treeLoader.on("beforeload", function(loader, node) {
 					        var treeLevel = node.attributes.treeLevel;
 					        var ifleaf =false;
